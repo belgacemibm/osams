@@ -14,7 +14,7 @@
     
     <div id="error_message"><asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label></div>
 
-
+    <div id="grid_view">
     <asp:GridView ID="grdvwSemester" runat="server" AutoGenerateColumns="False" 
         CellPadding="3" DataKeyNames="semester_name" DataSourceID="SqlDataSource1" 
         EnableModelValidation="True" ForeColor="Black" GridLines="Vertical" 
@@ -59,7 +59,7 @@
         <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
         <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
     </asp:GridView>
-    
+    </div>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
         ConflictDetection="CompareAllValues" 
         ConnectionString="<%$ ConnectionStrings:connstr %>" 
