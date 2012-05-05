@@ -121,8 +121,15 @@ Public Class Student
                 'fill database
                 sqlDa.Fill(ds)
 
-                grdvwNoneStudent.DataSource = ds.Tables(0)
-                grdvwNoneStudent.DataBind()
+                If ds.Tables(0).Rows.Count = 0 Then
+                    lblError.Text = "No student found"
+                    grdvwNoneStudent.DataSource = ""
+                    grdvwNoneStudent.DataBind()
+                Else
+                    lblError.Text = ""
+                    grdvwNoneStudent.DataSource = ds.Tables(0)
+                    grdvwNoneStudent.DataBind()
+                End If
 
             Else
                 grdvwNoneStudent.Visible = False
@@ -134,8 +141,15 @@ Public Class Student
                 'fill database
                 sqlDa.Fill(ds)
 
-                grdvwStudent.DataSource = ds.Tables(0)
-                grdvwStudent.DataBind()
+                If ds.Tables(0).Rows.Count = 0 Then
+                    lblError.Text = "No student found"
+                    grdvwStudent.DataSource = ""
+                    grdvwStudent.DataBind()
+                Else
+                    lblError.Text = ""
+                    grdvwStudent.DataSource = ds.Tables(0)
+                    grdvwStudent.DataBind()
+                End If
 
             End If
 
@@ -322,7 +336,7 @@ Public Class Student
 
                         cmd2.ExecuteNonQuery()
                         cmd5.ExecuteNonQuery()
-                        addAttendance(student_id.Text, group_ID, current_group_id)
+                        'addAttendance(student_id.Text, group_ID, current_group_id)
 
 
 
