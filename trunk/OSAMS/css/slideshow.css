@@ -1,0 +1,51 @@
+/* HEADER */
+#headerslide
+{
+    width: 670px;
+    float: left;
+}
+.headerimg { background-position: center top; background-repeat: no-repeat; width:670px; height:400px; position:absolute }
+
+/* HEADER TEXT */
+#headertxt
+{
+    width: 300px;
+    margin: 0 auto 0 20px;
+    position: relative;
+    top: 30px;
+    float: left;
+}
+#firstline
+{
+    background-image: url("../images/textbg.png");
+    color: #333;
+    font-size: 40px;
+    padding: 4px 13px 7px;
+    float: left;
+    display: block;
+    clear: left;
+}
+#secondline { background-image:url("../images/textbg.png"); color:#CD2B3A; text-decoration:none; font-size:60px; padding:0 13px 10px; float:left; display:block; clear:both; }
+#secondline:hover { text-decoration:underline; color:#7F000C; }
+
+.pictured { background-color:#CC3333; color:#FFF; font-size:12px; padding:9px 16px; text-transform:uppercase; float:left; display:block; clear:both; margin-top:10px; }
+.pictured a { font-size:16px; font-style:italic; letter-spacing:0; text-transform:none; color:#FFF; text-decoration:none; }
+.pictured a:hover { text-decoration:underline; }
+
+/* CONTROLS */
+.btn { height:32px; width:32px; float:left; cursor:pointer; }
+#back { background-image:url("../images/btn_back.png"); }
+#next { background-image:url("../images/btn_next.png"); }
+#control { background-image:url("../images/btn_pause.png"); }
+
+/* HEADER HAVIGATION */
+#headernav-outer
+{
+    position: relative;
+    float: right;
+    padding-top: 350px;
+}
+#headernav
+{
+    padding-right: 30px;
+}

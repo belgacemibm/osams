@@ -1,0 +1,154 @@
+#contain {
+	text-align: left;
+	margin: auto;
+}
+.body {
+	text-align: center;
+	margin: auto;
+	background-color: #FFFFFF;
+	display: block;
+}
+
+#big_content {
+	background-color: #FFFFFF;
+	background-repeat: repeat;
+}
+#mainlogin {
+	border: 1px solid #CCCCCC;
+	text-align: left;
+	margin-top: 150px;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-left: auto;
+	background-color: #FFFFFF;
+	width: 300px;
+}
+#header  {
+	height: 110px;
+	width: 1024px;
+	margin-right: auto;
+	margin-left: auto;
+}
+#report {
+	padding-left: 15px;
+}
+
+#big_header
+{
+    background-position: 50% 0;
+    height: 110px;
+    background-image: url('../images/OSAMS_banner3.png');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+}
+#button {
+	float: left;
+	width: 100%;
+	text-align: left;
+}
+
+#header  #logo  {
+	float: left;
+	height: 100px;
+	width: 100px;
+	padding: 5px;
+}
+#content  {
+	width: 1024px;
+	min-height: 400px;
+	margin-right: auto;
+	margin-left: auto;
+}
+#title {
+	text-align: left;
+	float: left;
+}
+a {
+	color: #666666;
+	text-decoration: none;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+a:hover {
+	color: #333333;
+}
+.topmenu a {
+	color: #CCCCCC;
+	text-decoration: none;
+	font-size: 12px;
+}
+.topmenu a:hover {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+#header  #menu  {
+	float: left;
+	height: 110px;
+	width: 914px;
+	text-align: right;
+}
+#menu #login {
+	padding-right: 17px;
+	padding-top: 3px;
+	float: right;
+}
+#footer
+{
+    width: 1024px;
+    text-align: center;
+    padding-top: 5px;
+    margin-right: auto;
+    margin-left: auto;
+  
+}
+#content #caption {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #5B666D;
+	padding-top: 15px;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	padding-left: 15px;
+	font-weight: bold;
+	text-align: left;
+}
+#content #table {
+	padding-top: 10px;
+	padding-left: 15px;
+}
+.style11 {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #666666;
+}
+.style12 {
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.style14 {font-size: 13px}
+.style18 {color: #4FC1E0}
+.style19 {color: #CCCCCC}
+.style20 {
+	color: #FFFFFF;
+	font-size: 24px;
+	font-weight: bold;
+}
+#selection {
+	
+	float: left;
+	width: 100%;
+}
+#maintable {
+	float: left;
+	padding-left: 15px;
+}
+#display {
+	float: left;
+	padding-top: 10px;
+}
+#right {
+	float: right;
+}
+#left {
+	float: left;
+}

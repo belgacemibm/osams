@@ -1,0 +1,571 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{E73CC24A-6926-4BFE-8187-C7DB25DFAE3F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>OSAMS</RootNamespace>
+    <AssemblyName>OSAMS</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>OSAMS.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>OSAMS.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=3.5.51116.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.ReportViewer.DataVisualization\10.0.0.0__b03f5f7f11d50a3a\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.ReportViewer.ProcessingObjectModel\10.0.0.0__b03f5f7f11d50a3a\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AboutUs.aspx" />
+    <Content Include="AddAdmin.aspx" />
+    <Content Include="AddCourse.aspx" />
+    <Content Include="AddCourseTest.aspx" />
+    <Content Include="AddGroup.aspx" />
+    <Content Include="AddLecturer.aspx" />
+    <Content Include="AddSemester.aspx" />
+    <Content Include="AddStudent.aspx" />
+    <Content Include="Admin.aspx" />
+    <Content Include="bin\AjaxControlToolkit.dll" />
+    <Content Include="bin\Microsoft.Office.Interop.Excel.dll" />
+    <Content Include="bin\Microsoft.Office.Interop.Excel.xml" />
+    <Content Include="bin\Microsoft.ReportViewer.WebForms.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.WebForms.xml" />
+    <Content Include="bin\Microsoft.Vbe.Interop.dll" />
+    <Content Include="bin\office.dll" />
+    <Content Include="bin\office.xml" />
+    <Content Include="bin\OSAMS.dll" />
+    <Content Include="bin\OSAMS.pdb" />
+    <Content Include="bin\OSAMS.xml" />
+    <Content Include="ChangePassword.aspx" />
+    <Content Include="CheckAttendance.aspx" />
+    <Content Include="ContactUs.aspx" />
+    <Content Include="Course.aspx" />
+    <Content Include="css\slideshow.css" />
+    <Content Include="css\style.css" />
+    <Content Include="css\style_body.css" />
+    <Content Include="database\SQL-script.sql" />
+    <Content Include="database\SQLQuery - For Report.sql" />
+    <Content Include="Default.aspx" />
+    <Content Include="EditProfile.aspx" />
+    <Content Include="FAQs.aspx" />
+    <Content Include="GenderReport.aspx" />
+    <Content Include="GenderReportResult.aspx" />
+    <Content Include="Group.aspx" />
+    <Content Include="Help.aspx" />
+    <Content Include="Home.aspx" />
+    <Content Include="images\btn_back.png" />
+    <Content Include="images\btn_next.png" />
+    <Content Include="images\btn_pause.png" />
+    <Content Include="images\btn_play.png" />
+    <Content Include="images\data.jpg" />
+    <Content Include="images\login.jpg" />
+    <Content Include="images\logo1_s.ico" />
+    <Content Include="images\logo_red.png" />
+    <Content Include="images\paper.jpg" />
+    <Content Include="images\play-button.png" />
+    <Content Include="images\report.jpg" />
+    <Content Include="images\textbg.png" />
+    <Content Include="images\time.jpeg" />
+    <Content Include="OSAMS.Publish.xml" />
+    <Content Include="Profile.aspx" />
+    <Content Include="images\drop-arrow.gif" />
+    <Content Include="images\OSAMS_banner3.png" />
+    <Content Include="Lecturer.aspx" />
+    <Content Include="LoginForm.aspx" />
+    <Content Include="obj\Debug\OSAMS.pdb" />
+    <Content Include="obj\Debug\OSAMS.vbproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\OSAMS.xml" />
+    <Content Include="obj\Debug\TempPE\My Project.Resources.Designer.vb.dll" />
+    <Content Include="scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="scripts\jquery-1.4.1.js" />
+    <Content Include="scripts\jquery-1.4.1.min.js" />
+    <Content Include="scripts\slideshow.js" />
+    <Content Include="Semester.aspx" />
+    <Content Include="SemesterAttendance.aspx" />
+    <Content Include="SessionReport.aspx" />
+    <Content Include="SessionReportResult.aspx" />
+    <Content Include="Student.aspx" />
+    <Content Include="SummaryReport.aspx" />
+    <Content Include="SummaryReportResult.aspx" />
+    <Content Include="TermsConditions.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutUs.aspx.designer.vb">
+      <DependentUpon>AboutUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AboutUs.aspx.vb">
+      <DependentUpon>AboutUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddAdmin.aspx.designer.vb">
+      <DependentUpon>AddAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddAdmin.aspx.vb">
+      <DependentUpon>AddAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="AddCourse.aspx.designer.vb">
+      <DependentUpon>AddCourse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddCourse.aspx.vb">
+      <DependentUpon>AddCourse.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="AddCourseTest.aspx.designer.vb">
+      <DependentUpon>AddCourseTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddCourseTest.aspx.vb">
+      <DependentUpon>AddCourseTest.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="AddGroup.aspx.designer.vb">
+      <DependentUpon>AddGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddGroup.aspx.vb">
+      <DependentUpon>AddGroup.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="AddLecturer.aspx.designer.vb">
+      <DependentUpon>AddLecturer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddLecturer.aspx.vb">
+      <DependentUpon>AddLecturer.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="AddSemester.aspx.designer.vb">
+      <DependentUpon>AddSemester.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddSemester.aspx.vb">
+      <DependentUpon>AddSemester.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="AddStudent.aspx.designer.vb">
+      <DependentUpon>AddStudent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddStudent.aspx.vb">
+      <DependentUpon>AddStudent.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Admin.aspx.designer.vb">
+      <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.aspx.vb">
+      <DependentUpon>Admin.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CDay.vb" />
+    <Compile Include="CGroup.vb" />
+    <Compile Include="ChangePassword.aspx.designer.vb">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePassword.aspx.vb">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CheckAttendance.aspx.designer.vb">
+      <DependentUpon>CheckAttendance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckAttendance.aspx.vb">
+      <DependentUpon>CheckAttendance.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CLecturer.vb" />
+    <Compile Include="ContactUs.aspx.designer.vb">
+      <DependentUpon>ContactUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContactUs.aspx.vb">
+      <DependentUpon>ContactUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Course.aspx.designer.vb">
+      <DependentUpon>Course.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Course.aspx.vb">
+      <DependentUpon>Course.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CStudent.vb" />
+    <Compile Include="Default.aspx.vb">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditProfile.aspx.designer.vb">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditProfile.aspx.vb">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="FAQs.aspx.designer.vb">
+      <DependentUpon>FAQs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FAQs.aspx.vb">
+      <DependentUpon>FAQs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GenderReport.aspx.designer.vb">
+      <DependentUpon>GenderReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GenderReport.aspx.vb">
+      <DependentUpon>GenderReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GenderReportResult.aspx.designer.vb">
+      <DependentUpon>GenderReportResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GenderReportResult.aspx.vb">
+      <DependentUpon>GenderReportResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Group.aspx.designer.vb">
+      <DependentUpon>Group.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Group.aspx.vb">
+      <DependentUpon>Group.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Help.aspx.designer.vb">
+      <DependentUpon>Help.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Help.aspx.vb">
+      <DependentUpon>Help.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.vb">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home.aspx.vb">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="osamsDataSet.Designer.vb" />
+    <Compile Include="osamsDataSet2.Designer.vb" />
+    <Compile Include="osamsDataSet3.Designer.vb" />
+    <Compile Include="Profile.aspx.designer.vb">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.aspx.vb">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Lecturer.aspx.designer.vb">
+      <DependentUpon>Lecturer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Lecturer.aspx.vb">
+      <DependentUpon>Lecturer.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="LoginForm.aspx.designer.vb">
+      <DependentUpon>LoginForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.aspx.vb">
+      <DependentUpon>LoginForm.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWebExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.Web.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="PB.vb" />
+    <Compile Include="Semester.aspx.designer.vb">
+      <DependentUpon>Semester.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Semester.aspx.vb">
+      <DependentUpon>Semester.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="SemesterAttendance.aspx.designer.vb">
+      <DependentUpon>SemesterAttendance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SemesterAttendance.aspx.vb">
+      <DependentUpon>SemesterAttendance.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="SessionReport.aspx.designer.vb">
+      <DependentUpon>SessionReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SessionReport.aspx.vb">
+      <DependentUpon>SessionReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SessionReportResult.aspx.designer.vb">
+      <DependentUpon>SessionReportResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SessionReportResult.aspx.vb">
+      <DependentUpon>SessionReportResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Student.aspx.designer.vb">
+      <DependentUpon>Student.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Student.aspx.vb">
+      <DependentUpon>Student.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="SummaryReport.aspx.designer.vb">
+      <DependentUpon>SummaryReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SummaryReport.aspx.vb">
+      <DependentUpon>SummaryReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SummaryReportResult.aspx.designer.vb">
+      <DependentUpon>SummaryReportResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SummaryReportResult.aspx.vb">
+      <DependentUpon>SummaryReportResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Template.Master.designer.vb">
+      <DependentUpon>Template.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Template.Master.vb">
+      <DependentUpon>Template.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TermsConditions.aspx.designer.vb">
+      <DependentUpon>TermsConditions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TermsConditions.aspx.vb">
+      <DependentUpon>TermsConditions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="obj\Debug\OSAMS.Resources.resources" />
+    <Content Include="RDLC\GenderReport.rdlc" />
+    <Content Include="RDLC\SessionReport.rdlc" />
+    <Content Include="RDLC\SummaryReport.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LecturerMenu.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="AdminMenu.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Browsers\Chrome.browser" />
+    <Content Include="fileupload\All Students.xlsx" />
+    <Content Include="fileupload\Group 1.xlsx" />
+    <Content Include="fileupload\Group 2.xlsx" />
+    <Content Include="fileupload\sample.xlsx" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Template.Master" />
+    <Content Include="Web.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\GenerateResource-ResGen.read.1.tlog" />
+    <None Include="obj\Debug\GenerateResource-ResGen.write.1.tlog" />
+    <None Include="obj\Debug\GenerateResource.read.1.tlog" />
+    <Content Include="StudentMenu.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SuperAdminMenu.sitemap" />
+    <None Include="osamsDataSet.xsc">
+      <DependentUpon>osamsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="osamsDataSet.xsd" />
+    <None Include="osamsDataSet.xss">
+      <DependentUpon>osamsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="osamsDataSet2.xsc">
+      <DependentUpon>osamsDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="osamsDataSet2.xsd" />
+    <None Include="osamsDataSet2.xss">
+      <DependentUpon>osamsDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="osamsDataSet3.xsc">
+      <DependentUpon>osamsDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="osamsDataSet3.xsd" />
+    <None Include="osamsDataSet3.xss">
+      <DependentUpon>osamsDataSet3.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>6355</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

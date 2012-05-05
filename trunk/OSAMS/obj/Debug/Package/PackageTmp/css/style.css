@@ -1,0 +1,90 @@
+﻿.staticMenuItemStyle {
+text-align:center;
+display:block;
+margin-left:0;
+margin-bottom:1px;
+}
+
+.staticMenuItemSelectedStyle
+{
+    border: 1px solid #CCCCCC;
+}
+
+.staticHoverStyle {
+}
+
+.menuItem {
+display:block;
+}
+
+.dynamicMenuItemStyle
+{
+    color: Red;
+    z-index: 200;
+    position: relative;
+    padding-top: 3px;
+    padding-right: 10px;
+    padding-left: 5px;
+    text-align: left;
+    background-color: #CC0000;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-top-color: #CCCCCC;
+    border-right-color: #CCCCCC;
+    border-left-color: #CCCCCC;
+}
+
+.background
+{
+    float: right;
+}
+
+.NavigationMenu
+{
+    font-family: Verdana;
+    font-size: 10pt;
+    color: #FFF;
+    font-weight: 600;
+    z-index: 101;
+}
+
+#h {
+background:#CCCFFF;
+padding:5px 0 6px 10px;
+}
+
+#e {
+border:solid 1px #919191;
+padding:0 0 1px;
+}
+
+.menuItemMouseOver, .menuItemSelected
+{
+    border: 1px solid #FFFFFF;
+    background-color: #000000;
+}
+
+.NavigationMenu A{
+margin-right:5px;
+font-size:12px;
+font-family:Verdana;
+}
+.NavigationMenu A:link,.NavigationMenu A:visited,.NavigationMenu A:active {
+text-decoration:none;
+color:#FFF;
+display:block;
+}
+
+.NavigationMenu A:hover
+{
+    color: #FFFFFF;
+}
+.currentNodeStyle,.nodeStyle,.rootNodeStyle,a.siteMapPath {
+text-decoration:none;
+font-family:Verdana;
+font-size:10pt;
+}

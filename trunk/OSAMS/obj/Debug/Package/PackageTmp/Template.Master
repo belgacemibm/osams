@@ -1,0 +1,94 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Template.master.vb" Inherits="OSAMS.Template" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+    <link href="css/style_body.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link id="Link1" runat="server" rel="shortcut icon" href="~/images/logo1_s.ico" type="image/x-icon" /> 
+    <link id="Link2" runat="server" rel="icon" href="~/images/logo1_s.ico" type="image/ico" />
+    <script type="text/javascript" src="Scripts/jquery-1.4.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var screen_height = $(document).height();
+            var footer_height = $("#bigfooter").height();
+            $("#content").css("min-height", (screen_height - footer_height - 125) + "px");
+        });
+    </script>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="body">
+    <form id="form1" runat="server">
+<div id="big_header">
+<div id="header">
+<div id="logo"><img alt="logo" src="images/logo_red.png" width="80" height="80" /></div>
+<div id="menu">
+<div id="title">
+  <span class="style20">OSAMS</span></div>
+<div class="style11" id="login">
+    <asp:Label ID="lblWelcome" runat="server" ForeColor="White" Text="Welcome, "></asp:Label>
+&nbsp;<span class="topmenu">| 
+    <asp:LinkButton ID="lnkbtnProfile" runat="server" ForeColor="White" CausesValidation="false">Profile</asp:LinkButton>
+&nbsp;| </span>
+    <asp:LinkButton ID="lnkbtnLoginStatus" runat="server" CausesValidation="false">Login</asp:LinkButton>
+    </div>
+<br /><br /><br /><br />
+    <div class="background">
+    <asp:menu id="NavigationMenu" CssClass="NavigationMenu"  
+        staticdisplaylevels="2" DynamicHorizontalOffset="1"
+        staticsubmenuindent="1px" MaximumDynamicDisplayLevels="4"
+        orientation="Horizontal"   
+        StaticPopOutImageUrl="~/images/drop-arrow.gif"
+        runat="server" Height="25px">
+        
+
+        <staticmenuitemstyle ItemSpacing="10" CssClass="staticMenuItemStyle"/>
+        <statichoverstyle CssClass="staticHoverStyle" />
+        <StaticSelectedStyle CssClass="staticMenuItemSelectedStyle"/>
+        <DynamicMenuItemStyle CssClass="dynamicMenuItemStyle" />
+        <dynamichoverstyle CssClass="menuItemMouseOver" />
+        <DynamicMenuStyle CssClass="menuItem" />
+        <DynamicSelectedStyle CssClass="menuItemSelected" />
+
+        <DataBindings>
+             <asp:MenuItemBinding DataMember="siteMapNode"
+                NavigateUrlField="url" TextField="title"
+                    ToolTipField="description" />
+        </DataBindings>
+
+      </asp:menu>
+      </div>
+      </div>
+</div>
+</div>
+      <asp:Panel ID="AccessKeyPanel" runat="server">
+    </asp:Panel>
+
+        <asp:SiteMapDataSource ID="SuperAdmin" runat="server" SiteMapProvider="SuperAdminMenu"/>
+        <asp:SiteMapDataSource id="Admin" runat="server" StartFromCurrentNode="false" ShowStartingNode="true" SiteMapProvider="AdminMenu"/>
+        <asp:SiteMapDataSource ID="Lecturer" runat="server" SiteMapProvider="LecturerMenu"/>
+        <asp:SiteMapDataSource ID="Student" runat="server" SiteMapProvider="StudentMenu"/>
+        
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+
+        </asp:ContentPlaceHolder>
+<div id="bigfooter">
+<div class="style11" id="footer">
+<div id="footerleft" style="font-size: 11px">Copyright © 2012, OSAMS v1.2.0</div>
+<div id="footerright"><span class="style14"><a href="Home.aspx">Home</a> | <a href="FAQs.aspx">FAQ</a> | <a href="ContactUs.aspx">Contact us</a> | <a href="AboutUs.aspx">About</a> | <a href="Help.aspx">Help</a> | <a href="TermsConditions.aspx">Terms & Conditions</a></span></div>
+</div>
+</div>
+    </form>
+    <script type="text/javascript">
+
+        function navigateTo(url) {
+            window.location = url;
+        }
+
+</script>
+</body>
+</html>
+
