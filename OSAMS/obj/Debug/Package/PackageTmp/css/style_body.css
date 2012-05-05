@@ -1,0 +1,275 @@
+#contain {
+	text-align: left;
+	margin: auto;
+}
+.body {
+	text-align: center;
+	margin: auto;
+	background-color: #FFFFFF;
+	display: block;
+}
+
+#big_content {
+	background-color: #FFFFFF;
+	background-repeat: repeat;
+}
+#logincontent
+{
+    padding-top: 100px;
+}
+#mainlogin
+{
+    border: 1px solid #CCCCCC;
+    text-align: left;
+    margin-top: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    background-color: #FFFFFF;
+    width: 525px;
+    height: 227px;
+}
+#loginleft
+{
+    padding: 5px 10px 5px 5px;
+    margin: 5px;
+    float: left;
+    text-align: center;
+    width: 190px;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: #CCCCCC;
+}
+#loginright
+{
+    margin: 5px;
+    padding: 5px;
+    float: left;
+}
+#header  {
+	height: 110px;
+	width: 1024px;
+	margin-right: auto;
+	margin-left: auto;
+}
+#report {
+	padding-left: 15px;
+}
+
+#big_header
+{
+    background-position: 50% 0;
+    height: 110px;
+    background-image: url('../images/OSAMS_banner3.png');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+}
+#button
+{
+    float: left;
+    width: 100%;
+    text-align: left;
+    clear: left;
+}
+
+#header #logo
+{
+    float: left;
+    height: 80px;
+    width: 80px;
+    padding: 15px 5px 15px 5px;
+}
+#content
+{
+    width: 1024px;
+    min-height: 400px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: left;
+}
+#title
+{
+    text-align: left;
+    float: left;
+    padding-top: 42px;
+}
+#homeleft
+{
+    float: left;
+    clear: left;
+    margin-right: 15px;
+}
+#tabletitle
+{
+    color: #FFFFFF;
+    background-color: #000000;
+    padding: 5px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: left;
+}
+
+#homecontent
+{
+    padding: 3px;
+    border: 1px solid #CCCCCC;
+    width: 300px;
+    height: 359px;
+    text-align: left;
+}
+a
+{
+	color: #666666;
+	text-decoration: none;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+a:hover {
+	color: #333333;
+}
+.topmenu a {
+	color: #CCCCCC;
+	text-decoration: none;
+	font-size: 12px;
+}
+.topmenu a:hover {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+#header  #menu  {
+	float: left;
+	height: 110px;
+	width: 914px;
+	text-align: right;
+}
+#menu #login {
+	padding-right: 17px;
+	padding-top: 3px;
+	float: right;
+}
+#bigfooter
+{
+    background-color: #000000;
+    height: 45px;
+}
+    
+#footer
+{
+    width: 1024px;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 5px;
+}
+#footerleft
+{
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 11px;
+}
+#footerright
+{
+    margin: 10px 5px 10px 5px;
+    float: right;
+}
+#footerright a {
+	color: #666666;
+	text-decoration: none;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+#footerright a:hover
+{
+    color: #FFFFFF;
+}
+#content #caption
+{
+    font-family: Calibri;
+    font-size: 20px;
+    color: #CC0000;
+    padding-top: 15px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    font-weight: bold;
+    text-align: left;
+}
+#content #table
+{
+    padding-top: 10px;
+    padding-left: 15px;
+    text-align: left;
+}
+.style11 {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #666666;
+}
+.style12 {
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.style14 {font-size: 11px}
+.style18 {color: #4FC1E0}
+.style19 {color: #CCCCCC}
+.style20 {
+	color: #FFFFFF;
+	font-size: 24px;
+	font-weight: bold;
+}
+#selection {
+	
+	float: left;
+	width: 100%;
+}
+#maintable {
+	float: left;
+	padding-left: 15px;
+}
+#display {
+	float: left;
+	padding-top: 10px;
+}
+#right {
+	float: right;
+}
+#left {
+	float: left;
+}
+#error_message
+{
+    float: left;
+    text-align: left;
+}
+#note_horizon
+{
+    float: right;
+    width: 45%;
+    padding-top: 25px;
+}
+#note_caption
+{
+    font-size: 20px;
+    font-weight: bold;
+    color: #CC0000;
+    font-family: Calibri;
+}
+#content #caption_test
+{
+    font-family: Calibri;
+    font-size: 20px;
+    color: #CC0000;
+    padding-right: 5px;
+    font-weight: bold;
+    text-align: left;
+}
+#content #table_test
+{
+    padding-top: 25px;
+    padding-left: 15px;
+    text-align: left;
+    float: left;
+}

@@ -1,0 +1,16 @@
+C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Capstone project)\Codes\Final v1.0.4_2\OSAMS\bin\OSAMS.dll
+C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Capstone project)\Codes\Final v1.0.4_2\OSAMS\bin\OSAMS.pdb
+C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Capstone project)\Codes\Final v1.0.4_2\OSAMS\bin\OSAMS.xml
+C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Capstone project)\Codes\Final v1.0.4_2\OSAMS\bin\Microsoft.Office.Interop.Excel.dll
+C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Capstone project)\Codes\Final v1.0.4_2\OSAMS\bin\office.dll
+C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Capstone project)\Codes\Final v1.0.4_2\OSAMS\bin\Microsoft.Vbe.Interop.dll
+C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Capstone project)\Codes\Final v1.0.4_2\OSAMS\bin\Microsoft.Office.Interop.Excel.xml
+C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Capstone project)\Codes\Final v1.0.4_2\OSAMS\bin\office.xml
+C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Capstone project)\Codes\Final v1.0.4_2\OSAMS\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Capstone project)\Codes\Final v1.0.4_2\OSAMS\obj\Release\OSAMS.vbproj.ResolveComReference.cache
+C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Capstone project)\Codes\Final v1.0.4_2\OSAMS\obj\Release\OSAMS.Resources.resources
+C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Capstone project)\Codes\Final v1.0.4_2\OSAMS\obj\Release\GenerateResource-ResGen.read.1.tlog
+C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Capstone project)\Codes\Final v1.0.4_2\OSAMS\obj\Release\GenerateResource-ResGen.write.1.tlog
+C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Capstone project)\Codes\Final v1.0.4_2\OSAMS\obj\Release\OSAMS.dll
+C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Capstone project)\Codes\Final v1.0.4_2\OSAMS\obj\Release\OSAMS.xml
+C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Capstone project)\Codes\Final v1.0.4_2\OSAMS\obj\Release\OSAMS.pdb
