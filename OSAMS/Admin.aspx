@@ -6,14 +6,13 @@
 <div id="content">
 <div class="style18" id="caption">ADMIN MANAGEMENT</div>
 <div id="table">
-
-    <div id="button">
-        <div id="left">
+    <div id="error_message"><asp:Label ID="lblError" runat="server"></asp:Label></div>
+    
             <asp:GridView ID="grdvwAdmin" runat="server" AllowPaging="True" 
                 AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="staff_id" 
                 DataSourceID="SqlDataAdmin" EnableModelValidation="True" BackColor="White" 
                 BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" 
-                ForeColor="Black" GridLines="Vertical">
+                ForeColor="Black" GridLines="Vertical" CssClass="grid_view">
                 <AlternatingRowStyle BackColor="#CCCCCC" />
                 <Columns>
                     <asp:CommandField ShowEditButton="True" />
@@ -123,10 +122,11 @@ where [account_type].[account_type_id] = 2"
                     <asp:Parameter Name="original_active" Type="Boolean" />
                 </UpdateParameters>
             </asp:SqlDataSource>
-        </div> 
-    </div>
-    <asp:Button ID="btnNewAdmin" runat="server" Text="Add New Admin" />
-    <asp:Label ID="lblError" runat="server"></asp:Label>
+        <div id="button">
+            <div id="left">
+                <asp:Button ID="btnNewAdmin" runat="server" Text="Add New Admin" />
+            </div> 
+        </div>
 </div>
 </div>
 </div>
