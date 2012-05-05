@@ -19,13 +19,13 @@
                     By using OSAMS, the lecturer could get many benefits from:</p>
                 <ul>
                     <li><strong>
-                    Saving paper</strong></li><br />               
+                    Saving paper</strong></li>               
                     <li><strong>
-                    Saving time</strong></li><br />             
+                    Saving time</strong></li>             
                     <li><strong>
-                    Integrating data</strong></li><br />
+                    Integrating data</strong></li>
                     <li><strong>
-                    Analysing report</strong></li><br />
+                    Analysing report</strong></li>
                 </ul>
                 <p>
                     Hope you 
