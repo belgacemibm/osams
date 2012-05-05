@@ -103,7 +103,7 @@
         
     </div>
     <div id="left">
-        <asp:Button ID="btnAddNewLecturer" runat="server" Text="New Lecturer" />
+        <asp:Button ID="btnAddNewLecturer" runat="server" Text="Add New Lecturer" />
         </div> 
     
 
