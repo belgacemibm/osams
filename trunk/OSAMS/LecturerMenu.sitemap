@@ -6,7 +6,7 @@
 			<siteMapNode url="SemesterAttendance.aspx" title="View"  description="" />
 			<siteMapNode url="CheckAttendance.aspx" title="Mark"  description="" />
 		</siteMapNode>
-		<siteMapNode url="Report.aspx" title="Report"  description="" >
+		<siteMapNode url="" title="Report"  description="" >
       <siteMapNode url="SummaryReport.aspx" title="Summary"  description="" />
       <siteMapNode url="SessionReport.aspx" title="Session"  description="" />
       <siteMapNode url="GenderReport.aspx" title="Gender"  description="" />
