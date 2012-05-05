@@ -6,14 +6,15 @@
 <div id="content">
 <div class="style18" id="caption">LECTURER MANAGEMENT</div>
 <div id="table">
-
-    <div id="button">
+    <div id="error_message"><asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label></div>    
+    
         
         <asp:GridView ID="grdvwLecturer" runat="server" AllowPaging="True" 
             AllowSorting="True" AutoGenerateColumns="False" CellPadding="3" 
             DataKeyNames="lecturer_id" DataSourceID="SqlDataLecturer" 
             EnableModelValidation="True" ForeColor="Black" GridLines="Vertical" 
-            BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
+            BackColor="White" BorderColor="#999999" BorderStyle="Solid" 
+        BorderWidth="1px" CssClass="grid_view">
             <AlternatingRowStyle BackColor="#CCCCCC" />
             <Columns>
                 <asp:CommandField ShowEditButton="True" />
@@ -100,15 +101,11 @@
                 <asp:Parameter Name="original_email" Type="String" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        
-    </div>
-    <div id="left">
-        <asp:Button ID="btnAddNewLecturer" runat="server" Text="Add New Lecturer" />
+    <div id="button">    
+        <div id="left">
+            <asp:Button ID="btnAddNewLecturer" runat="server" Text="Add New Lecturer" />
         </div> 
-    
-
-    <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
-    
+    </div>
 
 </div>
 </div>
