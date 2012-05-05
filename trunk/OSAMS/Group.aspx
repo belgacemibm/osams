@@ -186,7 +186,7 @@
 
         <div id="button">
         <div id="left">
- <asp:Button ID="btnNewGroup" runat="server" Text="New Group" />
+ <asp:Button ID="btnNewGroup" runat="server" Text="Add New Group" />
   </div>
         
 </div>
