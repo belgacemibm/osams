@@ -28,7 +28,7 @@
                     Analysing report</strong></li><br />
                 <p>
                     Hope you 
-                    will have a useful and gladful time when using the system.</p>
+                    will have a useful and gladful time when using OSAMS.</p>
 
     </div>          
     </div>
