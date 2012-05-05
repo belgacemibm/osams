@@ -118,7 +118,7 @@ Public Class GenderReport
             btnViewReport.Visible = True 'Set "View Report" button is visible
             btnSelectAll.Visible = True 'Set "Select All" button is visible
             btnUnselectAll.Visible = True 'Set "Unselect All" button is visible
-            lblErrorMessage.Text = "ERROR: Please select at least one group!"
+            lblErrorMessage.Text = "Error: Please select at least one group!"
         Else
             Session("GroupName_GenderReport") = Right(getCheckboxInGridview(3), getCheckboxInGridview(3).Length - 1)
             Session("GroupID_GenderReport") = Right(getCheckboxInGridview(4), getCheckboxInGridview(4).Length - 1)
