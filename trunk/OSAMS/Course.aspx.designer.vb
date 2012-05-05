@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class Course
 
     '''<summary>
+    '''lblMessage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblMessage As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''grdvwCourse control.
     '''</summary>
     '''<remarks>
@@ -30,15 +39,6 @@ Partial Public Class Course
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnAddNewCourse As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''lblMessage control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblMessage As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtSearch control.
