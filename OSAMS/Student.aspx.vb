@@ -235,15 +235,15 @@ Public Class Student
 
         If strDate < Today Then
             e.Cancel = True
-            lblError.Text = "Error: You cannot modify last semester"
+            lblError.Text = "<img src = 'images/notification_error.png' /><span>Error: You cannot modify last semester</span>"
         Else
             If family_name.Text = "" Or given_name.Text = "" Or email.Text = "" Or password.Text = "" Then
 
-                lblError.Text = "Error: Family Name, Given Name, Email and Password must not be blank"
+                lblError.Text = "<img src = 'images/notification_error.png' /><span>Error: Family Name, Given Name, Email and Password must not be blank</span>"
                 e.Cancel = True
             Else
                 If Not myRegex.IsMatch(email.Text) Then
-                    lblError.Text = "Error: Email is not correct format"
+                    lblError.Text = "<img src = 'images/notification_error.png' /><span>Error: Email is not correct format</span>"
                     e.Cancel = True
                 Else
                     lblError.Text = ""
