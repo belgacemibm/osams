@@ -85,7 +85,8 @@
                 OldValuesParameterFormatString="original_{0}" 
                 SelectCommand="
 SELECT  [admin].staff_id, [admin].family_name, [admin].middle_name, [admin].given_name, [admin].gender, [admin].email, [account].active 
-from [admin] inner join [account] on [admin].staff_id = [account].[user_name]" 
+from [admin] inner join [account] on [admin].staff_id = [account].[user_name] inner join [account_type] on [account].[account_type_id] = [account_type].[account_type_id]
+where [account_type].[account_type_id] = 2" 
                 
                 UpdateCommand="UPDATE [admin] SET [family_name] = @family_name, [middle_name] = @middle_name, [given_name] = @given_name, [gender] = @gender, [email] = @email, [active] = @active WHERE [staff_id] = @original_staff_id AND (([family_name] = @original_family_name) OR ([family_name] IS NULL AND @original_family_name IS NULL)) AND (([middle_name] = @original_middle_name) OR ([middle_name] IS NULL AND @original_middle_name IS NULL)) AND (([given_name] = @original_given_name) OR ([given_name] IS NULL AND @original_given_name IS NULL)) AND [gender] = @original_gender AND (([email] = @original_email) OR ([email] IS NULL AND @original_email IS NULL)) AND (([active] = @original_active) OR ([active] IS NULL AND @original_active IS NULL))">
                 <DeleteParameters>
