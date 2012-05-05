@@ -7,7 +7,7 @@
 <div class="style18" id="caption">ADMIN MANAGEMENT</div>
 <div id="table">
     <div id="error_message"><asp:Label ID="lblError" runat="server"></asp:Label></div>
-    
+    <div id="grid_view">
             <asp:GridView ID="grdvwAdmin" runat="server" AllowPaging="True" 
                 AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="staff_id" 
                 DataSourceID="SqlDataAdmin" EnableModelValidation="True" BackColor="White" 
@@ -76,6 +76,7 @@
                 <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                 <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
             </asp:GridView>
+            </div>
             <asp:SqlDataSource ID="SqlDataAdmin" runat="server" 
                 ConflictDetection="CompareAllValues" 
                 ConnectionString="<%$ ConnectionStrings:connstr %>" 
