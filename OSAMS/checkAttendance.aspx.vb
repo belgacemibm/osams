@@ -915,7 +915,7 @@ Public Class checkAttendance
 
             r = New TableRow
             c = New TableCell
-            c.Controls.Add(New LiteralControl("<input id='Button1' type='button' value='Submit' onclick='javascript:run();'  align='right' />"))
+            c.Controls.Add(New LiteralControl("<input id='Button1' type='button' value='Submit Attendance' onclick='javascript:run();'  align='right' />"))
             r.Cells.Add(c)
             tbattendace.Rows.Add(r)
 
