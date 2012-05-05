@@ -7,7 +7,7 @@
 <div class="style18" id="caption">LECTURER MANAGEMENT</div>
 <div id="table">
     <div id="error_message"><asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label></div>    
-    
+    <div id="grid_view">
         
         <asp:GridView ID="grdvwLecturer" runat="server" AllowPaging="True" 
             AllowSorting="True" AutoGenerateColumns="False" CellPadding="3" 
@@ -54,7 +54,7 @@
             <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
             <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
         </asp:GridView>
-           
+        </div>   
         <asp:SqlDataSource ID="SqlDataLecturer" runat="server" 
             ConflictDetection="CompareAllValues" 
             ConnectionString="<%$ ConnectionStrings:connstr %>" 
