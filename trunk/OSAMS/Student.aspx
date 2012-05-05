@@ -226,7 +226,7 @@
         </asp:gridview>
 
         <div id="left">
-        <asp:Button ID="btnAddNewStudent" runat="server" Text="New Student" />
+        <asp:Button ID="btnAddNewStudent" runat="server" Text="Add New Student" />
             <asp:Button ID="btnRemove" runat="server" Text="Remove Student" Width="114px" />
         </div> 
     </div>

@@ -200,6 +200,10 @@ Public Class Student
 
         Dim cmd As New SqlCommand(semesterSqlStatement, connection)
 
+        Dim strEmail = "\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+
+        Dim myRegex As New Regex(strEmail)
+
         
         'open connection
         connection.Open()
@@ -224,113 +228,117 @@ Public Class Student
                 lblError.Text = "Error: Family Name, Given Name, Email and Password must not be blank"
                 e.Cancel = True
             Else
-                lblError.Text = ""
+                If Not myRegex.IsMatch(email.Text) Then
+                    lblError.Text = "Error: Email is not correct format"
+                    e.Cancel = True
+                Else
+                    lblError.Text = ""
 
-                grdvwStudent.EditIndex = -1
-
-
-
-                'declare select query
-                Dim selectSqlStatement As String = "select [student_group].group_id FROM  student_group inner join [group] on student_group.group_id = [group].group_id where [student_group].student_id = '" + student_id.Text & "' AND [group].course_id = '" + ddlCourse.SelectedValue & "' AND [student_group].active = 1 "
-
-                Dim selectGroupnameStatement As String = "select group_id from [group] where course_id = '" + ddlCourse.SelectedValue & "' and group_name ='" + group_nameDDL.SelectedValue & "' and semester_name = '" + ddlSemester.SelectedValue & "'"
-                'declare update query
-                Dim sqlStatement As String = "UPDATE student SET family_name = '" + family_name.Text & "' , middle_name = '" + middle_name.Text & "', given_name = '" + given_name.Text & "', gender = '" + gender & "', email = '" + email.Text & "', program = '" + program & "', stream = '" + stream & "', active = '1' WHERE student_id = '" + student_id.Text & "'"
-
-                Dim updateSqlStatement As String = "UPDATE [student_group] SET [student_group].active = '0' WHERE student_id = '" + student_id.Text & "' AND [student_group].group_id = @current_group_ID "
-                updateSqlStatement = updateSqlStatement + "update [group] set number_of_student = number_of_student - 1 where group_id = @current_group_ID and course_id ='" & ddlCourse.SelectedValue & "' and semester_name ='" & ddlSemester.SelectedValue & "'"
-
-                Dim updateStatusSqlStatement As String = "UPDATE [student_group] SET [student_group].active = '1' WHERE student_id = '" + student_id.Text & "' AND [student_group].group_id = @group_ID "
-                updateStatusSqlStatement = updateStatusSqlStatement + "update [group] set number_of_student = number_of_student + 1 where group_id = @group_ID and course_id ='" & ddlCourse.SelectedValue & "' and semester_name ='" & ddlSemester.SelectedValue & "'"
-
-                Dim insertSqlStatement As String = "INSERT INTO student_group (grade, result, comment, active, group_id, student_id) VALUES  ('','','',1, @group_ID ,'" & student_id.Text & "')"
-                insertSqlStatement = insertSqlStatement + "update [group] set number_of_student = number_of_student + 1 where group_id = @group_ID and course_id ='" & ddlCourse.SelectedValue & "' and semester_name ='" & ddlSemester.SelectedValue & "'"
-
-                Dim updateAccountStatement As String = "UPDATE [account] SET [account].password = '" & password.Text & "' , [account].active = 1, [account].account_type_id = 5 WHERE [account].user_name = '" & student_id.Text & "'"
-
-
-                'declare variable
-                Dim group_ID As Integer
-                Dim current_group_id As Integer
-
-
-                Try
-                    'execute query
-                    Dim cmd1 As New SqlCommand(selectSqlStatement, connection)
-                    Dim cmd4 As New SqlCommand(selectGroupnameStatement, connection)
-
-                    'get current group id
-                    Using reader As SqlDataReader = cmd1.ExecuteReader()
-                        While reader.Read()
-                            For i As Integer = 0 To reader.FieldCount - 1
-
-                                current_group_id = reader.GetValue(i)
-
-                            Next
-
-                        End While
-                    End Using
-
-                    'get current group ID
-                    Using reader1 As SqlDataReader = cmd4.ExecuteReader()
-                        While reader1.Read()
-                            For i As Integer = 0 To reader1.FieldCount - 1
-
-                                group_ID = reader1.GetValue(i)
-
-                            Next
-
-                        End While
-                    End Using
-
-                    'execute quer
-                    Dim cmd2 As New SqlCommand(sqlStatement, connection)
-                    Dim cmd5 As New SqlCommand(updateAccountStatement, connection)
-
-                    Dim cmd7 As New SqlCommand(updateSqlStatement, connection)
-                    cmd7.Parameters.AddWithValue("@current_group_id", current_group_id)
-                    cmd7.CommandType = CommandType.Text
-                    cmd7.ExecuteNonQuery()
-
-                    Dim extra As Boolean = PB.checkEsixtedData("select student_group_id from student_group where student_id = '" & student_id.Text & "' and group_id= '" & group_ID & "'")
-                    If extra = True Then
-
-                        Dim cmd3 As New SqlCommand(updateStatusSqlStatement, connection)
-                        cmd3.Parameters.AddWithValue("@group_id", group_ID)
-                        cmd3.CommandType = CommandType.Text
-                        cmd3.ExecuteNonQuery()
-
-                    Else
-                        Dim cmd6 As New SqlCommand(insertSqlStatement, connection)
-                        cmd6.Parameters.AddWithValue("@group_id", group_ID)
-                        cmd6.CommandType = CommandType.Text
-                        cmd6.ExecuteNonQuery()
-                    End If
-
-
-                    'use command type
-                    cmd2.CommandType = CommandType.Text
-                    cmd5.CommandType = CommandType.Text
-
-                    cmd2.ExecuteNonQuery()
-                    cmd5.ExecuteNonQuery()
-                    addAttendance(student_id.Text, group_ID, current_group_id)
+                    grdvwStudent.EditIndex = -1
 
 
 
-                Catch ex As System.Data.SqlClient.SqlException
-                    Dim msg As String = "Insert/Update Error:"
-                    msg += ex.Message
-                    Throw New Exception(msg)
-                Finally
-                    'close(connection)
-                    connection.Close()
-                    'bind(database)
-                    bind()
-                End Try
-            End If
+                    'declare select query
+                    Dim selectSqlStatement As String = "select [student_group].group_id FROM  student_group inner join [group] on student_group.group_id = [group].group_id where [student_group].student_id = '" + student_id.Text & "' AND [group].course_id = '" + ddlCourse.SelectedValue & "' AND [student_group].active = 1 "
+
+                    Dim selectGroupnameStatement As String = "select group_id from [group] where course_id = '" + ddlCourse.SelectedValue & "' and group_name ='" + group_nameDDL.SelectedValue & "' and semester_name = '" + ddlSemester.SelectedValue & "'"
+                    'declare update query
+                    Dim sqlStatement As String = "UPDATE student SET family_name = '" + family_name.Text & "' , middle_name = '" + middle_name.Text & "', given_name = '" + given_name.Text & "', gender = '" + gender & "', email = '" + email.Text & "', program = '" + program & "', stream = '" + stream & "', active = '1' WHERE student_id = '" + student_id.Text & "'"
+
+                    Dim updateSqlStatement As String = "UPDATE [student_group] SET [student_group].active = '0' WHERE student_id = '" + student_id.Text & "' AND [student_group].group_id = @current_group_ID "
+                    updateSqlStatement = updateSqlStatement + "update [group] set number_of_student = number_of_student - 1 where group_id = @current_group_ID and course_id ='" & ddlCourse.SelectedValue & "' and semester_name ='" & ddlSemester.SelectedValue & "'"
+
+                    Dim updateStatusSqlStatement As String = "UPDATE [student_group] SET [student_group].active = '1' WHERE student_id = '" + student_id.Text & "' AND [student_group].group_id = @group_ID "
+                    updateStatusSqlStatement = updateStatusSqlStatement + "update [group] set number_of_student = number_of_student + 1 where group_id = @group_ID and course_id ='" & ddlCourse.SelectedValue & "' and semester_name ='" & ddlSemester.SelectedValue & "'"
+
+                    Dim insertSqlStatement As String = "INSERT INTO student_group (grade, result, comment, active, group_id, student_id) VALUES  ('','','',1, @group_ID ,'" & student_id.Text & "')"
+                    insertSqlStatement = insertSqlStatement + "update [group] set number_of_student = number_of_student + 1 where group_id = @group_ID and course_id ='" & ddlCourse.SelectedValue & "' and semester_name ='" & ddlSemester.SelectedValue & "'"
+
+                    Dim updateAccountStatement As String = "UPDATE [account] SET [account].password = '" & password.Text & "' , [account].active = 1, [account].account_type_id = 5 WHERE [account].user_name = '" & student_id.Text & "'"
+
+
+                    'declare variable
+                    Dim group_ID As Integer
+                    Dim current_group_id As Integer
+
+
+                    Try
+                        'execute query
+                        Dim cmd1 As New SqlCommand(selectSqlStatement, connection)
+                        Dim cmd4 As New SqlCommand(selectGroupnameStatement, connection)
+
+                        'get current group id
+                        Using reader As SqlDataReader = cmd1.ExecuteReader()
+                            While reader.Read()
+                                For i As Integer = 0 To reader.FieldCount - 1
+
+                                    current_group_id = reader.GetValue(i)
+
+                                Next
+
+                            End While
+                        End Using
+
+                        'get current group ID
+                        Using reader1 As SqlDataReader = cmd4.ExecuteReader()
+                            While reader1.Read()
+                                For i As Integer = 0 To reader1.FieldCount - 1
+
+                                    group_ID = reader1.GetValue(i)
+
+                                Next
+
+                            End While
+                        End Using
+
+                        'execute quer
+                        Dim cmd2 As New SqlCommand(sqlStatement, connection)
+                        Dim cmd5 As New SqlCommand(updateAccountStatement, connection)
+
+                        Dim cmd7 As New SqlCommand(updateSqlStatement, connection)
+                        cmd7.Parameters.AddWithValue("@current_group_id", current_group_id)
+                        cmd7.CommandType = CommandType.Text
+                        cmd7.ExecuteNonQuery()
+
+                        Dim extra As Boolean = PB.checkEsixtedData("select student_group_id from student_group where student_id = '" & student_id.Text & "' and group_id= '" & group_ID & "'")
+                        If extra = True Then
+
+                            Dim cmd3 As New SqlCommand(updateStatusSqlStatement, connection)
+                            cmd3.Parameters.AddWithValue("@group_id", group_ID)
+                            cmd3.CommandType = CommandType.Text
+                            cmd3.ExecuteNonQuery()
+
+                        Else
+                            Dim cmd6 As New SqlCommand(insertSqlStatement, connection)
+                            cmd6.Parameters.AddWithValue("@group_id", group_ID)
+                            cmd6.CommandType = CommandType.Text
+                            cmd6.ExecuteNonQuery()
+                        End If
+
+
+                        'use command type
+                        cmd2.CommandType = CommandType.Text
+                        cmd5.CommandType = CommandType.Text
+
+                        cmd2.ExecuteNonQuery()
+                        cmd5.ExecuteNonQuery()
+                        addAttendance(student_id.Text, group_ID, current_group_id)
+
+
+
+                    Catch ex As System.Data.SqlClient.SqlException
+                        Dim msg As String = "Insert/Update Error:"
+                        msg += ex.Message
+                        Throw New Exception(msg)
+                    Finally
+                        'close(connection)
+                        connection.Close()
+                        'bind(database)
+                        bind()
+                    End Try
+                End If
         End If
-
+        End If
     End Sub
     Protected Sub grdvwStudent_RowEditing(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewEditEventArgs) Handles grdvwStudent.RowEditing
         '------------------------------------------------------------ 
@@ -793,48 +801,57 @@ Public Class Student
 
         Dim password As TextBox = DirectCast(row.FindControl("password"), TextBox)
 
+        Dim strEmail = "\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+
+        Dim myRegex As New Regex(strEmail)
+
         'validate blank fields
         If family_name.Text = "" Or given_name.Text = "" Or email.Text = "" Or password.Text = "" Then
 
             lblError.Text = "Error: Family Name, Given Name, Email and Password must not be blank"
             e.Cancel = True
         Else
-            lblError.Text = ""
+            If Not myRegex.IsMatch(email.Text) Then
+                lblError.Text = "Error: Email is not correct format"
+                e.Cancel = True
+            Else
+                lblError.Text = ""
 
-            grdvwNoneStudent.EditIndex = -1
+                grdvwNoneStudent.EditIndex = -1
 
-            'open connection
-            connection.Open()
+                'open connection
+                connection.Open()
 
-            'declare update query
-            Dim sqlStatement As String = "UPDATE student SET family_name = '" + family_name.Text & "' , middle_name = '" + middle_name.Text & "', given_name = '" + given_name.Text & "', gender = '" + gender & "', email = '" + email.Text & "', program = '" + program & "', stream = '" + stream & "', active = '1' WHERE student_id = '" + student_id.Text & "'"
+                'declare update query
+                Dim sqlStatement As String = "UPDATE student SET family_name = '" + family_name.Text & "' , middle_name = '" + middle_name.Text & "', given_name = '" + given_name.Text & "', gender = '" + gender & "', email = '" + email.Text & "', program = '" + program & "', stream = '" + stream & "', active = '1' WHERE student_id = '" + student_id.Text & "'"
 
-            Dim updateAccountStatement As String = "UPDATE [account] SET [account].password = '" & password.Text & "' , [account].active = 1, [account].account_type_id = 5 WHERE [account].user_name = '" & student_id.Text & "'"
+                Dim updateAccountStatement As String = "UPDATE [account] SET [account].password = '" & password.Text & "' , [account].active = 1, [account].account_type_id = 5 WHERE [account].user_name = '" & student_id.Text & "'"
 
-            Try
-                'execute query
-                Dim cmd2 As New SqlCommand(sqlStatement, connection)
-                Dim cmd5 As New SqlCommand(updateAccountStatement, connection)
-
-
-                'use command type
-                cmd2.CommandType = CommandType.Text
-                cmd5.CommandType = CommandType.Text
-
-                cmd2.ExecuteNonQuery()
-                cmd5.ExecuteNonQuery()
+                Try
+                    'execute query
+                    Dim cmd2 As New SqlCommand(sqlStatement, connection)
+                    Dim cmd5 As New SqlCommand(updateAccountStatement, connection)
 
 
-            Catch ex As System.Data.SqlClient.SqlException
-                Dim msg As String = "Insert/Update Error:"
-                msg += ex.Message
-                Throw New Exception(msg)
-            Finally
-                'close(connection)
-                connection.Close()
-                'bind(database)
-                bindNonGroup()
-            End Try
+                    'use command type
+                    cmd2.CommandType = CommandType.Text
+                    cmd5.CommandType = CommandType.Text
+
+                    cmd2.ExecuteNonQuery()
+                    cmd5.ExecuteNonQuery()
+
+
+                Catch ex As System.Data.SqlClient.SqlException
+                    Dim msg As String = "Insert/Update Error:"
+                    msg += ex.Message
+                    Throw New Exception(msg)
+                Finally
+                    'close(connection)
+                    connection.Close()
+                    'bind(database)
+                    bindNonGroup()
+                End Try
+            End If
         End If
     End Sub
 
