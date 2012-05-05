@@ -131,41 +131,44 @@ Public Class Semester
                 lblError.Text = "Error: End date must greater than start date"
                 e.Cancel = True
             Else
+                If CDate(endDateString).ToString("MM/dd/yyyy") < Today Then
+                    lblError.Text = "Error: End date must greater than today"
+                    e.Cancel = True
+                Else
+                    Try
+                        'open connection
+                        connection.Open()
+                        lblError.Text = ""
+                        'update query
+                        updateSqlStatement = " UPDATE [semester] SET [start_date] = @start_date, [end_date] = @end_date, [active] = '1' WHERE [semester_name] = @semester_name AND [active] = '1'"
+                        'get sql connection
+                        Dim cmd As New SqlCommand(updateSqlStatement, connection)
 
-                Try
-                    'open connection
-                    connection.Open()
-                    lblError.Text = ""
-                    'update query
-                    updateSqlStatement = " UPDATE [semester] SET [start_date] = @start_date, [end_date] = @end_date, [active] = '1' WHERE [semester_name] = @semester_name AND [active] = '1'"
-                    'get sql connection
-                    Dim cmd As New SqlCommand(updateSqlStatement, connection)
-
-                    'add value
-                    cmd.Parameters.AddWithValue("@semester_name", semester_name)
-                    cmd.Parameters.AddWithValue("@start_date", startDateString)
-                    cmd.Parameters.AddWithValue("@end_date", endDateString)
-                    'command sql
-                    cmd.CommandType = CommandType.Text
-                    'execute query
-                    cmd.ExecuteNonQuery()
+                        'add value
+                        cmd.Parameters.AddWithValue("@semester_name", semester_name)
+                        cmd.Parameters.AddWithValue("@start_date", startDateString)
+                        cmd.Parameters.AddWithValue("@end_date", endDateString)
+                        'command sql
+                        cmd.CommandType = CommandType.Text
+                        'execute query
+                        cmd.ExecuteNonQuery()
 
 
-                Catch ex As System.Data.SqlClient.SqlException
-                    Dim msg As String = "Insert/Update Error:"
-                    msg += ex.Message
-                    Throw New Exception(msg)
-                Finally
-                    'close connection
-                    connection.Close()
-                End Try
+                    Catch ex As System.Data.SqlClient.SqlException
+                        Dim msg As String = "Insert/Update Error:"
+                        msg += ex.Message
+                        Throw New Exception(msg)
+                    Finally
+                        'close connection
+                        connection.Close()
+                    End Try
+
+                End If
+
 
             End If
 
-
         End If
-
-
     End Sub
 
     Protected Sub grdvwSemester_RowCancelingEdit(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCancelEditEventArgs) Handles grdvwSemester.RowCancelingEdit
