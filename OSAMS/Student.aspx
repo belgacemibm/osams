@@ -160,7 +160,7 @@
 
             <asp:templatefield headertext="Family Name"> 
                 <EditItemTemplate>
-                    <asp:TextBox ID="family_name" runat="server" Text='<%# Bind("family_name") %>'></asp:TextBox> 
+                    <asp:TextBox ID="family_name" runat="server" Text='<%# Bind("family_name") %>'></asp:TextBox>
                 </EditItemTemplate>
               <itemtemplate> <%# Eval("family_name")%>
               </itemtemplate> </asp:templatefield> 
@@ -218,16 +218,12 @@
               </itemtemplate>
            </asp:templatefield>
               
-
-
           </columns>
             <FooterStyle BackColor="#CCCCCC" />
             <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
             <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
             <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
         </asp:gridview>
-
-       
 
         <div id="left">
         <asp:Button ID="btnAddNewStudent" runat="server" Text="New Student" />
