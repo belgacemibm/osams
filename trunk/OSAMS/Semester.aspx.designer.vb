@@ -23,15 +23,6 @@ Partial Public Class Semester
     Protected WithEvents toolkitScriptMaster As Global.AjaxControlToolkit.ToolkitScriptManager
 
     '''<summary>
-    '''grdvwSemester control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents grdvwSemester As Global.System.Web.UI.WebControls.GridView
-
-    '''<summary>
     '''lblError control.
     '''</summary>
     '''<remarks>
@@ -39,6 +30,15 @@ Partial Public Class Semester
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblError As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''grdvwSemester control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents grdvwSemester As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
     '''SqlDataSource1 control.

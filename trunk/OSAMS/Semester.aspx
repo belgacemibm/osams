@@ -12,14 +12,15 @@
 <asp:ToolkitScriptManager ID="toolkitScriptMaster" runat="server">
 </asp:ToolkitScriptManager>
     
-
+    <div id="error_message"><asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label></div>
 
 
     <asp:GridView ID="grdvwSemester" runat="server" AutoGenerateColumns="False" 
         CellPadding="3" DataKeyNames="semester_name" DataSourceID="SqlDataSource1" 
         EnableModelValidation="True" ForeColor="Black" GridLines="Vertical" 
         AllowPaging="True" AllowSorting="True" BackColor="White" 
-        BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
+        BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" 
+        CssClass="grid_view">
         <AlternatingRowStyle BackColor="#CCCCCC" />
         <Columns>
             <asp:CommandField ShowEditButton="True" />
@@ -58,7 +59,7 @@
         <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
         <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
     </asp:GridView>
-    <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
+    
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
         ConflictDetection="CompareAllValues" 
         ConnectionString="<%$ ConnectionStrings:connstr %>" 
