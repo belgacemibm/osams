@@ -63,7 +63,7 @@
 
                 <div id="button">
                     <div id="left">
-                        <asp:Button ID="btnAddNewCourse" runat="server" Text="New Course" />
+                        <asp:Button ID="btnAddNewCourse" runat="server" Text="Add New Course" />
                     </div>
                     <asp:Label ID="lblMessage" runat="server"></asp:Label>
                     <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
