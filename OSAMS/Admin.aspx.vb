@@ -77,57 +77,68 @@ Public Class Admin
         Else
             active = 0
         End If
+
+        Dim strEmail = "\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+
+        Dim myRegex As New Regex(strEmail)
+
         'validate blank fields
         If family_nameTXT.Text = "" Or given_nameTXT.Text = "" Or emailTXT.Text = "" Then
 
             lblError.Text = "Error: Family Name, Given Name, Email must not be blank"
             e.Cancel = True
         Else
-            lblError.Text = ""
 
-            'get connection 
-            Dim connection As New SqlConnection(PB.getConnectionString())
-            Dim updateAdminStatement, updateAccountStatement As String
+            If Not myRegex.IsMatch(email) Then
+                lblError.Text = "Error: Email is not correct format"
+                e.Cancel = True
+            Else
+                lblError.Text = ""
 
-            updateAdminStatement = "UPDATE [admin] SET [family_name] = @family_name, [middle_name] = @middle_name, [given_name] = @given_name, [gender] = @gender, [email] = @email, [active] = '1' WHERE [staff_id]= @staff_id"
-            updateAccountStatement = "UPDATE [account] SET [active] = @active WHERE [account].[user_name] = '" & staffId & "'"
+                'get connection 
+                Dim connection As New SqlConnection(PB.getConnectionString())
+                Dim updateAdminStatement, updateAccountStatement As String
 
-            Try
+                updateAdminStatement = "UPDATE [admin] SET [family_name] = @family_name, [middle_name] = @middle_name, [given_name] = @given_name, [gender] = @gender, [email] = @email, [active] = '1' WHERE [staff_id]= @staff_id"
+                updateAccountStatement = "UPDATE [account] SET [active] = @active WHERE [account].[user_name] = '" & staffId & "'"
 
-                connection.Open()
+                Try
 
-                Dim cmd2 As New SqlCommand(updateAdminStatement, connection)
-                Dim cmd3 As New SqlCommand(updateAccountStatement, connection)
+                    connection.Open()
 
-
-                cmd2.Parameters.AddWithValue("@staff_id", staffId)
-                cmd2.Parameters.AddWithValue("@family_name", family_name)
-                cmd2.Parameters.AddWithValue("@middle_name", middle_name)
-                cmd2.Parameters.AddWithValue("@given_name", given_name)
-                cmd2.Parameters.AddWithValue("@gender", gender)
-                cmd2.Parameters.AddWithValue("@email", email)
-
-                cmd3.Parameters.AddWithValue("@active", active)
+                    Dim cmd2 As New SqlCommand(updateAdminStatement, connection)
+                    Dim cmd3 As New SqlCommand(updateAccountStatement, connection)
 
 
-                'command type query
-                cmd2.CommandType = CommandType.Text
-                cmd3.CommandType = CommandType.Text
+                    cmd2.Parameters.AddWithValue("@staff_id", staffId)
+                    cmd2.Parameters.AddWithValue("@family_name", family_name)
+                    cmd2.Parameters.AddWithValue("@middle_name", middle_name)
+                    cmd2.Parameters.AddWithValue("@given_name", given_name)
+                    cmd2.Parameters.AddWithValue("@gender", gender)
+                    cmd2.Parameters.AddWithValue("@email", email)
 
-                'execute query
-                cmd2.ExecuteNonQuery()
-                cmd3.ExecuteNonQuery()
+                    cmd3.Parameters.AddWithValue("@active", active)
 
-            Catch ex As System.Data.SqlClient.SqlException
-                Dim msg As String = "Insert/Update Error:"
-                msg += ex.Message
-                Throw New Exception(msg)
-            Finally
-                'close connection
-                connection.Close()
 
-            End Try
-        End If
+                    'command type query
+                    cmd2.CommandType = CommandType.Text
+                    cmd3.CommandType = CommandType.Text
+
+                    'execute query
+                    cmd2.ExecuteNonQuery()
+                    cmd3.ExecuteNonQuery()
+
+                Catch ex As System.Data.SqlClient.SqlException
+                    Dim msg As String = "Insert/Update Error:"
+                    msg += ex.Message
+                    Throw New Exception(msg)
+                Finally
+                    'close connection
+                    connection.Close()
+
+                End Try
+            End If
+            End If
     End Sub
 
     Protected Sub Button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnNewAdmin.Click
