@@ -56,6 +56,7 @@
     </div>
 
  <div id="error_message"><asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label></div>
+ <div id="grid_view">
  <asp:gridview autogeneratecolumns="false" runat="server" id="grdvwGroup" 
             AutoGenerateEditButton="True" CellPadding="3"  
             ForeColor="Black" GridLines="Vertical" BackColor="White" 
@@ -184,7 +185,7 @@
             <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
         </asp:gridview>
         
-
+        </div>
         <div id="button">
         <div id="left">
  <asp:Button ID="btnNewGroup" runat="server" Text="Add New Group" />
