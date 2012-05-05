@@ -106,7 +106,7 @@
 </script>
 <div id="big_content">
 <div id="content">
-<div class="style18" id="caption"> CHECK ATTENDANCE</div>
+<div class="style18" id="caption"> MARK ATTENDANCE</div>
 <div id="table">
 <div id="selection">
 
