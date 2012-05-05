@@ -112,34 +112,37 @@ Public Class AddSemester
 
             lblError.Text = "Error: End date must greater than start date"
         Else
+            If txtEndDate.Text < Today Then
 
-            count = Convert.ToInt32(selectqueryCommand.ExecuteScalar)
-
-
-
-            ' Check duplicate semester
-            If (count > 0) Then
-
-                lblError.Text = "Error: The semester has been existed"
-
-
+                lblError.Text = "Error: End Date must greater than today  "
             Else
-                ' Create INSERT statement with named parameters and execute insert query
-                nonqueryCommand = New SqlCommand("INSERT  INTO semester (semester_name, start_date, end_date, active) VALUES ('" & strYearOrder & "','" & startDateString & "','" & endDateString & "','" & "1" & "')", connection)
-                nonqueryCommand.ExecuteNonQuery()
+                count = Convert.ToInt32(selectqueryCommand.ExecuteScalar)
 
-                ' Display message to confirm
-                lblError.ForeColor = System.Drawing.Color.Black
-                lblError.Text = "The semester " + strYearOrder + " has been created successfully"
 
-                'Call ClearTextBoxes()
-                txtStartDate.Text = ""
-                txtEndDate.Text = ""
+
+                ' Check duplicate semester
+                If (count > 0) Then
+
+                    lblError.Text = "Error: The semester has been existed"
+
+
+                Else
+                    ' Create INSERT statement with named parameters and execute insert query
+                    nonqueryCommand = New SqlCommand("INSERT  INTO semester (semester_name, start_date, end_date, active) VALUES ('" & strYearOrder & "','" & startDateString & "','" & endDateString & "','" & "1" & "')", connection)
+                    nonqueryCommand.ExecuteNonQuery()
+
+                    ' Display message to confirm
+                    lblError.ForeColor = System.Drawing.Color.Black
+                    lblError.Text = "The semester " + strYearOrder + " has been created successfully"
+
+                    'Call ClearTextBoxes()
+                    txtStartDate.Text = ""
+                    txtEndDate.Text = ""
+                End If
+
             End If
 
         End If
-
-
 
         ' Close Connection
         connection.Close()
