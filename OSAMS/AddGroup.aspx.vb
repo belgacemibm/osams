@@ -330,10 +330,11 @@ Public Class AddGroup
                 a = PB.runquery(schdulesql)
 
                 s = True
+                Dim id = getUser()
 
-                'sendingLectureMail(gID, cbxSemester.SelectedValue, cbxCourse.SelectedValue, cbxLecturer.SelectedValue + "@rmit.edu.vn")
-                sendingLectureMail(gID, cbxSemester.SelectedValue, cbxCourse.SelectedValue, "s3220658@rmit.edu.vn")
-                'sendingMail(gID, cbxSemester.SelectedValue, cbxCourse.SelectedValue, "s3231753@rmit.edu.vn")
+                sendingLectureMail(gID, cbxSemester.SelectedValue, cbxCourse.SelectedValue, cbxLecturer.SelectedValue + "@rmit.edu.vn")
+                'sendingLectureMail(gID, cbxSemester.SelectedValue, cbxCourse.SelectedValue, "s3220658@rmit.edu.vn")
+                sendingMail(gID, cbxSemester.SelectedValue, cbxCourse.SelectedValue, id + "@rmit.edu.vn")
 
             Catch
 
@@ -484,17 +485,18 @@ Public Class AddGroup
 
         sb.Append("Dear " + array(1).ToString + ",")
         sb.AppendLine()
-        sb.Append("this email is sent to inform that the group: ")
+        sb.Append("this email is sent to inform that the group ")
         sb.Append(group)
-        sb.Append("in the course: ")
+        sb.Append(" in the course ")
         sb.Append(course)
-        sb.Append("of the semester: ")
+        sb.Append(" of the semester ")
         sb.Append(semester)
-        sb.Append("has been created")
+        sb.Append(" has been created")
         sb.AppendLine()
-        sb.Append("you has been assigned to this group")
+        sb.Append("You has been assigned to this group")
         sb.AppendLine()
         sb.Append("Best Regard")
+        sb.AppendLine()
         sb.Append("OSAMS Support Team")
         sb.AppendLine()
         sb.Append("707 Nguyen Van Linh, District 7, Ho Chi Minh City")
@@ -511,15 +513,16 @@ Public Class AddGroup
 
         sb.Append("Dear, ")
         sb.AppendLine()
-        sb.Append("this email is sent to inform that the group: ")
+        sb.Append("this email is sent to inform that the group ")
         sb.Append(group)
-        sb.Append("in the course: ")
+        sb.Append(" in the course ")
         sb.Append(course)
-        sb.Append("of the semester: ")
+        sb.Append(" of the semester ")
         sb.Append(semester)
-        sb.Append("has been created")
+        sb.Append(" has been created")
         sb.AppendLine()
         sb.Append("Best Regard")
+        sb.AppendLine()
         sb.Append("OSAMS Support Team")
         sb.AppendLine()
         sb.Append("707 Nguyen Van Linh, District 7, Ho Chi Minh City")
@@ -531,4 +534,43 @@ Public Class AddGroup
         PB.sendMail("support@osams.tk", toMail, "group creating", sb, "supportosams")
 
     End Sub
+    Private Function getUser() As String
+
+        '------------------------------------------------------------
+        ' function  : getUser
+        ' Author      : Pham Sy Nhat Nam                Date   : 17/4/12
+        ' Aim         : to get the logined user ID
+        '------------------------------------------------------------
+        ' Incoming Parameters
+        ' 
+        '
+        '
+        '------------------------------------------------------------
+        '
+
+        Dim id As String = ""
+
+        If Request.Cookies("ID") Is Nothing Then
+
+
+            If Session("ID") Is Nothing Then
+
+            Else
+                id = Session("ID")
+
+            End If
+
+
+        Else
+
+            id = Request.Cookies("ID").Value
+
+
+        End If
+
+
+        Return id
+
+
+    End Function
 End Class
