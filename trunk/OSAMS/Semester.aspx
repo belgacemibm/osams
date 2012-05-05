@@ -93,7 +93,7 @@
 
     <div id="button">
         <div id="left">
-        <asp:Button ID="btnAddSemester" runat="server" Text="New Semester" />
+        <asp:Button ID="btnAddSemester" runat="server" Text="Add New Semester" />
         </div> 
     </div>
 </div>
