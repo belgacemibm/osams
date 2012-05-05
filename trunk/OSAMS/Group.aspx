@@ -55,11 +55,12 @@
     
     </div>
 
-
+ <div id="error_message"><asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label></div>
  <asp:gridview autogeneratecolumns="false" runat="server" id="grdvwGroup" 
             AutoGenerateEditButton="True" CellPadding="3"  
             ForeColor="Black" GridLines="Vertical" BackColor="White" 
-        BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">    
+        BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" 
+        CssClass="grid_view">    
             <AlternatingRowStyle BackColor="#CCCCCC" />
           <columns>       
             <asp:templatefield headertext="Group ID"> 
@@ -190,7 +191,7 @@
   </div>
         
 </div>
-    <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
+    
 </div>
 
 </div>
