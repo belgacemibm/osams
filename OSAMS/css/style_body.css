@@ -223,7 +223,6 @@ a:hover {
 #selection {
 	
 	float: left;
-	width: 100%;
 }
 #maintable {
 	float: left;
@@ -243,6 +242,7 @@ a:hover {
 {
     float: left;
     text-align: left;
+    clear: left;
 }
 #note_horizon
 {
@@ -272,4 +272,9 @@ a:hover {
     padding-left: 15px;
     text-align: left;
     float: left;
+}
+.grid_view
+{
+    float: left;
+    clear: left;
 }
