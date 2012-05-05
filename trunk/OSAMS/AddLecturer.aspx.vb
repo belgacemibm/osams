@@ -21,7 +21,7 @@ Public Class AddLecturer
 
       ' define the connection 
     Private nonqueryCommand As SqlCommand
-    Private selectqueryCommand As SqlCommand
+    Private selectqueryCommand, selectAdminCommand As SqlCommand
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If (Session("Rememberme") = "false") Then
             If PB.getAccountType(Session("ID")) = "1" Or PB.getAccountType(Session("ID")) = "2" Then
@@ -84,7 +84,7 @@ Public Class AddLecturer
         Dim lecturerMail As String = lecturerID + "@rmit.edu.vn"
         Dim lecturerRole As String = ddlRole.SelectedValue
         Dim count As Integer
-
+        Dim countAdmin As Integer
         ' Create INSERT statement with named parameters
 
         Dim sql As String
@@ -94,31 +94,38 @@ Public Class AddLecturer
 
         ' Create INSERT statement with named parameters
         Dim str As String = "select count (*) name from lecturer where lecturer_id = '" + lecturerID & "'"
+        Dim strAdmin As String = "select count (*) name from [admin] where staff_id = '" + lecturerID & "'"
+
         selectqueryCommand = New SqlCommand(str, connection)
+        selectAdminCommand = New SqlCommand(strAdmin, connection)
         'validate blank fields
        
                         'validate duplidate lecturer ID
-                        count = Convert.ToInt32(selectqueryCommand.ExecuteScalar)
+        count = Convert.ToInt32(selectqueryCommand.ExecuteScalar)
+        countAdmin = Convert.ToInt32(selectAdminCommand.ExecuteScalar)
 
                         If (count > 0) Then
             lblError.Text = "Error: The lecturer ID has been existed"
-                        Else
-                            Dim a As Boolean
-                            'Execute query
-                            a = PB.runquery(sql)
-                            If a = True Then
-                                'Display confirm message
-                                lblError.ForeColor = System.Drawing.Color.Black
-                                lblError.Text = "Lecturer " + lecturerID + " has been created"
+        Else
+            If (countAdmin > 0) Then
+                lblError.Text = "Error: The lecturer ID is conflicted with admin ID"
+            Else
+                Dim a As Boolean
+                'Execute query
+                a = PB.runquery(sql)
+                If a = True Then
+                    'Display confirm message
+                    lblError.ForeColor = System.Drawing.Color.Black
+                    lblError.Text = "Lecturer " + lecturerID + " has been created"
 
-                                'clear textbox
-                                txtLecturerID.Text = ""
-                                txtFamilyName.Text = ""
-                                txtMiddleName.Text = ""
-                                txtGivenName.Text = ""
-                            End If
-                        End If
-              
+                    'clear textbox
+                    txtLecturerID.Text = ""
+                    txtFamilyName.Text = ""
+                    txtMiddleName.Text = ""
+                    txtGivenName.Text = ""
+                End If
+            End If
+        End If
         ' Close Connection
         connection.Close()
     End Sub
