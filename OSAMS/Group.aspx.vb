@@ -80,7 +80,7 @@ Public Class Group
 
                 'get value and add in dropdownlist
                 For Each dr As DataRow In ds.Tables(0).Rows
-                    fullName = dr.Item("family_name") + " " + dr.Item("middle_name") + " " + dr.Item("given_name")
+                    fullName = dr.Item("given_name") + " " + dr.Item("middle_name") + " " + dr.Item("family_name")
                     id = dr.Item("lecturer_id")
                     items.Add(New CLecturer(id, fullName))
 
@@ -154,7 +154,7 @@ Public Class Group
 
 
         'select statement
-        selectSqlStatement = "Select lecturer_id from lecturer where [lecturer].[family_name] + ' ' + [lecturer].[middle_name]+ ' '+ [lecturer].[given_name] = @lecturer_name"
+        selectSqlStatement = "Select lecturer_id from lecturer where [lecturer].[given_name] + ' ' + [lecturer].[middle_name]+ ' '+ [lecturer].[family_name] = @lecturer_name"
         'update statement
         sqlStatement = "UPDATE [group] SET [group_name] = @group_name, [number_of_student] = @number_of_student, [active] = '1',[course_id] =@course_id, [semester_name] = @semester_name, [lecturer_id] = @lecturer_id WHERE [group_id] = @group_id AND [active]= '1'"
 
@@ -325,7 +325,7 @@ Public Class Group
             'open connection
             connection.Open()
             'select query
-            Dim sqlGeneralStatement As String = "select [group].[group_id], [group].[group_name], [group].[number_of_student], [group].[course_id], [group].[semester_name], ([lecturer].[family_name] + ' ' + [lecturer].[middle_name] + ' ' + [lecturer].[given_name])  AS lecturer_name," & _
+            Dim sqlGeneralStatement As String = "select [group].[group_id], [group].[group_name], [group].[number_of_student], [group].[course_id], [group].[semester_name], ([lecturer].[given_name] + ' ' + [lecturer].[middle_name] + ' ' + [lecturer].[family_name])  AS lecturer_name," & _
 " day_of_week.[day] AS day1, CONVERT (varchar(15), group_day.start_time, 108) AS start_time_day1, CONVERT (varchar(15), group_day.end_time, 108) AS end_time_day1, group_day.type AS type_day1 " & _
 " from group_day inner join day_of_week on  [group_day].day_id = [day_of_week].day_id inner join [group] on [group_day].group_id =[group].group_id" & _
 " inner join [lecturer] on [group].[lecturer_id] = [lecturer].[lecturer_id]" & _
@@ -373,6 +373,7 @@ Public Class Group
             Dim i As Integer
             i = 0
             If (list.Count > 0) Then
+                lblError.Text = ""
                 dr2 = cmd1.ExecuteReader
                 While dr2.Read()
                     list(i).Day_2 = dr2(0).ToString()
@@ -382,7 +383,8 @@ Public Class Group
                     i += 1
                 End While
                 dr2.Close()
-
+            Else
+                lblError.Text = "No group found"
             End If
 
 
@@ -430,7 +432,7 @@ Public Class Group
             'open connection
             connection.Open()
             'select query
-            Dim sqlGeneralStatement As String = "select [group].[group_id], [group].[group_name], [group].[number_of_student], [group].[course_id], [group].[semester_name], ([lecturer].[family_name] + ' ' + [lecturer].[middle_name] + ' ' + [lecturer].[given_name])  AS lecturer_name," & _
+            Dim sqlGeneralStatement As String = "select [group].[group_id], [group].[group_name], [group].[number_of_student], [group].[course_id], [group].[semester_name], ([lecturer].[given_name] + ' ' + [lecturer].[middle_name] + ' ' + [lecturer].[family_name])  AS lecturer_name," & _
 " day_of_week.[day] AS day1, CONVERT (varchar(15), group_day.start_time, 108) AS start_time1, CONVERT (varchar(15), group_day.end_time, 108) AS end_time1, group_day.type AS type1 " & _
 " from group_day inner join day_of_week on  [group_day].day_id = [day_of_week].day_id inner join [group] on [group_day].group_id =[group].group_id" & _
 " inner join [lecturer] on [group].[lecturer_id] = [lecturer].[lecturer_id]" & _
