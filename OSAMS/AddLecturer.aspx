@@ -114,7 +114,7 @@
         <div id="left">
         <asp:Button ID="btnSave" runat="server" Text="Save" />
         </div> 
-        <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" CausesValidation ="false"  />
     </div>
     
 </div>
