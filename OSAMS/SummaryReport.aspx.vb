@@ -106,7 +106,7 @@ Public Class Report
         If getCheckboxInGridview(4) = "" Then 'If no checkboxes is checked
             grdvwReport.Enabled = True 'Set GridView is visible
             btnViewReport.Visible = True 'Set "View Report" button is visible
-            lblErrorMessage.Text = "ERROR: Please select at least one group!"
+            lblErrorMessage.Text = "Error: Please select at least one group!"
         Else
             Session("GroupName_SummaryReport") = Right(getCheckboxInGridview(3), getCheckboxInGridview(3).Length - 1)
             Session("GroupID") = Right(getCheckboxInGridview(4), getCheckboxInGridview(4).Length - 1)
