@@ -19,52 +19,23 @@ Public Class Student
     'declare variables
     Private currentGroupName, currentGender, currentStream, currentProgram As String
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If (Session("Rememberme") = "false") Then
-            If PB.getAccountType(Session("ID")) = "1" Or PB.getAccountType(Session("ID")) = "2" Then
-                'bind database
-                If Not IsPostBack Then
-                    bind()
-                    load_dropdownlist()
+        'bind database
+        If Not IsPostBack Then
+            bind()
+            load_dropdownlist()
 
-                    lblError.ForeColor = System.Drawing.Color.Red
-                    lblError.Text = ""
-                Else
-                    lblError.ForeColor = System.Drawing.Color.Red
-                    lblError.Text = ""
-                End If
-
-                If ddlSemester.SelectedValue = "None" Then
-                    ddlCourse.Enabled = False
-                Else
-                    ddlCourse.Enabled = True
-
-                End If
-            Else
-                Response.Redirect("Home.aspx")
-            End If
+            lblError.ForeColor = System.Drawing.Color.Red
+            lblError.Text = ""
         Else
-            If PB.getAccountType(Request.Cookies("ID").Value) = "1" Or PB.getAccountType(Request.Cookies("ID").Value) = "2" Then
-                'bind database
-                If Not IsPostBack Then
-                    bind()
-                    load_dropdownlist()
+            lblError.ForeColor = System.Drawing.Color.Red
+            lblError.Text = ""
+        End If
 
-                    lblError.ForeColor = System.Drawing.Color.Red
-                    lblError.Text = ""
-                Else
-                    lblError.ForeColor = System.Drawing.Color.Red
-                    lblError.Text = ""
-                End If
+        If ddlSemester.SelectedValue = "None" Then
+            ddlCourse.Enabled = False
+        Else
+            ddlCourse.Enabled = True
 
-                If ddlSemester.SelectedValue = "None" Then
-                    ddlCourse.Enabled = False
-                Else
-                    ddlCourse.Enabled = True
-
-                End If
-            Else
-                Response.Redirect("Home.aspx")
-            End If
         End If
     End Sub
 
@@ -121,15 +92,8 @@ Public Class Student
                 'fill database
                 sqlDa.Fill(ds)
 
-                If ds.Tables(0).Rows.Count = 0 Then
-                    lblError.Text = "No student found"
-                    grdvwNoneStudent.DataSource = ""
-                    grdvwNoneStudent.DataBind()
-                Else
-                    lblError.Text = ""
-                    grdvwNoneStudent.DataSource = ds.Tables(0)
-                    grdvwNoneStudent.DataBind()
-                End If
+                grdvwNoneStudent.DataSource = ds.Tables(0)
+                grdvwNoneStudent.DataBind()
 
             Else
                 grdvwNoneStudent.Visible = False
@@ -141,15 +105,8 @@ Public Class Student
                 'fill database
                 sqlDa.Fill(ds)
 
-                If ds.Tables(0).Rows.Count = 0 Then
-                    lblError.Text = "No student found"
-                    grdvwStudent.DataSource = ""
-                    grdvwStudent.DataBind()
-                Else
-                    lblError.Text = ""
-                    grdvwStudent.DataSource = ds.Tables(0)
-                    grdvwStudent.DataBind()
-                End If
+                grdvwStudent.DataSource = ds.Tables(0)
+                grdvwStudent.DataBind()
 
             End If
 
@@ -218,7 +175,7 @@ Public Class Student
 
         Dim myRegex As New Regex(strEmail)
 
-        
+
         'open connection
         connection.Open()
         Using reader As SqlDataReader = cmd.ExecuteReader()
@@ -336,7 +293,7 @@ Public Class Student
 
                         cmd2.ExecuteNonQuery()
                         cmd5.ExecuteNonQuery()
-                        'addAttendance(student_id.Text, group_ID, current_group_id)
+
 
 
 
@@ -815,57 +772,48 @@ Public Class Student
 
         Dim password As TextBox = DirectCast(row.FindControl("password"), TextBox)
 
-        Dim strEmail = "\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
-
-        Dim myRegex As New Regex(strEmail)
-
         'validate blank fields
         If family_name.Text = "" Or given_name.Text = "" Or email.Text = "" Or password.Text = "" Then
 
             lblError.Text = "Error: Family Name, Given Name, Email and Password must not be blank"
             e.Cancel = True
         Else
-            If Not myRegex.IsMatch(email.Text) Then
-                lblError.Text = "Error: Email is not correct format"
-                e.Cancel = True
-            Else
-                lblError.Text = ""
+            lblError.Text = ""
 
-                grdvwNoneStudent.EditIndex = -1
+            grdvwNoneStudent.EditIndex = -1
 
-                'open connection
-                connection.Open()
+            'open connection
+            connection.Open()
 
-                'declare update query
-                Dim sqlStatement As String = "UPDATE student SET family_name = '" + family_name.Text & "' , middle_name = '" + middle_name.Text & "', given_name = '" + given_name.Text & "', gender = '" + gender & "', email = '" + email.Text & "', program = '" + program & "', stream = '" + stream & "', active = '1' WHERE student_id = '" + student_id.Text & "'"
+            'declare update query
+            Dim sqlStatement As String = "UPDATE student SET family_name = '" + family_name.Text & "' , middle_name = '" + middle_name.Text & "', given_name = '" + given_name.Text & "', gender = '" + gender & "', email = '" + email.Text & "', program = '" + program & "', stream = '" + stream & "', active = '1' WHERE student_id = '" + student_id.Text & "'"
 
-                Dim updateAccountStatement As String = "UPDATE [account] SET [account].password = '" & password.Text & "' , [account].active = 1, [account].account_type_id = 5 WHERE [account].user_name = '" & student_id.Text & "'"
+            Dim updateAccountStatement As String = "UPDATE [account] SET [account].password = '" & password.Text & "' , [account].active = 1, [account].account_type_id = 5 WHERE [account].user_name = '" & student_id.Text & "'"
 
-                Try
-                    'execute query
-                    Dim cmd2 As New SqlCommand(sqlStatement, connection)
-                    Dim cmd5 As New SqlCommand(updateAccountStatement, connection)
+            Try
+                'execute query
+                Dim cmd2 As New SqlCommand(sqlStatement, connection)
+                Dim cmd5 As New SqlCommand(updateAccountStatement, connection)
 
 
-                    'use command type
-                    cmd2.CommandType = CommandType.Text
-                    cmd5.CommandType = CommandType.Text
+                'use command type
+                cmd2.CommandType = CommandType.Text
+                cmd5.CommandType = CommandType.Text
 
-                    cmd2.ExecuteNonQuery()
-                    cmd5.ExecuteNonQuery()
+                cmd2.ExecuteNonQuery()
+                cmd5.ExecuteNonQuery()
 
 
-                Catch ex As System.Data.SqlClient.SqlException
-                    Dim msg As String = "Insert/Update Error:"
-                    msg += ex.Message
-                    Throw New Exception(msg)
-                Finally
-                    'close(connection)
-                    connection.Close()
-                    'bind(database)
-                    bindNonGroup()
-                End Try
-            End If
+            Catch ex As System.Data.SqlClient.SqlException
+                Dim msg As String = "Insert/Update Error:"
+                msg += ex.Message
+                Throw New Exception(msg)
+            Finally
+                'close(connection)
+                connection.Close()
+                'bind(database)
+                bindNonGroup()
+            End Try
         End If
     End Sub
 
@@ -1126,29 +1074,7 @@ Public Class Student
         txtStudentID.Text = ""
     End Sub
 
-    Private Sub addAttendance(ByVal sID As String, ByVal group As String, ByVal currentGroup As String)
-        Dim sql As String
-        sql = "select distinct(ss.schedule_id) from student_schedule ss, schedule s where ss.schedule_id = s.schedule_id AND s.group_id = " + group
-        Dim dt As DataTable
-        dt = PB.getData(sql)
-        Dim insert As String = ""
-        For Each dr As DataRow In dt.Rows
-            insert = insert + " insert into student_schedule values('absent', 1, " + dr.Item("schedule_id") + ", '" + sID + "')"
-
-        Next
-        Dim sql1 As String = "select ss.student_schedule_id from student_schedule ss, schedule s where ss.schedule_id = s.schedule_id AND s.group_id = " + currentGroup + "AND ss.student_id = '" + sID + "'"
-        Dim updt As DataTable = PB.getData(sql1)
-        Dim update As String = ""
-        For Each dr As DataRow In updt.Rows
-            update = update + " update student_schedule set active = 0 where student_schedule_id = " + dr.Item("student_schedule_id")
-
-        Next
-
-        Dim a As Boolean = PB.runquery(insert)
-        a = PB.runquery(update)
-
-
-    End Sub
+   
 
     Protected Sub grdvwStudent_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles grdvwStudent.SelectedIndexChanged
 
