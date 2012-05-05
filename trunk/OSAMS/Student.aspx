@@ -12,7 +12,7 @@
     </style>
     </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<div id="big_content">
+    <div id="big_content">
 <div id="content">
 <div class="style18" id="caption">STUDENT MANAGEMENT</div>
 <div id="table">
@@ -39,17 +39,14 @@
   </tr>
 </table>
 </div>
-    <br />
 
-    <div id="button">
- 
-                    
-        
-
+    <div id="error_message"><asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label></div>
+    
         <asp:gridview autogeneratecolumns="False" runat="server" id="grdvwStudent" 
             AutoGenerateEditButton="True"  CellPadding="3" EnableModelValidation="True" 
             ForeColor="Black" GridLines="Vertical" BackColor="White" 
-            BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">    
+            BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" 
+        CssClass="grid_view">    
             <AlternatingRowStyle BackColor="#CCCCCC" />
           <columns>       
             <asp:templatefield headertext="Student ID"> 
@@ -225,8 +222,9 @@
             <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
         </asp:gridview>
 
+    <div id="button">
         <div id="left">
-        <asp:Button ID="btnAddNewStudent" runat="server" Text="New Student" />
+        <asp:Button ID="btnAddNewStudent" runat="server" Text="Add New Student" />
             <asp:Button ID="btnRemove" runat="server" Text="Remove Student" Width="114px" />
         </div> 
     </div>
@@ -272,7 +270,7 @@
         </table>
         
     </div>
-    <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
+    
     
     </div>
 </div>
