@@ -643,7 +643,8 @@ Public Class SemesterAttendance
             End If
             Dim array As ArrayList = getSemCou(group)
 
-            sql = sql + " AND student.student_id = '" + id
+            sql = sql + " AND student.student_id = '" + id + "'"
+
         End If
         
 
