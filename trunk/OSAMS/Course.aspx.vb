@@ -255,6 +255,7 @@ Public Class Course
 
             Else
                 grdvwCourse.AllowPaging = True
+                lblMessage.ForeColor = System.Drawing.Color.Black
                 lblMessage.Text = "No data found"
             End If
 
