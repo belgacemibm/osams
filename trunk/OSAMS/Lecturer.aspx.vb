@@ -86,6 +86,11 @@ Public Class Lecturer
 
         Dim accountTypeID As Integer
 
+        Dim strEmail = "\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+
+        Dim myRegex As New Regex(strEmail)
+
+
         'select query
         selectSqlStatement = " Select account_type_id from account_type where account_type.[account_type] = @account_type"
         'update query
@@ -99,62 +104,65 @@ Public Class Lecturer
             lblError.Text = "Error: Family Name, Given Name, Email and Password must not be blank"
             e.Cancel = True
         Else
+            If Not myRegex.IsMatch(email) Then
+                lblError.Text = "Error: Email is not correct format"
+                e.Cancel = True
+            Else
+                Try
+                    'execute query
+                    Dim cmd1 As New SqlCommand(selectSqlStatement, connection)
+                    'add value in account type
+                    cmd1.Parameters.AddWithValue("@account_type", accountType)
+                    lblError.Text = ""
+                    'open connection
+                    connection.Open()
+                    'get value of account tyoe
+                    Using reader As SqlDataReader = cmd1.ExecuteReader()
+                        While reader.Read()
+                            For i As Integer = 0 To reader.FieldCount - 1
+                                accountTypeID = reader.GetValue(i)
 
-            Try
-                'execute query
-                Dim cmd1 As New SqlCommand(selectSqlStatement, connection)
-                'add value in account type
-                cmd1.Parameters.AddWithValue("@account_type", accountType)
-                lblError.Text = ""
-                'open connection
-                connection.Open()
-                'get value of account tyoe
-                Using reader As SqlDataReader = cmd1.ExecuteReader()
-                    While reader.Read()
-                        For i As Integer = 0 To reader.FieldCount - 1
-                            accountTypeID = reader.GetValue(i)
+                            Next
 
-                        Next
+                        End While
+                    End Using
+                    'get query connection
+                    Dim cmd2 As New SqlCommand(sqlStatement, connection)
+                    Dim cmd3 As New SqlCommand(updateSqlStatement, connection)
 
-                    End While
-                End Using
-                'get query connection
-                Dim cmd2 As New SqlCommand(sqlStatement, connection)
-                Dim cmd3 As New SqlCommand(updateSqlStatement, connection)
-
-                'get value 
-                cmd2.Parameters.AddWithValue("@lecturer_id", lecturer_id)
-                cmd2.Parameters.AddWithValue("@family_name", family_name)
-                cmd2.Parameters.AddWithValue("@middle_name", middle_name)
-                cmd2.Parameters.AddWithValue("@given_name", given_name)
-                cmd2.Parameters.AddWithValue("@gender", gender)
-                cmd2.Parameters.AddWithValue("@email", email)
-                cmd2.Parameters.AddWithValue("@active", active)
-                cmd2.Parameters.AddWithValue("@account_type", accountType)
+                    'get value 
+                    cmd2.Parameters.AddWithValue("@lecturer_id", lecturer_id)
+                    cmd2.Parameters.AddWithValue("@family_name", family_name)
+                    cmd2.Parameters.AddWithValue("@middle_name", middle_name)
+                    cmd2.Parameters.AddWithValue("@given_name", given_name)
+                    cmd2.Parameters.AddWithValue("@gender", gender)
+                    cmd2.Parameters.AddWithValue("@email", email)
+                    cmd2.Parameters.AddWithValue("@active", active)
+                    cmd2.Parameters.AddWithValue("@account_type", accountType)
 
 
-                cmd3.Parameters.AddWithValue("@lecturer_id", lecturer_id)
-                cmd3.Parameters.AddWithValue("@accountTypeID", accountTypeID)
-                cmd3.Parameters.AddWithValue("@password", password)
+                    cmd3.Parameters.AddWithValue("@lecturer_id", lecturer_id)
+                    cmd3.Parameters.AddWithValue("@accountTypeID", accountTypeID)
+                    cmd3.Parameters.AddWithValue("@password", password)
 
-                'command type query
-                cmd2.CommandType = CommandType.Text
-                cmd3.CommandType = CommandType.Text
+                    'command type query
+                    cmd2.CommandType = CommandType.Text
+                    cmd3.CommandType = CommandType.Text
 
-                'execute query
-                cmd2.ExecuteNonQuery()
-                cmd3.ExecuteNonQuery()
+                    'execute query
+                    cmd2.ExecuteNonQuery()
+                    cmd3.ExecuteNonQuery()
 
-            Catch ex As System.Data.SqlClient.SqlException
-                Dim msg As String = "Insert/Update Error:"
-                msg += ex.Message
-                Throw New Exception(msg)
-            Finally
-                'close connection
-                connection.Close()
+                Catch ex As System.Data.SqlClient.SqlException
+                    Dim msg As String = "Insert/Update Error:"
+                    msg += ex.Message
+                    Throw New Exception(msg)
+                Finally
+                    'close connection
+                    connection.Close()
 
-            End Try
-
+                End Try
+            End If
         End If
     End Sub
     
