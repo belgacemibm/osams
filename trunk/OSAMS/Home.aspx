@@ -17,7 +17,7 @@
                     been created to solve the issue.</p>
                 <p>
                     By using OSAMS, the lecturer could get many benefits from:</p>
-                
+                <ul>
                     <li><strong>
                     Saving paper</strong></li><br />               
                     <li><strong>
@@ -26,6 +26,7 @@
                     Integrating data</strong></li><br />
                     <li><strong>
                     Analysing report</strong></li><br />
+                </ul>
                 <p>
                     Hope you 
                     will have a useful and gladful time when using OSAMS.</p>
