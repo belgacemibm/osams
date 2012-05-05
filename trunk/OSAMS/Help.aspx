@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div id="big_content">
 <div id="content">
-<div class="style18" id="caption">CONTACT US</div>
+<div class="style18" id="caption">HELP</div>
 <div id="table" style="text-align: left">
 
 
