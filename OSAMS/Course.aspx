@@ -11,10 +11,11 @@
                 COURSE MANAGEMENT</div>
             <div id="table">
             <div id="error_message"><asp:Label ID="lblMessage" runat="server"></asp:Label></div>
+            <div id="grid_view">
             <asp:gridview autogeneratecolumns="False" runat="server" id="grdvwCourse" 
             AutoGenerateEditButton="True"  CellPadding="3" EnableModelValidation="True" 
             ForeColor="Black" GridLines="Vertical" BackColor="White" 
-            BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CssClass="grid_view">    
+            BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">    
             <AlternatingRowStyle BackColor="#CCCCCC" />
           <columns>       
             <asp:templatefield headertext="Course ID"> 
@@ -60,7 +61,7 @@
             <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
         </asp:gridview>
 
-
+        </div>
                 <div id="button">
                     <div id="left">
                         <asp:Button ID="btnAddNewCourse" runat="server" Text="Add New Course" />
