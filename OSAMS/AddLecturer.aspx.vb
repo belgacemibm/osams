@@ -101,7 +101,7 @@ Public Class AddLecturer
                         count = Convert.ToInt32(selectqueryCommand.ExecuteScalar)
 
                         If (count > 0) Then
-                            lblError.Text = "The lecturer ID has been existed"
+            lblError.Text = "Error: The lecturer ID has been existed"
                         Else
                             Dim a As Boolean
                             'Execute query
