@@ -934,7 +934,7 @@ Public Class checkAttendance
         "where S.student_id = student_group.student_id  " & _
         "AND schedule.group_id = [group].group_id " & _
         "AND [group].group_id = student_group.group_id " & _
-        "AND [group].group_id = " + group + " ORDER BY S.student_id"
+        "AND [group].group_id = " + group + " AND student_group.active = 1 ORDER BY S.student_id"
 
 
             dtstudent = PB.getData(sqlstudent)
@@ -1253,15 +1253,24 @@ Public Class checkAttendance
         Dim dtAttendance As DataTable
         Dim list As New ArrayList
 
-        sqlAttendance = "select * from student, student_schedule, [group], schedule, student_group " & _
-        "where student.student_id = student_schedule.student_id " & _
-        "AND student_schedule.schedule_id = schedule.schedule_id " & _
-        "AND schedule.group_id = [group].group_id " & _
-        "AND student.student_id = student_group.student_id " & _
-        "AND [group].group_id = student_group.group_id " & _
-        "AND [group].group_id = " + group & _
-        "ORDER BY student.student_id, student_schedule.schedule_id"
+        'sqlAttendance = "select * from student, student_schedule, [group], schedule, student_group " & _
+        '"where student.student_id = student_schedule.student_id " & _
+        '"AND student_schedule.schedule_id = schedule.schedule_id " & _
+        '"AND schedule.group_id = [group].group_id " & _
+        '"AND student.student_id = student_group.student_id " & _
+        '"AND [group].group_id = student_group.group_id " & _
+        '"AND [group].group_id = " + group & _
+        '"ORDER BY student.student_id, student_schedule.schedule_id"
 
+        sqlAttendance = "select * from student, student_schedule, [group], schedule, student_group " & _
+        " where student.student_id = student_schedule.student_id " & _
+        " AND student_schedule.schedule_id = schedule.schedule_id " & _
+        " AND schedule.group_id = [group].group_id " & _
+        " AND student.student_id = student_group.student_id " & _
+        " AND [group].group_id = student_group.group_id " & _
+        " AND [group].group_id = " + group & _
+        " AND student_group.active = 1" & _
+        " ORDER BY student.student_id, student_schedule.schedule_id"
 
         
 
