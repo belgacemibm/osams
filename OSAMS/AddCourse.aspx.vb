@@ -1,7 +1,7 @@
 ﻿'------------------------------------------------------------ 
 'File Name          :AddCourse.vb
-' Description       :Indicate the process of add semester
-' Function List     : 
+' Description       :Indicate the process of add course to semester
+' Function List     : add course
 
 '------------------------------------------------------------ 
 ' Date Mod     Modified by        Brief Description  
@@ -20,10 +20,24 @@ Public Class AddCourse
     Inherits System.Web.UI.Page
     ' Connect Database  
     Dim connection As New SqlConnection(PB.getConnectionString())
-    ' define the connection 
+    ' define the sql command
     Private nonqueryCommand As SqlCommand
     Private selectqueryCommand As SqlCommand
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        '------------------------------------------------------------ 
+        ' Aim           : validate session for each type of users
+        '               : set the message back to red color            
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : ID, error text
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            :   type of ID
+
         If (Session("Rememberme") = "false") Then
             If PB.getAccountType(Session("ID")) = "1" Or PB.getAccountType(Session("ID")) = "2" Then
                 If Not Page.IsPostBack Then
@@ -49,8 +63,8 @@ Public Class AddCourse
 
     Protected Sub btnSave_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSave.Click
         '------------------------------------------------------------ 
-        ' Aim           : Set Attribute "read only" for Textbox
-        '               : Add year list in the list box            
+        ' Aim           : Save new course into OSAMS system
+        '                          
         ' Edit/Create by: Nguyen Tran Dang Khoa
         ' Date          : 17/04/2012
         '     This function is created in reference of materials in RMIT VN BlackBoard
@@ -64,16 +78,17 @@ Public Class AddCourse
 
         ' Open Connection
         connection.Open()
-        'Declare variables and get value 
+        'Declare course ID, course Name, Credit and Level
         Dim courseID As String = txtCourseID.Text
         Dim courseName As String = txtCourseName.Text
         Dim courseCredit As Integer = ddlCredit.SelectedValue
         Dim courseLevel As String = ddlLevel.Text
+
         Dim count As Integer
 
         ' create a new SqlConnection object with the appropriate connection string 
         Dim str As String = "select count (*) name from course where course_id = '" + courseID & "'"
-        'execute query
+        ' Connect sql
         selectqueryCommand = New SqlCommand(str, connection)
 
 
@@ -87,7 +102,7 @@ Public Class AddCourse
             ' Create INSERT statement with named  and execute query
             nonqueryCommand = New SqlCommand("INSERT  INTO course (course_id, course_name, credit, level, active) VALUES ('" & courseID.ToUpper & "','" & courseName & "','" & courseCredit & "','" & courseLevel & "','" & "1" & "')", connection)
             nonqueryCommand.ExecuteNonQuery()
-            'display confirm message
+            'display confirm message 
             lblError.ForeColor = System.Drawing.Color.Black
             lblError.Text = " The course " + courseName + " has been added"
 
@@ -100,7 +115,7 @@ Public Class AddCourse
     End Sub
 
     Protected Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
-        ' direct to course page
+        ' Cancel will back to course page
         Response.Redirect("Course.aspx")
     End Sub
     
