@@ -624,7 +624,7 @@
                               <Value>=Fields!present_percentage.Value</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
-                                <Format>0.00;(0.00)</Format>
+                                <Format>0.00 "%";(0.00)</Format>
                                 <Color>#4d4d4d</Color>
                               </Style>
                             </TextRun>
@@ -691,7 +691,7 @@
                               <Value>=Fields!absent_percentage.Value</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
-                                <Format>0.00;(0.00)</Format>
+                                <Format>0.00 "%";(0.00)</Format>
                                 <Color>#4d4d4d</Color>
                               </Style>
                             </TextRun>
@@ -775,7 +775,7 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Height>0.5in</Height>
-        <Width>10.4in</Width>
+        <Width>10.40002in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -815,6 +815,8 @@
                   </ChartDataPointValues>
                   <ChartDataLabel>
                     <Style />
+                    <Label>=Format(Fields!present_percentage.Value, "0.00") &amp; " %"</Label>
+                    <Visible>true</Visible>
                   </ChartDataLabel>
                   <Style />
                   <ChartMarker>
@@ -848,6 +850,8 @@
                   </ChartDataPointValues>
                   <ChartDataLabel>
                     <Style />
+                    <Label>=Format(Fields!absent_percentage.Value, "0.00") &amp; " %"</Label>
+                    <Visible>true</Visible>
                   </ChartDataLabel>
                   <Style />
                   <ChartMarker>
@@ -1082,8 +1086,81 @@
     <Height>4.17375in</Height>
     <Style />
   </Body>
-  <Width>10.4in</Width>
+  <Width>10.40002in</Width>
   <Page>
+    <PageHeader>
+      <Height>0.61459in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="tbxTitle">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>SUMMARY REPORT</Value>
+                  <Style>
+                    <FontSize>20pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.13541in</Top>
+          <Left>0.11667in</Left>
+          <Height>0.47917in</Height>
+          <Width>2.79167in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox4">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>="Printed Date: " &amp; Format(Now(),"dd/MM/yyyy hh:mm tt")</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox4</rd:DefaultName>
+          <Top>0.26042in</Top>
+          <Left>7.82502in</Left>
+          <Height>0.28125in</Height>
+          <Width>2.45833in</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>
     <TopMargin>1in</TopMargin>
