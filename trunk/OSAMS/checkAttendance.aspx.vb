@@ -1163,26 +1163,26 @@ Public Class checkAttendance
 
 
 
-    Private Function getSemCou(ByVal group As String) As ArrayList
-        '------------------------------------------------------------
-        ' function  : getSemCou
-        ' Author      : Pham Sy Nhat Nam                Date   : 17/4/12
-        ' Aim         : to get the semester name and course id from group id
-        '------------------------------------------------------------
-        ' Incoming Parameters
-        ' group: the group id of the group
-        '
-        '
-        '------------------------------------------------------------
-        Dim array As New ArrayList
-        Dim sql As String = "select semester_name, course_id from [group] where group_id = " + group
-        Dim dt As DataTable = PB.getData(sql)
-        array.Add(dt.Rows(0).Item("semester_name"))
-        array.Add(dt.Rows(0).Item("course_id"))
+    'Private Function getSemCou(ByVal group As String) As ArrayList
+    '    '------------------------------------------------------------
+    '    ' function  : getSemCou
+    '    ' Author      : Pham Sy Nhat Nam                Date   : 17/4/12
+    '    ' Aim         : to get the semester name and course id from group id
+    '    '------------------------------------------------------------
+    '    ' Incoming Parameters
+    '    ' group: the group id of the group
+    '    '
+    '    '
+    '    '------------------------------------------------------------
+    '    Dim array As New ArrayList
+    '    Dim sql As String = "select semester_name, course_id from [group] where group_id = " + group
+    '    Dim dt As DataTable = PB.getData(sql)
+    '    array.Add(dt.Rows(0).Item("semester_name"))
+    '    array.Add(dt.Rows(0).Item("course_id"))
 
-        Return array
+    '    Return array
 
-    End Function
+    'End Function
 
     Private Function checkDisplay() As String
         '------------------------------------------------------------
@@ -1548,13 +1548,11 @@ Public Class checkAttendance
 
 
             r = New TableRow
-            c = New TableCell
-            c.ColumnSpan = 7
-            r.Cells.Add(c)
+            
 
             c = New TableCell
 
-            c.Controls.Add(New LiteralControl("<input id='Button1' type='button' value='Submit Attendance' onclick='javascript:run();'  align='right' />"))
+            c.Controls.Add(New LiteralControl("<input id='Button1' type='button' value='Update Attendance' onclick='javascript:run();'  align='right' />"))
             r.Cells.Add(c)
             tbattendace.Rows.Add(r)
 
