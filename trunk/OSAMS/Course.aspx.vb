@@ -1,8 +1,14 @@
 ﻿'------------------------------------------------------------ 
 'File Name          :course.vb
 ' Description       :Indicate the process of add semester
-' Function List     : 
-
+' Function List     : edit group
+'                   : find group
+'                   : row databound
+'                   : row editing
+'                   : row updating
+'                   : row cancel editing
+'                   : find ()
+'                   : bind_data()
 '------------------------------------------------------------ 
 ' Date Mod     Modified by        Brief Description  
 '    ------------------------------------------------------------ 
@@ -13,12 +19,27 @@ Imports System.Data.SqlClient
 Public Class Course
 
     Inherits System.Web.UI.Page
-    'declare variables
+    'declare position credit, level
     Private currentCredit, currentLevel As String
-    ' define the connection 
+    ' define sql command
     Private nonqueryCommand As SqlCommand
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        '------------------------------------------------------------ 
+        ' Aim           : validate session for each type of users
+        '               : set the message back to red color    
+        '               : bind data into gridview
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : ID, error text
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            :   type of ID
+
         If (Session("Rememberme") = "false") Then
             If PB.getAccountType(Session("ID")) = "1" Or PB.getAccountType(Session("ID")) = "2" Then
                 If Not Page.IsPostBack Then
@@ -55,32 +76,34 @@ Public Class Course
     End Sub
     Protected Sub GridView1_RowDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles grdvwCourse.RowDataBound
         '------------------------------------------------------------ 
-        ' Aim           : Row Updating
+        ' Aim           : Row Databound
         '              
         ' Edit/Create by: Nguyen Tran Dang Khoa
         ' Date          : 17/04/2012
         '     This function is created in reference of materials in RMIT VN BlackBoard
 
         '------------------------------------------------------------ 
-        ' Incoming Parameters    : 
+        ' Incoming Parameters    : dropdownlist Credit, Level
         '                                 
         ' Outgoing Parameters    :  
         '                          
-        ' Return data            :
+        ' Return data            : value of Credit, Level
 
         If (e.Row.RowState And DataControlRowState.Edit) =
         DataControlRowState.Edit Then
             If e.Row.RowType = DataControlRowType.DataRow Then
 
                 Dim i As Integer
-
+                'Define list item and dropdownlist
                 Dim z As ListItem
                 Dim dd As DropDownList
                 Dim ee As DropDownList
+
+                'Find control
                 dd = e.Row.FindControl("ddlCredit")
                 ee = e.Row.FindControl("ddlLevel")
 
-
+                ' Add number into dropdownlist
                 For i = 1 To 12
                     z = New ListItem(i)
 
@@ -88,12 +111,12 @@ Public Class Course
 
                 Next
 
-
+                'Add item Level in dropdownlist
                 ee.Items.Add("Bachelor")
                 ee.Items.Add("Diploma")
                 ee.Items.Add("Master")
 
-
+                'Get current position of credit, level
                 If currentCredit IsNot Nothing Then
                     dd.Items.FindByValue(currentCredit).Selected = True
                 End If
@@ -113,7 +136,7 @@ Public Class Course
         '     This function is created in reference of materials in RMIT VN BlackBoard
 
         '------------------------------------------------------------ 
-        ' Incoming Parameters    : student_id, family_name, middle_name, given_name, gender, mail, program, stream, semester, course, group
+        ' Incoming Parameters    : course_id, course_name, credit
         '                                 
         ' Outgoing Parameters    :  
         '                          
@@ -162,7 +185,7 @@ Public Class Course
 
 
             Try
-                'execute query
+                'connect query
                 Dim cmd2 As New SqlCommand(sqlStatement, connection)
 
 
@@ -170,7 +193,7 @@ Public Class Course
                 'use command type
                 cmd2.CommandType = CommandType.Text
 
-
+                'execute query
                 cmd2.ExecuteNonQuery()
 
 
@@ -183,6 +206,7 @@ Public Class Course
                 connection.Close()
                 'bind(database)
                 bind_data()
+                'bind find database
                 find()
 
             End Try
@@ -199,7 +223,7 @@ Public Class Course
         '     This function is created in reference of materials in RMIT VN BlackBoard
 
         '------------------------------------------------------------ 
-        ' Incoming Parameters    : 
+        ' Incoming Parameters    : credit, level
         '                                 
         ' Outgoing Parameters    :  
         '                          
@@ -208,7 +232,7 @@ Public Class Course
         'declare variable
         Dim credit As String
         Dim level As String
-        'find control
+        'find control credit, level
         credit = TryCast(grdvwCourse.Rows(e.NewEditIndex).FindControl("lblCredit"), Label).Text
         level = TryCast(grdvwCourse.Rows(e.NewEditIndex).FindControl("lblLevel"), Label).Text
 
@@ -220,22 +244,55 @@ Public Class Course
 
         'bind database
         bind_data()
+        'bind find database
         find()
 
 
     End Sub
 
     Protected Sub grdvwCourse_RowCancelingEdit(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCancelEditEventArgs) Handles grdvwCourse.RowCancelingEdit
-        grdvwCourse.EditIndex = -1
-        bind_data()
-        find()
+        '------------------------------------------------------------ 
+        ' Aim           : Row Cancel editing
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
 
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : credit, level
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            :
+
+        'Set index of gridview
+        grdvwCourse.EditIndex = -1
+        'bind database
+        bind_data()
+        'bind find database
+        find()
+        ' Set blank error message
         lblMessage.Text = ""
     End Sub
 
     Protected Sub btnFind_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnFind.Click
-        Dim findStr As String = "select * from course where course_id like '%" & txtSearch.Text & "%' or course_name like '%" & txtSearch.Text & "%' or credit like '%" & txtSearch.Text & "%' or [level] like '%" & txtSearch.Text & "%'"
+        '------------------------------------------------------------ 
+        ' Aim           : Find course
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
 
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : course_id, course_name, level, credit
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            :
+
+        ' Sql find course
+        Dim findStr As String = "select * from course where course_id like '%" & txtSearch.Text & "%' or course_name like '%" & txtSearch.Text & "%' or credit like '%" & txtSearch.Text & "%' or [level] like '%" & txtSearch.Text & "%'"
+        'Declare connection string, sql command
         Dim strConn As String
         strConn = PB.getConnectionString()
         Dim connection As New SqlConnection(strConn)
@@ -243,22 +300,25 @@ Public Class Course
         Dim dr As SqlDataReader
 
         Try
+            'Open connection
             connection.Open()
 
             ' Initialize the SqlCommand with the new SQL string.
             cmd = New SqlCommand(findStr, connection)
             dr = cmd.ExecuteReader()
             If (dr.HasRows) Then
+                'Disallow paging and bind data into datasource
                 grdvwCourse.AllowPaging = False
                 grdvwCourse.DataSource = dr
                 grdvwCourse.DataBind()
 
             Else
+                'Allow paging and bind data into datasource
                 grdvwCourse.AllowPaging = True
                 lblMessage.ForeColor = System.Drawing.Color.Black
-                lblMessage.Text = "No data found"
+                lblMessage.Text = "No course found"
             End If
-
+            'close connection
             connection.Close()
 
 
@@ -269,6 +329,20 @@ Public Class Course
 
     End Sub
     Public Sub bind_data()
+        '------------------------------------------------------------ 
+        ' Aim           : Bind database
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : credit, level
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            :
+
         Dim loadStr As String = "select course_id, course_name, credit, [level] from course "
         Dim ds As New DataSet()
         'get connection
@@ -296,8 +370,23 @@ Public Class Course
         End Try
     End Sub
     Public Sub find()
-        Dim findStr As String = "select * from course where course_id like '%" & txtSearch.Text & "%' or course_name like '%" & txtSearch.Text & "%' or credit like '%" & txtSearch.Text & "%' or [level] like '%" & txtSearch.Text & "%'"
+        '------------------------------------------------------------ 
+        ' Aim           : bind find data
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
 
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : course_id, course_name, credit, level
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            :
+
+        ' find course query
+        Dim findStr As String = "select * from course where course_id like '%" & txtSearch.Text & "%' or course_name like '%" & txtSearch.Text & "%' or credit like '%" & txtSearch.Text & "%' or [level] like '%" & txtSearch.Text & "%'"
+        ' declare connectionstring, sql command and sql datareader
         Dim strConn As String
         strConn = PB.getConnectionString()
         Dim connection As New SqlConnection(strConn)
@@ -305,21 +394,25 @@ Public Class Course
         Dim dr As SqlDataReader
 
         Try
+            ' open connection
             connection.Open()
 
             ' Initialize the SqlCommand with the new SQL string.
             cmd = New SqlCommand(findStr, connection)
             dr = cmd.ExecuteReader()
             If (dr.HasRows) Then
+                ' disallow page
                 grdvwCourse.AllowPaging = False
+                'bind database into datasource
                 grdvwCourse.DataSource = dr
                 grdvwCourse.DataBind()
 
             Else
+                'allow page and display message
                 grdvwCourse.AllowPaging = True
                 lblMessage.Text = "No data found"
             End If
-
+            'close connection
             connection.Close()
 
 
@@ -330,8 +423,23 @@ Public Class Course
     End Sub
 
     Protected Sub btnClear_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnClear.Click
+        '------------------------------------------------------------ 
+        ' Aim           : clear database
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
 
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : search textbox
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            : reload data
+
+        'clear search textbox
         txtSearch.Text = ""
+        'bind find data
         find()
     End Sub
 End Class
