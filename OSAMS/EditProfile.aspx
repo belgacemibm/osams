@@ -3,12 +3,12 @@
     <style type="text/css">
         .style21
         {
-            width: 498px;
+            width: 544px;
             float: left;
         }
         .style22
         {
-            width: 377px;
+            width: 422px;
         }
     </style>
 </asp:Content>
