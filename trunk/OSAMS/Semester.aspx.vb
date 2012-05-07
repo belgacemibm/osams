@@ -1,8 +1,10 @@
 ﻿'------------------------------------------------------------ 
 'File Name          :semester.vb
 ' Description       :Indicate the process of add semester
-' Function List     : 
-
+' Function List     : edit semester
+'                   : row databound
+'                   : row editing
+'                   : row cancel editing
 '------------------------------------------------------------ 
 ' Date Mod     Modified by        Brief Description  
 '    ------------------------------------------------------------ 
@@ -14,6 +16,20 @@ Public Class Semester
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        '------------------------------------------------------------ 
+        ' Aim           : validate session for each type of users
+        '               : set the message back to red color    
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : ID, error text
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            :   type of ID
+
         If (Session("Rememberme") = "false") Then
             If PB.getAccountType(Session("ID")) = "1" Or PB.getAccountType(Session("ID")) = "2" Then
                 If Not Page.IsPostBack Then
@@ -39,17 +55,8 @@ Public Class Semester
     End Sub
 
     Protected Sub btnAddSemester_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddSemester.Click
-        'direct to add semester
+        'Edit semester will back to add semester
         Response.Redirect("AddSemester.aspx")
-    End Sub
-
-
-    Protected Sub GridView1_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles grdvwSemester.SelectedIndexChanged
-
-    End Sub
-
-    Protected Sub DateTimePicker1_TextChanged(ByVal sender As Object, ByVal e As EventArgs)
-
     End Sub
 
     Protected Sub grdvwSemester_RowDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles grdvwSemester.RowDataBound
@@ -62,7 +69,7 @@ Public Class Semester
         '     This function is created in reference of materials in RMIT VN BlackBoard
 
         '------------------------------------------------------------ 
-        ' Incoming Parameters    : 
+        ' Incoming Parameters    : start date, end date
         '                                 
         ' Outgoing Parameters    :  
         '                          
@@ -73,17 +80,13 @@ Public Class Semester
         DataControlRowState.Edit Then
             If e.Row.RowType = DataControlRowType.DataRow Then
                 Dim startDate, endDate As TextBox
-                'find control
+                'find control start date, end date
                 startDate = e.Row.FindControl("txtStartDate")
                 endDate = e.Row.FindControl("txtEndDate")
 
-                'add attribute
+                'add "read only" attribute to start date, end date
                 startDate.Attributes.Add("readonly", "readonly")
                 endDate.Attributes.Add("readonly", "readonly")
-
-
-
-
 
             End If
         End If
@@ -98,14 +101,15 @@ Public Class Semester
         '     This function is created in reference of materials in RMIT VN BlackBoard
 
         '------------------------------------------------------------ 
-        ' Incoming Parameters    : 
+        ' Incoming Parameters    : semester name, start date, end date
         '                                 
         ' Outgoing Parameters    :  
         '                          
         ' Return data            :
 
-        'declare variables
+        'declare start date, end date control
         Dim startDate, endDate As TextBox
+        'declare semester name, start date string, end date string, start date compare with end date
         Dim semester_name, startDateString, endDateString, startDateCompare, endDateCompare As String
         'get connection
         Dim connection As New SqlConnection(PB.getConnectionString())
@@ -120,9 +124,10 @@ Public Class Semester
         'convert date
         startDateCompare = CDate(startDateString).ToString("yyyyMMdd")
         endDateCompare = CDate(endDateString).ToString("yyyyMMdd")
-
+        ' select semester
         Dim extra As Boolean = PB.checkEsixtedData("select * from [group] where semester_name = '" & semester_name & "'")
         If extra = True Then
+            'validate semester already have a group
             lblError.Text = "Error: This semester already containt the group. You are not allowed to change"
             e.Cancel = True
         Else
@@ -131,8 +136,9 @@ Public Class Semester
                 lblError.Text = "Error: End date must greater than start date"
                 e.Cancel = True
             Else
+                'validate end date must greater or equal today creating
                 If CDate(endDateString).ToString("MM/dd/yyyy") < Today Then
-                    lblError.Text = "Error: End date must greater than today"
+                    lblError.Text = "Error: End date must equal or greater than today"
                     e.Cancel = True
                 Else
                     Try
@@ -172,7 +178,20 @@ Public Class Semester
     End Sub
 
     Protected Sub grdvwSemester_RowCancelingEdit(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCancelEditEventArgs) Handles grdvwSemester.RowCancelingEdit
+        '------------------------------------------------------------ 
+        ' Aim           : Cancel editing
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
 
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : clear textbox
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            :
+        'clear message
         lblError.Text = ""
     End Sub
 End Class
