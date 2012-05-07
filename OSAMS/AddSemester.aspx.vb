@@ -1,7 +1,7 @@
 ﻿'------------------------------------------------------------ 
 'File Name          :AddSemester.vb
-' Description       :Indicate the process of add semester
-' Function List     :fillYearList()
+' Description       :Indicate the process of add new semester to OSAMS system
+' Function List     :fillYearList(), add semester
 
 
 '------------------------------------------------------------ 
@@ -22,14 +22,16 @@ Public Class AddSemester
     Inherits System.Web.UI.Page
 
 
-    ' Declare parameters
+    ' Declare sql command
     Private nonqueryCommand As SqlCommand
     Private selectqueryCommand As SqlCommand
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         '------------------------------------------------------------ 
         ' Aim           : Set Attribute "read only" for Textbox
-        '               : Add year list in the list box            
+        '               : Add year list in the list box - fillYearList()         
+        '               : validate session for each type of users
+        '               : set the message back to red color  
         ' Edit/Create by: Nguyen Tran Dang Khoa
         ' Date          : 17/04/2012
         '     This function is created in reference of materials in RMIT VN BlackBoard
@@ -41,10 +43,10 @@ Public Class AddSemester
         '                          
         ' Return data            :     
 
-        'textbox read only
+        ' add attribute "read only"
         txtStartDate.Attributes.Add("readonly", "readonly")
         txtEndDate.Attributes.Add("readonly", "readonly")
-
+        'validate type of account
         If (Session("Rememberme") = "false") Then
             If PB.getAccountType(Session("ID")) = "1" Or PB.getAccountType(Session("ID")) = "2" Then
                 ' fill year list
@@ -87,44 +89,44 @@ Public Class AddSemester
         ' Open Connection
         connection.Open()
 
-        'Declare variables and get value from fields
+        'Declare start date, end date
         Dim startDate As String = txtStartDate.Text
         Dim endDate As String = txtEndDate.Text
+        ' Declare convert string : start date, end date
         Dim startDateString As String
         Dim endDateString As String
         Dim count As Integer
+        ' Declare combine year name
         Dim strYearOrder As String = ddlYear.SelectedItem.ToString + ddlOrder.SelectedItem.ToString
 
 
-        ' Convert start date and end date to string yyyy-MM-dd
+        ' Convert start date and end date to  yyyy-MM-dd format
         startDateString = CDate(startDate).ToString("yyyyMMdd")
         endDateString = CDate(endDate).ToString("yyyyMMdd")
 
 
-        'Create select query to count semester
+        'Create SELECT query to count semester
         Dim str As String = "select count (*) name from semester where semester_name = '" + strYearOrder + "'"
 
         selectqueryCommand = New SqlCommand(str, connection)
 
 
-        ' Check start date and end date
+        ' Validate start date and end date
         If startDateString > endDateString Then
 
             lblError.Text = "Error: End date must greater than start date"
         Else
+            ' Validate creating  semester end date
             If txtEndDate.Text < Today Then
 
-                lblError.Text = "Error: End Date must greater than today  "
+                lblError.Text = "Error: End Date must equal or greater than today  "
             Else
                 count = Convert.ToInt32(selectqueryCommand.ExecuteScalar)
-
-
 
                 ' Check duplicate semester
                 If (count > 0) Then
 
                     lblError.Text = "Error: The semester has been existed"
-
 
                 Else
                     ' Create INSERT statement with named parameters and execute insert query
@@ -135,7 +137,7 @@ Public Class AddSemester
                     lblError.ForeColor = System.Drawing.Color.Black
                     lblError.Text = "The semester " + strYearOrder + " has been created successfully"
 
-                    'Call ClearTextBoxes()
+                    ' ClearTextBoxes()
                     txtStartDate.Text = ""
                     txtEndDate.Text = ""
                 End If
@@ -179,6 +181,7 @@ Public Class AddSemester
     End Sub
 
     Protected Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
+        ' Cancel will back to semester page
         Response.Redirect("Semester.aspx")
 
     End Sub
