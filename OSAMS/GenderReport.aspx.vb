@@ -9,12 +9,14 @@
 '                    ToggleCheckState
 '                    btnSelectAll_Click
 '                    btnUnselectAll_Click
+'                    getSelectedGroupDetails
 ' Date Created      : 27/04/2012
 ' Created By        : Vo Ngoc Diep
 '------------------------------------------------------------ 
 ' Date Mod     Modified by        Brief Description  
 ' 04/05/2012   Vo Ngoc Diep       Adding Select All, Unselect All buttons
 '                                 Validation for all fields
+' 06/05/2012   Vo Ngoc Diep       Getting selected group details
 '------------------------------------------------------------ 
 
 Imports System.Data.SqlClient
@@ -110,6 +112,20 @@ Public Class GenderReport
         Return getCheckboxInGridview
     End Function
 
+    Private Function getSelectedGroupDetails() As String
+        'Function to get selected group details
+        getSelectedGroupDetails = ""
+        Dim Chk As New CheckBox
+        Dim D As GridViewRow
+        For Each D In grdvwReport.Rows
+            Chk = D.FindControl("CheckBox1")
+            If Chk.Checked = True Then
+                getSelectedGroupDetails = getSelectedGroupDetails + ", " + D.Cells(1).Text.Trim() + " - " + D.Cells(2).Text.Trim() + " - " + D.Cells(3).Text.Trim()
+            End If
+        Next
+        Return getSelectedGroupDetails
+    End Function
+
     Protected Sub btnViewReport_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnViewReport.Click
         'View Report button is clicked
 
@@ -120,10 +136,10 @@ Public Class GenderReport
             btnUnselectAll.Visible = True 'Set "Unselect All" button is visible
             lblErrorMessage.Text = "Error: Please select at least one group!"
         Else
-            Session("GroupName_GenderReport") = Right(getCheckboxInGridview(3), getCheckboxInGridview(3).Length - 1)
             Session("GroupID_GenderReport") = Right(getCheckboxInGridview(4), getCheckboxInGridview(4).Length - 1)
             Session("start_date_gender_report") = tbxFromDate.Text
             Session("end_date_gender_report") = tbxToDate.Text
+            Session("SelectedGroupDetails_GenderReport") = Right(getSelectedGroupDetails(), getSelectedGroupDetails().Length - 1)
             Response.Redirect("GenderReportResult.aspx")
         End If
     End Sub
