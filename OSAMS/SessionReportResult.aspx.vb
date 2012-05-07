@@ -21,7 +21,7 @@ Public Class SessionReportResult
             Else
                 lblStartDateResult.Text = Session("start_date_SessionReport")
                 lblEndDateResult.Text = Session("end_date_SessionReport")
-                lblSelectedGroupResult.Text = Session("GroupName_SessionReport")
+                lblSelectedGroupResult.Text = Session("SelectedGroupDetails_SessionReport")
             End If
         Else
             If PB.getAccountType(Request.Cookies("ID").Value) = "5" Then
@@ -29,7 +29,7 @@ Public Class SessionReportResult
             Else
                 lblStartDateResult.Text = Session("start_date_SessionReport")
                 lblEndDateResult.Text = Session("end_date_SessionReport")
-                lblSelectedGroupResult.Text = Session("GroupName_SessionReport")
+                lblSelectedGroupResult.Text = Session("SelectedGroupDetails_SessionReport")
             End If
         End If
     End Sub
