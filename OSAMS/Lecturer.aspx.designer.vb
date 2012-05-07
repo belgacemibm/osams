@@ -14,15 +14,6 @@ Option Explicit On
 Partial Public Class Lecturer
 
     '''<summary>
-    '''lblError control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblError As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''grdvwLecturer control.
     '''</summary>
     '''<remarks>
@@ -32,15 +23,6 @@ Partial Public Class Lecturer
     Protected WithEvents grdvwLecturer As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
-    '''SqlDataLecturer control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents SqlDataLecturer As Global.System.Web.UI.WebControls.SqlDataSource
-
-    '''<summary>
     '''btnAddNewLecturer control.
     '''</summary>
     '''<remarks>
@@ -48,4 +30,40 @@ Partial Public Class Lecturer
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnAddNewLecturer As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''lblError control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblError As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtSearch control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSearch As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btnFind control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnFind As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnClear control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnClear As Global.System.Web.UI.WebControls.Button
 End Class
