@@ -82,8 +82,8 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
                     ControlToValidate="tbxEmail" ErrorMessage="&quot;Email&quot; cannot be blank!">*</asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
-                    ControlToValidate="tbxEmail" ErrorMessage="ERROR: Email is incorrect format" 
-                    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">ERROR: Email is incorrect format</asp:RegularExpressionValidator>
+                    ControlToValidate="tbxEmail" ErrorMessage="Error: Email is incorrect format" 
+                    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">Error: Email is incorrect format</asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>
