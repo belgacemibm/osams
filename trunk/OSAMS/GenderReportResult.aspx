@@ -30,8 +30,8 @@
 
     <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" 
         Font-Size="8pt" InteractiveDeviceInfos="(Collection)" 
-        WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="1024px" 
-        ShowParameterPrompts="False" Height="437px">
+        WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="1018px" 
+        ShowParameterPrompts="False" Height="480px">
         <LocalReport ReportPath="RDLC\GenderReport.rdlc">
             <DataSources>
                 <rsweb:ReportDataSource DataSourceId="SqlDataSource1" Name="DataSet1" />
