@@ -1,11 +1,34 @@
-﻿Imports System.Data.SqlClient
+﻿'------------------------------------------------------------ 
+'File Name          :AddAdmin.vb
+' Description       :Indicate the process of add admin to system
+' Function List     : add admin
+
+'------------------------------------------------------------ 
+' Date Mod     Modified by        Brief Description  
+'    ------------------------------------------------------------ 
+' 17/04/2012   Nguyen Tran Dang Khoa     Add Course
+'------------------------------------------------------------ 
+Imports System.Data.SqlClient
 
 Public Class AddAdmin
     Inherits System.Web.UI.Page
-    ' define the connection 
+    ' define sql command 
     Private nonqueryCommand As SqlCommand
     Private selectqueryCommand As SqlCommand
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        '------------------------------------------------------------ 
+        ' Aim           : validate session for each type of users
+        '               : set the message back to red color            
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : ID, error text
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            :   type of ID
         If (Session("Rememberme") = "false") Then
             If PB.getAccountType(Session("ID")) = "1" Then
                 If Not Page.IsPostBack Then
@@ -31,14 +54,14 @@ Public Class AddAdmin
 
     Protected Sub btnSave_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnSave.Click
         '------------------------------------------------------------ 
-        ' Aim           : Set Attribute "read only" for Textbox
-        '               : Add year list in the list box            
+        ' Aim           : add new admin to OSAMS system
+        '               
         ' Edit/Create by: Nguyen Tran Dang Khoa
         ' Date          : 17/04/2012
         '     This function is created in reference of materials in RMIT VN BlackBoard
 
         '------------------------------------------------------------ 
-        ' Incoming Parameters    : lecturer_id, family_name, middle_name, given_name, gender, email, active
+        ' Incoming Parameters    : admin ID, family name, middle name, given name, gender, email, password, account type
         '                                 
         ' Outgoing Parameters    :  
         '                          
@@ -49,7 +72,7 @@ Public Class AddAdmin
         Dim connection As New SqlConnection(PB.getConnectionString())
         ' Open connection
         connection.Open()
-        ' Declare variables and get value
+        ' Declare staff ID, family name, middle name, given, gender, email
         Dim staffID As String = txtStaffID.Text
         Dim staffFamilyName As String = txtFamilyName.Text
         Dim staffMiddleName As String = txtMiddleName.Text
@@ -69,7 +92,7 @@ Public Class AddAdmin
         ' Create INSERT statement with named parameters
         Dim str As String = "select count (*) name from admin where staff_id = '" + staffID & "'"
         selectqueryCommand = New SqlCommand(str, connection)
-        'validate blank fields
+
         
                         'validate duplidate lecturer ID
                         count = Convert.ToInt32(selectqueryCommand.ExecuteScalar)
@@ -98,6 +121,7 @@ Public Class AddAdmin
     End Sub
 
     Protected Sub btnCancel_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancel.Click
+        'Cancel will back to Admin page 
         Response.Redirect("Admin.aspx")
     End Sub
 End Class
