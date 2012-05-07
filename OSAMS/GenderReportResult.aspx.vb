@@ -21,7 +21,7 @@ Public Class GenderReportResult
             Else
                 lblStartDateResult.Text = Session("start_date_gender_report")
                 lblEndDateResult.Text = Session("end_date_gender_report")
-                lblSelectedGroupResult.Text = Session("GroupName_GenderReport")
+                lblSelectedGroupResult.Text = Session("SelectedGroupDetails_GenderReport")
             End If
         Else
             If PB.getAccountType(Request.Cookies("ID").Value) = "5" Then
@@ -29,7 +29,7 @@ Public Class GenderReportResult
             Else
                 lblStartDateResult.Text = Session("start_date_gender_report")
                 lblEndDateResult.Text = Session("end_date_gender_report")
-                lblSelectedGroupResult.Text = Session("GroupName_GenderReport")
+                lblSelectedGroupResult.Text = Session("SelectedGroupDetails_GenderReport")
             End If
         End If
     End Sub
