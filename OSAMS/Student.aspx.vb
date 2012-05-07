@@ -209,7 +209,7 @@ Public Class Student
         Dim password As TextBox = DirectCast(row.FindControl("password"), TextBox)
 
         Dim semesterSqlStatement As String = "SELECT [end_date] FROM [semester] WHERE [semester].semester_name = '" & ddlSemester.SelectedValue & "'"
-      
+
         Dim strDate As String = String.Empty
 
         Dim cmd As New SqlCommand(semesterSqlStatement, connection)
@@ -218,7 +218,7 @@ Public Class Student
 
         Dim myRegex As New Regex(strEmail)
 
-        
+
         'open connection
         connection.Open()
         Using reader As SqlDataReader = cmd.ExecuteReader()
@@ -322,11 +322,18 @@ Public Class Student
                             cmd3.CommandType = CommandType.Text
                             cmd3.ExecuteNonQuery()
 
+                            'the attendance for the student changing group
+                            changeAttendance(student_id.Text, group_ID, current_group_id)
+
                         Else
                             Dim cmd6 As New SqlCommand(insertSqlStatement, connection)
                             cmd6.Parameters.AddWithValue("@group_ID", group_ID)
                             cmd6.CommandType = CommandType.Text
                             cmd6.ExecuteNonQuery()
+                            'the attendance for the student changing group
+                            changeAttendance(student_id.Text, group_ID, current_group_id)
+
+
                         End If
 
 
@@ -351,7 +358,7 @@ Public Class Student
                         bind()
                     End Try
                 End If
-        End If
+            End If
         End If
     End Sub
     Protected Sub grdvwStudent_RowEditing(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewEditEventArgs) Handles grdvwStudent.RowEditing
@@ -635,7 +642,7 @@ Public Class Student
 
                 If chk.Checked Then
                     Try
-                        
+
                         Dim selectGroupnameStatement As String = "select group_id from [group] where course_id = '" + ddlCourse.SelectedValue & "' and group_name ='" + group_name.Text & "' and semester_name = '" + ddlSemester.SelectedValue & "'"
 
 
@@ -679,7 +686,7 @@ Public Class Student
 
                     End Try
                 End If
-                End If
+            End If
         Next
 
     End Sub
@@ -1002,15 +1009,15 @@ Public Class Student
 
         End Using
 
-        
-            'Select query
-            If txtStudentID.Text = "" Then
 
-                lblError.Text = "Error: Please fulfill student ID"
+        'Select query
+        If txtStudentID.Text = "" Then
+
+            lblError.Text = "Error: Please fulfill student ID"
+        Else
+            If ddlAssignCourse.SelectedValue = "Select" Or ddlAssignSemester.SelectedValue = "Select" Or ddlAssignGroup.SelectedValue = "" Then
+                lblError.Text = "Error: Please select the course, semester and group"
             Else
-                If ddlAssignCourse.SelectedValue = "Select" Or ddlAssignSemester.SelectedValue = "Select" Or ddlAssignGroup.SelectedValue = "" Then
-                    lblError.Text = "Error: Please select the course, semester and group"
-                Else
                 If strDate < Today Then
                     lblError.Text = "Error: You cannot modify last semester"
                 Else
@@ -1102,10 +1109,14 @@ Public Class Student
                                 ' addAttendance(txtStudentID.Text, ddlAssignGroup.SelectedValue, current_group_id)
                             End If
 
+                            changeAttendance(txtStudentID.Text, group_ID, current_group_id)
+
                         Else
                             'execute query
                             a = PB.runquery(insertSqlStatement)
-                            'addAttendance(txtStudentID.Text, ddlAssignGroup.SelectedValue, current_group_id)
+                            addAttendance(txtStudentID.Text, ddlAssignGroup.SelectedValue)
+
+
                         End If
                         If a = True Then
                             'display confirm message
@@ -1126,7 +1137,7 @@ Public Class Student
         txtStudentID.Text = ""
     End Sub
 
-    Private Sub addAttendance(ByVal sID As String, ByVal group As String, ByVal currentGroup As String)
+    Private Sub addAttendance(ByVal sID As String, ByVal group As String)
         Dim sql As String
         sql = "select distinct(ss.schedule_id) from student_schedule ss, schedule s where ss.schedule_id = s.schedule_id AND s.group_id = " + group
         Dim dt As DataTable
@@ -1136,16 +1147,43 @@ Public Class Student
             insert = insert + " insert into student_schedule values('absent', 1, " + dr.Item("schedule_id") + ", '" + sID + "')"
 
         Next
-        Dim sql1 As String = "select ss.student_schedule_id from student_schedule ss, schedule s where ss.schedule_id = s.schedule_id AND s.group_id = " + currentGroup + "AND ss.student_id = '" + sID + "'"
+       
+
+        Dim a As Boolean = PB.runquery(insert)
+        'a = PB.runquery(update)
+
+
+    End Sub
+    Private Sub changeAttendance(ByVal sID As String, ByVal group As String, ByVal currentGroup As String)
+        Dim sql As String
+        sql = "select distinct(ss.schedule_id) from student_schedule ss, schedule s where ss.schedule_id = s.schedule_id AND s.group_id = " + group
+        Dim dt As DataTable
+        dt = PB.getData(sql)
+        'Dim insert As String = ""
+        Dim sqlchange As String = ""
+        Dim sql1 As String = "select ss.student_schedule_id, ss.status from student_schedule ss, schedule s where ss.schedule_id = s.schedule_id AND s.group_id = " + currentGroup + " AND ss.student_id = '" + sID + "'"
         Dim updt As DataTable = PB.getData(sql1)
-        Dim update As String = ""
+        'Dim update As String = ""
         For Each dr As DataRow In updt.Rows
-            update = update + " update student_schedule set active = 0 where student_schedule_id = " + dr.Item("student_schedule_id")
+            sqlchange = sqlchange + " update student_schedule set active = 0 where student_schedule_id = " + dr.Item("student_schedule_id").ToString
+
+        Next
+        Dim i As Integer = 0
+        Dim sd As Integer = dt.Rows.Count
+        For Each dr As DataRow In dt.Rows
+            If i < updt.Rows.Count Then
+                sqlchange = sqlchange + " insert into student_schedule values('" + updt.Rows(i).Item("status").ToString + "', 1, " + dr.Item("schedule_id").ToString + ", '" + sID + "')"
+            Else
+                sqlchange = sqlchange + " insert into student_schedule values('absent', 1, " + dr.Item("schedule_id").ToString + ", '" + sID + "')"
+
+            End If
+            
+            i = i + 1
 
         Next
 
-        Dim a As Boolean = PB.runquery(insert)
-        a = PB.runquery(update)
+        Dim a As Boolean = PB.runquery(sqlchange)
+        'a = PB.runquery(update)
 
 
     End Sub
@@ -1153,4 +1191,7 @@ Public Class Student
     Protected Sub grdvwStudent_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles grdvwStudent.SelectedIndexChanged
 
     End Sub
+
+
+
 End Class
