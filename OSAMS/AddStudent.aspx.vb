@@ -164,6 +164,7 @@ Public Class AddStudent
                 b = PB.runquery(insertSql)
 
                 If b = True Then
+                    addAttendance(txtStudentID.Text, ddlGroup.SelectedValue)
                     confirm(studentID)
 
                 End If
@@ -293,5 +294,21 @@ Public Class AddStudent
         ddlGroup.Enabled = b
 
     End Sub
+    Private Sub addAttendance(ByVal sID As String, ByVal group As String)
+        Dim sql As String
+        sql = "select distinct(ss.schedule_id) from student_schedule ss, schedule s where ss.schedule_id = s.schedule_id AND s.group_id = " + group
+        Dim dt As DataTable
+        dt = PB.getData(sql)
+        Dim insert As String = ""
+        For Each dr As DataRow In dt.Rows
+            insert = insert + " insert into student_schedule values('absent', 1, " + dr.Item("schedule_id") + ", '" + sID + "')"
 
+        Next
+
+
+        Dim a As Boolean = PB.runquery(insert)
+        'a = PB.runquery(update)
+
+
+    End Sub
 End Class
