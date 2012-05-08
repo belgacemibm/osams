@@ -30,26 +30,26 @@ Public Class GenderReport
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         'Load the page
         If (Session("Rememberme") = "false") Then
-            If PB.getAccountType(Session("ID")) = "5" Then
-                Response.Redirect("Home.aspx")
-            Else
+            If PB.getAccountType(Session("ID")) = "1" Or PB.getAccountType(Session("ID")) = "2" Or PB.getAccountType(Session("ID")) = "3" Or PB.getAccountType(Session("ID")) = "4" Then
                 grdvwReport.Enabled = False 'Set GridView is invisible
                 tbxFromDate.Attributes.Add("readonly", "readonly") 'Set "From Date" textbox is readonly
                 tbxToDate.Attributes.Add("readonly", "readonly") 'Set "To Date" textbox is readonly
                 btnViewReport.Visible = False 'Set "View Report" button is invisible
                 btnSelectAll.Visible = False 'Set "Select All" button is invisible
                 btnUnselectAll.Visible = False 'Set "Unselect All" button is invisible
+            Else
+                Response.Redirect("Home.aspx")
             End If
         Else
-            If PB.getAccountType(Request.Cookies("ID").Value) = "5" Then
-                Response.Redirect("Home.aspx")
-            Else
+            If PB.getAccountType(Request.Cookies("ID").Value) = "1" Or PB.getAccountType(Request.Cookies("ID").Value) = "2" Or PB.getAccountType(Request.Cookies("ID").Value) = "3" Or PB.getAccountType(Request.Cookies("ID").Value) = "4" Then
                 grdvwReport.Enabled = False 'Set GridView is invisible
                 tbxFromDate.Attributes.Add("readonly", "readonly") 'Set "From Date" textbox is readonly
                 tbxToDate.Attributes.Add("readonly", "readonly") 'Set "To Date" textbox is readonly
                 btnViewReport.Visible = False 'Set "View Report" button is invisible
                 btnSelectAll.Visible = False 'Set "Select All" button is invisible
                 btnUnselectAll.Visible = False 'Set "Unselect All" button is invisible
+            Else
+                Response.Redirect("Home.aspx")
             End If
         End If
     End Sub
