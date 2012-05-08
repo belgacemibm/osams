@@ -1230,15 +1230,26 @@ Public Class checkAttendance
         Dim dtnum As DataTable = PB.getData(sqlnum)
 
         If dsday.Rows.Count > 1 Then
+            If dtnum.Rows.Count Mod 2 > 0 Then
+                For u = 1 To dtnum.Rows.Count \ 2 + 1
+                    'for 2 class day per week
+                    c = New TableCell
+                    c.ColumnSpan = 2
 
-            For u = 1 To dtnum.Rows.Count \ 2
-                'for 2 class day per week
-                c = New TableCell
-                c.ColumnSpan = 2
+                    c.Controls.Add(New LiteralControl("W" + CStr(u)))
+                    r1.Cells.Add(c)
+                Next
+            Else
+                For u = 1 To dtnum.Rows.Count \ 2
+                    'for 2 class day per week
+                    c = New TableCell
+                    c.ColumnSpan = 2
 
-                c.Controls.Add(New LiteralControl("W" + CStr(u)))
-                r1.Cells.Add(c)
-            Next
+                    c.Controls.Add(New LiteralControl("W" + CStr(u)))
+                    r1.Cells.Add(c)
+                Next
+            End If
+           
 
         Else
 
@@ -1284,15 +1295,28 @@ Public Class checkAttendance
         If dsday.Rows.Count > 1 Then
             'add day for 2 class per week
 
-
-            For h = 1 To dtnum.Rows.Count / 2
-                For Each dr As DataRow In dsday.Rows
-                    c = New TableCell
-                    c.Controls.Add(New LiteralControl(dr.Item("day_group").ToString))
-                    r2.Cells.Add(c)
-
+            If dtnum.Rows.Count Mod 2 > 0 Then
+                For h = 1 To dtnum.Rows.Count / 2
+                    For Each dr As DataRow In dsday.Rows
+                        c = New TableCell
+                        c.Controls.Add(New LiteralControl(dr.Item("day_group").ToString))
+                        r2.Cells.Add(c)
+                    Next
                 Next
-            Next
+                c = New TableCell
+                c.Controls.Add(New LiteralControl(dsday.Rows(0).Item("day_group").ToString))
+                r2.Cells.Add(c)
+            Else
+                For h = 1 To dtnum.Rows.Count / 2
+                    For Each dr As DataRow In dsday.Rows
+                        c = New TableCell
+                        c.Controls.Add(New LiteralControl(dr.Item("day_group").ToString))
+                        r2.Cells.Add(c)
+
+                    Next
+                Next
+            End If
+           
             
 
         Else
