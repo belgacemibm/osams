@@ -16,9 +16,24 @@ Public Class Student
 
     Dim ds As New DataSet()
 
-    'declare variables
+    'declare current group name, gender, stream, program
     Private currentGroupName, currentGender, currentStream, currentProgram As String
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        '------------------------------------------------------------ 
+        ' Aim           : validate session for each type of users
+        '               : set the message back to red color    
+        '               : bind data into gridview
+        '               : add data in dropdownlist
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : ID, error text
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            :   type of ID
         If (Session("Rememberme") = "false") Then
             If PB.getAccountType(Session("ID")) = "1" Or PB.getAccountType(Session("ID")) = "2" Then
                 'bind database
@@ -69,7 +84,7 @@ Public Class Student
     End Sub
 
     Protected Sub btnAddNewStudent_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAddNewStudent.Click
-        'direct to add student page
+        'edit student will back to add student page
         Response.Redirect("AddStudent.aspx")
 
     End Sub
@@ -107,7 +122,7 @@ Public Class Student
                 " AND [student_group].active = 1" & _
                 "AND [student].student_id = [account].[user_name]"
 
-
+            'Select distinct query
             Dim sqlNoneStatement As String = "SELECT distinct [student].student_id, [student].family_name,[student].middle_name, [student].given_name, [student].gender, [student].email, [student].program, [student].stream, [account].password FROM student inner join [account] on [student].student_id = [account].[user_name] WHERE NOT EXISTS (select student_group.active from [student_group] where student_group.student_id = student.student_id and student_group.active = '1' )"
 
             If ddlSemester.SelectedValue = "None" Then
@@ -232,16 +247,18 @@ Public Class Student
             End While
 
         End Using
-
+        'validate editing pass semester
         If strDate < Today Then
             e.Cancel = True
             lblError.Text = "<img src = 'images/notification_error.png' /><span>Error: You cannot modify last semester</span>"
         Else
+            'validate family name, given name, email, password field
             If family_name.Text = "" Or given_name.Text = "" Or email.Text = "" Or password.Text = "" Then
 
                 lblError.Text = "<img src = 'images/notification_error.png' /><span>Error: Family Name, Given Name, Email and Password must not be blank</span>"
                 e.Cancel = True
             Else
+                'validate email
                 If Not myRegex.IsMatch(email.Text) Then
                     lblError.Text = "<img src = 'images/notification_error.png' /><span>Error: Email is not correct format</span>"
                     e.Cancel = True
@@ -457,6 +474,19 @@ Public Class Student
         connection.Close()
     End Sub
     Public Sub bindNonGroup()
+        '------------------------------------------------------------ 
+        ' Aim           : bind non group
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : student id, family name, middle name, given name, gender, email, program, stream, password 
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            : 
 
         'get connection
         Dim connection As New SqlConnection(PB.getConnectionString())
@@ -485,7 +515,7 @@ Public Class Student
         '     This function is created in reference of materials in RMIT VN BlackBoard
 
         '------------------------------------------------------------ 
-        ' Incoming Parameters    : 
+        ' Incoming Parameters    : dropdownlist gender, group name, program, stream
         '                                 
         ' Outgoing Parameters    :  
         '                          
@@ -574,29 +604,44 @@ Public Class Student
 
     End Sub
     Public Sub load_dropdownlist()
+        '------------------------------------------------------------ 
+        ' Aim           : load dropdownlist
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : semester name, end date, course id, course name
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            : 
+        'declare sql string
         Dim semesterSqlStatement As String = "SELECT [semester_name], [end_date] FROM [semester]"
         Dim courseSqlStatement As String = "SELECT [course_id], [course_name] FROM [course]"
 
         Dim item As String
-
+        'declare dataset
         Dim dtSemester As DataSet
         Dim dtCourse As DataSet
-
+        'get semester and course data
         dtSemester = PB.extractData(semesterSqlStatement)
         dtCourse = PB.extractData(courseSqlStatement)
-
+        'clear dropdownlist
         ddlCourse.Items.Clear()
         ddlSemester.Items.Clear()
+        'add item into dropdownlist
         ddlSemester.Items.Add(New ListItem("None", "None"))
         ddlAssignSemester.Items.Add(New ListItem("Select", "Select"))
         ddlAssignCourse.Items.Add(New ListItem("Select", "Select"))
-
+        'add semester name into dropdownlist
         For Each dr As DataRow In dtSemester.Tables(0).Rows
             ddlSemester.Items.Add(New ListItem(dr.Item("semester_name"), dr.Item("semester_name")))
             ddlAssignSemester.Items.Add(New ListItem(dr.Item("semester_name"), dr.Item("semester_name")))
 
         Next
-
+        'add course id, course name into dropdownlist
         For Each dr As DataRow In dtCourse.Tables(0).Rows
             item = dr.Item("course_id") + ": " + dr.Item("course_name")
             ddlCourse.Items.Add(New ListItem(item, dr.Item("course_id")))
@@ -606,6 +651,20 @@ Public Class Student
     End Sub
 
     Protected Sub btnRemove_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnRemove.Click
+        '------------------------------------------------------------ 
+        ' Aim           : Remove student
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : dropdownlist remove, student id, group name
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            : 
+
         For Each gvr As GridViewRow In grdvwStudent.Rows
             Dim chk As CheckBox = DirectCast(gvr.FindControl("cbRemove"), CheckBox)
             Dim student_id As Label = DirectCast(gvr.FindControl("student_id"), Label)
@@ -635,7 +694,7 @@ Public Class Student
                 End While
 
             End Using
-
+            'validate remove pass semester
             If strDate < Today Then
                 lblError.Text = "Error: You cannot modify last semester"
             Else
@@ -660,7 +719,7 @@ Public Class Student
                             End While
                         End Using
 
-
+                        'update student group and group query
                         Dim updateSqlStatement As String = "UPDATE [student_group] SET [student_group].active = '0' WHERE student_id = '" + student_id.Text & "' AND group_id = '" & group_ID & "'"
                         updateSqlStatement = updateSqlStatement + "update [group] set number_of_student = number_of_student - 1 where group_id = " & group_ID & " and course_id ='" & ddlCourse.SelectedValue & "' and semester_name ='" & ddlSemester.SelectedValue & "'"
 
@@ -692,6 +751,20 @@ Public Class Student
     End Sub
 
     Protected Sub grdvwNoneStudent_RowEditing(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewEditEventArgs) Handles grdvwNoneStudent.RowEditing
+        '------------------------------------------------------------ 
+        ' Aim           : Row Editing
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : gender, stream , program
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            : 
+
         'declare variables
         Dim gender, stream, program As String
         'get find control
@@ -714,6 +787,20 @@ Public Class Student
     End Sub
 
     Protected Sub grdvwNoneStudent_RowCancelingEdit(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCancelEditEventArgs) Handles grdvwNoneStudent.RowCancelingEdit
+        '------------------------------------------------------------ 
+        ' Aim           : Row Cancel Editing
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : 
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            : 
+
         ' bind database
         grdvwNoneStudent.EditIndex = -1
         bindNonGroup()
@@ -721,6 +808,19 @@ Public Class Student
     End Sub
 
     Protected Sub grdvwNoneStudent_RowDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles grdvwNoneStudent.RowDataBound
+        '------------------------------------------------------------ 
+        ' Aim           : Row Databound non group student
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : gender, program, stream
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            : 
 
         If (e.Row.RowState And DataControlRowState.Edit) = DataControlRowState.Edit Then
             If e.Row.RowType = DataControlRowType.DataRow Then
@@ -780,7 +880,7 @@ Public Class Student
     End Sub
     Protected Sub grdvwNoneStudent_RowUpdating(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewUpdateEventArgs) Handles grdvwNoneStudent.RowUpdating
         '------------------------------------------------------------ 
-        ' Aim           : Update student
+        ' Aim           : Update non group student
         '              
         ' Edit/Create by: Nguyen Tran Dang Khoa
         ' Date          : 17/04/2012
@@ -799,7 +899,8 @@ Public Class Student
         'declare variables
         Dim active As Integer
         Dim gender, stream, program As String
-        'declare textbox, dropdownlist control 
+        'declare textbox, dropdownlist control
+        'defint student id, family name, middle, given name, gender, email, program, stream, password
         Dim row As GridViewRow = DirectCast(grdvwNoneStudent.Rows(e.RowIndex), GridViewRow)
         Dim student_id As Label = DirectCast(row.FindControl("student_id"), Label)
         Dim family_name As TextBox = DirectCast(row.FindControl("family_name"), TextBox)
@@ -832,6 +933,7 @@ Public Class Student
             lblError.Text = "Error: Family Name, Given Name, Email and Password must not be blank"
             e.Cancel = True
         Else
+            'validate email
             If Not myRegex.IsMatch(email.Text) Then
                 lblError.Text = "Error: Email is not correct format"
                 e.Cancel = True
@@ -877,17 +979,8 @@ Public Class Student
     End Sub
 
     Protected Sub ddlSemester_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ddlSemester.SelectedIndexChanged
-        grdvwNoneStudent.Visible = False
-        grdvwStudent.Visible = False
-        ddlAssignSemester.SelectedIndex = ddlSemester.SelectedIndex
-        ddlAssignCourse.SelectedValue = "Select"
-    End Sub
-
-    Protected Sub ddlCourse_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ddlCourse.SelectedIndexChanged
-        ddlAssignCourse.SelectedIndex = ddlCourse.SelectedIndex + 1
-
         '------------------------------------------------------------ 
-        ' Aim           : put value in dropdownlist
+        ' Aim           : select index change dropdownlist semester
         '              
         ' Edit/Create by: Nguyen Tran Dang Khoa
         ' Date          : 17/04/2012
@@ -899,6 +992,30 @@ Public Class Student
         ' Outgoing Parameters    :  
         '                          
         ' Return data            : 
+
+        grdvwNoneStudent.Visible = False
+        grdvwStudent.Visible = False
+        ddlAssignSemester.SelectedIndex = ddlSemester.SelectedIndex
+        ddlAssignCourse.SelectedValue = "Select"
+    End Sub
+
+    Protected Sub ddlCourse_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ddlCourse.SelectedIndexChanged
+        '------------------------------------------------------------ 
+        ' Aim           : Select index change dropdownlist course
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : 
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            : 
+
+        ddlAssignCourse.SelectedIndex = ddlCourse.SelectedIndex + 1
+
         'declare variables
         Dim sqlgroup As String
         'clear dropdownlist
@@ -932,7 +1049,7 @@ Public Class Student
 
     Protected Sub ddlAssignCourse_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ddlAssignCourse.SelectedIndexChanged
         '------------------------------------------------------------ 
-        ' Aim           : put value in dropdownlist
+        ' Aim           : select index change assign course
         '              
         ' Edit/Create by: Nguyen Tran Dang Khoa
         ' Date          : 17/04/2012
@@ -973,6 +1090,20 @@ Public Class Student
         End If
     End Sub
     Protected Sub ddlAssignSemester_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ddlAssignSemester.SelectedIndexChanged
+        '------------------------------------------------------------ 
+        ' Aim           : Select index change assign semester
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : 
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            : 
+
         'clear group dropdownlist
         ddlAssignGroup.Items.Clear()
         'declare default value
@@ -980,6 +1111,20 @@ Public Class Student
     End Sub
 
     Protected Sub Button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
+        '------------------------------------------------------------ 
+        ' Aim           : Add student to group
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : 
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            : 
+
         Dim selectqueryCommand, countqueryCommand, checkqueryCommand As SqlCommand
         Dim count, countGroup, countStudent As Integer
 
@@ -1010,18 +1155,20 @@ Public Class Student
         End Using
 
 
-        'Select query
+        'Validate student ID field
         If txtStudentID.Text = "" Then
 
             lblError.Text = "Error: Please fulfill student ID"
         Else
+            'validate default value
             If ddlAssignCourse.SelectedValue = "Select" Or ddlAssignSemester.SelectedValue = "Select" Or ddlAssignGroup.SelectedValue = "" Then
                 lblError.Text = "Error: Please select the course, semester and group"
             Else
+                'validate last semester
                 If strDate < Today Then
                     lblError.Text = "Error: You cannot modify last semester"
                 Else
-
+                    'count student, student_group, name
                     Dim strStudent As String = "select count (*) name from student where student_id = '" + txtStudentID.Text & "'"
 
                     Dim str As String = "select count (*) name from student_group where student_id = '" + txtStudentID.Text & "'"
@@ -1029,10 +1176,10 @@ Public Class Student
                     Dim groupStr As String = "select count (*) name from student_group where student_id = '" + txtStudentID.Text + "' and group_id ='" + ddlAssignGroup.SelectedValue + "'"
 
                     Dim activeStr As String = "select count (*) name"
-
+                    'update student group, group
                     Dim updateStatusSqlStatement As String = "UPDATE [student_group] SET [student_group].active = '1' WHERE student_id = '" + txtStudentID.Text & "' AND [student_group].group_id = '" & ddlAssignGroup.SelectedValue & "'"
                     updateStatusSqlStatement = updateStatusSqlStatement + "update [group] set number_of_student = number_of_student + 1 where group_id = " & ddlAssignGroup.SelectedValue & " and course_id ='" & ddlAssignCourse.SelectedValue & "' and semester_name ='" & ddlAssignSemester.SelectedValue & "'"
-
+                    'insert student group, group
                     Dim insertSqlStatement As String = "INSERT INTO student_group (grade, result, comment, active, group_id, student_id) VALUES  ('','','','1','" & ddlAssignGroup.SelectedValue & "','" & txtStudentID.Text & "')"
                     insertSqlStatement = insertSqlStatement + "update [group] set number_of_student = number_of_student + 1 where group_id = " & ddlAssignGroup.SelectedValue & " and course_id ='" & ddlAssignCourse.SelectedValue & "' and semester_name ='" & ddlAssignSemester.SelectedValue & "'"
 
@@ -1040,7 +1187,7 @@ Public Class Student
                     Dim selectSqlStatement As String = "select [student_group].group_id FROM  student_group inner join [group] on student_group.group_id = [group].group_id where [student_group].student_id = '" + txtStudentID.Text & "' AND [group].course_id = '" + ddlAssignCourse.SelectedValue & "' AND [student_group].active = 1 "
 
                     Dim selectGroupnameStatement As String = "select group_id from [group] where course_id = '" + ddlAssignCourse.SelectedValue & "' and group_name ='" + ddlAssignGroup.SelectedItem.Text & "' and semester_name = '" + ddlAssignSemester.SelectedValue & "'"
-
+                    'update student group, group
                     Dim updateSqlStatement As String = "UPDATE [student_group] SET [student_group].active = '0' WHERE student_id = '" + txtStudentID.Text & "' AND [student_group].group_id = @current_group_ID "
                     updateSqlStatement = updateSqlStatement + "update [group] set number_of_student = number_of_student - 1 where group_id = @current_group_ID and course_id ='" & ddlAssignCourse.SelectedValue & "' and semester_name ='" & ddlAssignSemester.SelectedValue & "'"
 
@@ -1077,7 +1224,7 @@ Public Class Student
                         End While
                     End Using
 
-
+                    'add value current group id
                     Dim cmd7 As New SqlCommand(updateSqlStatement, connection)
                     cmd7.Parameters.AddWithValue("@current_group_ID", current_group_id)
                     cmd7.CommandType = CommandType.Text
@@ -1093,6 +1240,7 @@ Public Class Student
 
                     checkqueryCommand = New SqlCommand(strStudent, connection)
                     countStudent = Convert.ToInt32(checkqueryCommand.ExecuteScalar)
+                    'validate student exist
                     If countStudent = 0 Then
 
                         lblError.Text = "Error: Student is not exist"
@@ -1131,6 +1279,19 @@ Public Class Student
         End If
     End Sub
     Public Sub default_dropdownlist()
+        '------------------------------------------------------------ 
+        ' Aim           : set default dropdownlist
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : 
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            : 
 
         ddlAssignCourse.SelectedValue = "Select"
         ddlAssignSemester.SelectedValue = "Select"
@@ -1138,6 +1299,20 @@ Public Class Student
     End Sub
 
     Private Sub addAttendance(ByVal sID As String, ByVal group As String)
+        '------------------------------------------------------------ 
+        ' Aim           : Add attendance
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : 
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            : 
+
         Dim sql As String
         sql = "select distinct(ss.schedule_id) from student_schedule ss, schedule s where ss.schedule_id = s.schedule_id AND s.group_id = " + group
         Dim dt As DataTable
@@ -1147,7 +1322,7 @@ Public Class Student
             insert = insert + " insert into student_schedule values('absent', 1, " + dr.Item("schedule_id") + ", '" + sID + "')"
 
         Next
-       
+
 
         Dim a As Boolean = PB.runquery(insert)
         'a = PB.runquery(update)
@@ -1155,6 +1330,20 @@ Public Class Student
 
     End Sub
     Private Sub changeAttendance(ByVal sID As String, ByVal group As String, ByVal currentGroup As String)
+        '------------------------------------------------------------ 
+        ' Aim           : change attendance
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : 
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            : 
+
         Dim sql As String
         sql = "select distinct(ss.schedule_id) from student_schedule ss, schedule s where ss.schedule_id = s.schedule_id AND s.group_id = " + group
         Dim dt As DataTable
