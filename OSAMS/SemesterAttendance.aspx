@@ -24,7 +24,6 @@
   <tr>
     <td align="left" valign="middle">Semester:&nbsp;
         <asp:DropDownList ID="ddlSemester" runat="server" AutoPostBack="True">
-            <asp:ListItem Value="-1" Text="select"></asp:ListItem>
         </asp:DropDownList>
       </td>
     <td align="center" valign="middle">Course:&nbsp;

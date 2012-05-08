@@ -59,6 +59,7 @@ Public Class SemesterAttendance
             Next
 
             ddlSemester.SelectedIndex = 0
+            loadcourse()
 
             'this export the excel file
             Dim group As String
@@ -428,6 +429,14 @@ Public Class SemesterAttendance
         '
         'If ddlGroup.Enabled = True Then
 
+        
+        loadgroup()
+
+        ' End If
+
+
+    End Sub
+    Private Sub loadgroup()
         btnExport.Enabled = False
         ddlGroup.Items.Clear()
         Dim dtGroup As DataTable
@@ -441,10 +450,6 @@ Public Class SemesterAttendance
         For Each dr As DataRow In dtGroup.Rows
             ddlGroup.Items.Add(New ListItem(dr.Item("group_name"), dr.Item("group_id")))
         Next
-
-        ' End If
-
-
     End Sub
 
     Protected Sub ddlSemester_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ddlSemester.SelectedIndexChanged
@@ -459,6 +464,11 @@ Public Class SemesterAttendance
         '
         '------------------------------------------------------------
         '
+
+        loadcourse()
+
+    End Sub
+    Private Sub loadcourse()
         If ddlSemester.SelectedItem.ToString <> "" Then
             btnExport.Enabled = False
             ddlCourse.Items.Clear()
