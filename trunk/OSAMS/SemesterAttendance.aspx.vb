@@ -194,29 +194,14 @@ Public Class SemesterAttendance
         '
         Dim sqlAttendance As String
         Dim dtAttendance As DataTable
-
-        'sqlAttendance = "select * from student, student_schedule, [group], schedule, student_group " & _
-        '"where student_group.active = 1 AND student.student_id = student_schedule.student_id " & _
-        '"AND student_schedule.schedule_id = schedule.schedule_id " & _
-        '"AND schedule.group_id = [group].group_id " & _
-        '"AND student.student_id = student_group.student_id " & _
-        '"AND [group].group_id = student_group.group_id " & _
-        '"AND student_group.active = 1 AND [group].group_id = " + group & _
-        '"ORDER BY student.student_id, student_schedule.schedule_id"
-
-        'sqlAttendance = "select * from student_group INNER JOIN student on student.student_id = student_group.student_id " & _
-        '    "LEFT JOIN student_schedule on student.student_id = student_schedule.student_id " & _
-        '    "LEFT JOIN schedule on schedule.schedule_id = student_schedule.schedule_id " & _
-        '    "INNER JOIN [group] on [group].group_id = schedule.group_id " & _
-        '    "WHERE(student_group.active = 1) AND student_group.group_id = " + group
-
+        'get the attendance query for all the student
         sqlAttendance = checkPer(group)
 
 
         dtAttendance = New DataTable()
 
         dtAttendance = PB.getData(sqlAttendance)
-
+        tbattendace.Font.Size = 9
 
         'build the table if the attendance data is existed
 
@@ -413,6 +398,7 @@ Public Class SemesterAttendance
 
             Next
             tbattendace.Rows.Add(r)
+            btnExport.Visible = True
         End If
     End Sub
 
@@ -439,6 +425,17 @@ Public Class SemesterAttendance
 
     End Sub
     Private Sub loadgroup()
+        '------------------------------------------------------------
+        ' subroutine  : loadgroup
+        ' Author      : Pham Sy Nhat Nam                Date   : 17/4/12
+        ' Aim         : to to load the data into ddlgroup
+        '------------------------------------------------------------
+        ' Incoming Parameters
+        '
+        '
+        '
+        '------------------------------------------------------------
+        '
         btnExport.Enabled = False
         ddlGroup.Items.Clear()
         Dim dtGroup As DataTable
@@ -471,6 +468,17 @@ Public Class SemesterAttendance
 
     End Sub
     Private Sub loadcourse()
+        '------------------------------------------------------------
+        ' subroutine  : loadcourse
+        ' Author      : Pham Sy Nhat Nam                Date   : 17/4/12
+        ' Aim         : to to load the data into ddlcourse
+        '------------------------------------------------------------
+        ' Incoming Parameters
+        '
+        '
+        '
+        '------------------------------------------------------------
+        '
         If ddlSemester.SelectedItem.ToString <> "" Then
             btnExport.Enabled = False
             ddlCourse.Items.Clear()
@@ -509,6 +517,17 @@ Public Class SemesterAttendance
         End If
     End Sub
     Private Function getgroup() As String
+        '------------------------------------------------------------
+        ' function  : getgroup
+        ' Author      : Pham Sy Nhat Nam                Date   : 17/4/12
+        ' Aim         : to create and return the sql for the group data
+        '------------------------------------------------------------
+        ' Incoming Parameters
+        ' value: the status of student attendance like present or absent
+        '
+        '
+        '------------------------------------------------------------
+        '
         Dim id As String = getUser()
         Dim type As String = PB.getAccountType(id)
 
@@ -540,17 +559,21 @@ Public Class SemesterAttendance
         '------------------------------------------------------------
         '
 
-        If ddlGroup.Enabled = True Then
-            'export if not student
-            If ddlGroup.SelectedValue <> Nothing Then
-                Response.Redirect("~/SemesterAttendance.aspx?field=" + ddlGroup.SelectedValue + "," + ddlSemester.SelectedValue + "," + ddlCourse.SelectedValue)
-
-            End If
-        Else
-            Dim group As String = getGroupId() 'get the group id of the student
-            Response.Redirect("~/SemesterAttendance.aspx?field=" + group + "," + ddlSemester.SelectedValue + "," + ddlCourse.SelectedValue)
+        If ddlGroup.SelectedValue <> Nothing Then
+            Response.Redirect("~/SemesterAttendance.aspx?field=" + ddlGroup.SelectedValue + "," + ddlSemester.SelectedValue + "," + ddlCourse.SelectedValue)
 
         End If
+        'If ddlGroup.Enabled = True Then
+        '    'export if not student
+        '    If ddlGroup.SelectedValue <> Nothing Then
+        '        Response.Redirect("~/SemesterAttendance.aspx?field=" + ddlGroup.SelectedValue + "," + ddlSemester.SelectedValue + "," + ddlCourse.SelectedValue)
+
+        '    End If
+        'Else
+        '    Dim group As String = getGroupId() 'get the group id of the student
+        '    Response.Redirect("~/SemesterAttendance.aspx?field=" + group + "," + ddlSemester.SelectedValue + "," + ddlCourse.SelectedValue)
+
+        'End If
 
     End Sub
 
@@ -665,26 +688,7 @@ Public Class SemesterAttendance
 
     End Function
 
-    'Private Function getSemCou(ByVal group As String) As ArrayList
-    '    '------------------------------------------------------------
-    '    ' function  : getSemCou
-    '    ' Author      : Pham Sy Nhat Nam                Date   : 17/4/12
-    '    ' Aim         : to get the semester name and course id from group id
-    '    '------------------------------------------------------------
-    '    ' Incoming Parameters
-    '    ' group: the group id of the group
-    '    '
-    '    '
-    '    '------------------------------------------------------------
-    '    Dim array As New ArrayList
-    '    Dim sql As String = "select semester_name, course_id from [group] where group_id = " + group
-    '    Dim dt As DataTable = PB.getData(sql)
-    '    array.Add(dt.Rows(0).Item("semester_name"))
-    '    array.Add(dt.Rows(0).Item("course_id"))
 
-    '    Return array
-
-    'End Function
 
     Private Function checkDisplay() As String
         '------------------------------------------------------------
@@ -725,17 +729,18 @@ Public Class SemesterAttendance
         Return sql
 
     End Function
-        Private Function getGroupId() As String
-            Dim groupid As String
-            Dim sql As String
-            Dim dt As DataTable
-            sql = "SELECT group_id FROM [group] WHERE [group].semester_name = '" + ddlSemester.SelectedValue + "' AND [group].course_id = '" + ddlCourse.SelectedValue + "'"
-            dt = PB.getData(sql)
-            groupid = dt.Rows(0).Item("group_id")
+    Private Function getGroupId() As String
 
-            Return groupid
+        Dim groupid As String
+        Dim sql As String
+        Dim dt As DataTable
+        sql = "SELECT group_id FROM [group] WHERE [group].semester_name = '" + ddlSemester.SelectedValue + "' AND [group].course_id = '" + ddlCourse.SelectedValue + "'"
+        dt = PB.getData(sql)
+        groupid = dt.Rows(0).Item("group_id")
 
-        End Function
+        Return groupid
+
+    End Function
 
 
 
