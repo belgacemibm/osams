@@ -117,7 +117,7 @@ Public Class checkAttendance
                             lblMes.Text = "Attendance updated"
                         End If
                     Else
-                        buildtable(ddlGroup.SelectedValue)
+                        Response.Redirect("~/checkAttendance.aspx?field=" + ddlGroup.SelectedValue + "," + ddlSemester.SelectedValue + "," + ddlCourse.SelectedValue)
                     End If
                 End If
                 End If
@@ -197,7 +197,7 @@ Public Class checkAttendance
                             lblMes.Text = "Attendance updated"
                         End If
                     Else
-                        buildtable(ddlGroup.SelectedValue)
+                        Response.Redirect("~/checkAttendance.aspx?field=" + ddlGroup.SelectedValue + "," + ddlSemester.SelectedValue + "," + ddlCourse.SelectedValue)
                     End If
                 End If
                 End If
@@ -1181,17 +1181,7 @@ Public Class checkAttendance
         Return sql
 
     End Function
-    'Private Function getGroupId() As String
-    '    Dim groupid As String
-    '    Dim sql As String
-    '    Dim dt As DataTable
-    '    sql = "SELECT group_id FROM [group] WHERE [group].semester_name = '" + ddlSemester.SelectedValue + "' AND [group].course_id = '" + ddlCourse.SelectedValue + "'"
-    '    dt = PB.getData(sql)
-    '    groupid = dt.Rows(0).Item("group_id")
 
-    '    Return groupid
-
-    'End Function
     Private Function editTable(ByVal dayedit As String, ByVal group As String) As ArrayList
 
         '------------------------------------------------------------
