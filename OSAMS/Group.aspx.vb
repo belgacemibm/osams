@@ -448,7 +448,7 @@ Public Class Group
 
                             list.Add(day)
                             'displaying the data from the table
-
+                            i = i + 1
                         End While
 
 
@@ -512,7 +512,7 @@ Public Class Group
 
         'declare datatable
 
-
+        Dim checkqueryCommand As SqlCommand
         Dim dr1, dr2 As SqlDataReader
 
         Dim i As Integer
@@ -549,6 +549,10 @@ Public Class Group
     " where [group].[active] = 1 AND [group].semester_name = '" & ddlSemester.SelectedValue & "' AND [group].course_id = '" & ddlCourse.SelectedValue & "' AND [group].[group_id] = '" & dr.Item("group_id") & "'" & _
     " ORDER BY [group_day].[group_day_id] DESC"
 
+                Dim checkqueryStatement As String = "Select count ([group].[group_id]) from group_day inner join day_of_week on  [group_day].day_id = [day_of_week].day_id inner join [group] on [group_day].group_id =[group].group_id inner join [lecturer] on [group].[lecturer_id] = [lecturer].[lecturer_id] where [group].[active] = 1 AND [group].semester_name = '" & ddlSemester.SelectedValue & "' AND [group].course_id = '" & ddlCourse.SelectedValue & "' AND [group].[group_id] = '" & dr.Item("group_id") & "'"
+                Dim count As Integer
+                checkqueryCommand = New SqlCommand(checkqueryStatement, connection)
+                count = Convert.ToInt32(checkqueryCommand.ExecuteScalar)
 
                 'execute query
                 Dim cmd As New SqlCommand(sqlGeneralStatement, connection)
@@ -557,50 +561,77 @@ Public Class Group
 
                 dr1 = cmd.ExecuteReader
 
+                If count > 1 Then
+                    While dr1.Read()
+                        'reading from the datareader
+                        Dim day As New CDay
+                        day.GroupID = dr1(0).ToString()
+                        day.GroupName = dr1(1).ToString()
+                        day.NumberOfStudent = dr1(2).ToString
+                        day.CourseID = dr1(3).ToString
+                        day.SemesterName = dr1(4).ToString()
+                        day.LecturerName = dr1(5).ToString()
+                        day.Day_1 = dr1(6).ToString()
+                        day.StartTime_1 = dr1(7).ToString()
+                        day.EndTime_1 = dr1(8).ToString()
+                        day.Type_1 = dr1(9).ToString()
 
-                While dr1.Read()
-                    'reading from the datareader
-                    Dim day As New CDay
-                    day.GroupID = dr1(0).ToString()
-                    day.GroupName = dr1(1).ToString()
-                    day.NumberOfStudent = dr1(2).ToString
-                    day.CourseID = dr1(3).ToString
-                    day.SemesterName = dr1(4).ToString()
-                    day.LecturerName = dr1(5).ToString()
-                    day.Day_1 = dr1(6).ToString()
-                    day.StartTime_1 = dr1(7).ToString()
-                    day.EndTime_1 = dr1(8).ToString()
-                    day.Type_1 = dr1(9).ToString()
+                        list.Add(day)
+                        'displaying the data from the table
 
-                    list.Add(day)
-                    'displaying the data from the table
-
-                End While
-
-
-                'Close Sql Data Reader
-                dr1.Close()
-
-
-                'Add value to list
-                If (list.Count > 0) Then
-                    lblError.Text = ""
-                    dr2 = cmd1.ExecuteReader
-                    While dr2.Read()
-                        list(i).Day_2 = dr2(0).ToString()
-                        list(i).StartTime_2 = dr2(1).ToString()
-                        list(i).EndTime_2 = dr2(2).ToString()
-                        list(i).Type_2 = dr2(3).ToString()
-                        i += 1
                     End While
-                    'Close Sql Data Reader
-                    dr2.Close()
-                Else
-                    'Display error message
-                    lblError.Text = "No group found"
-                End If
 
-                'Bind database to gridview
+
+                    'Close Sql Data Reader
+                    dr1.Close()
+
+
+                    'Add value to list
+                    If (list.Count > 0) Then
+                        lblError.Text = ""
+                        dr2 = cmd1.ExecuteReader
+                        While dr2.Read()
+                            list(i).Day_2 = dr2(0).ToString()
+                            list(i).StartTime_2 = dr2(1).ToString()
+                            list(i).EndTime_2 = dr2(2).ToString()
+                            list(i).Type_2 = dr2(3).ToString()
+                            i += 1
+                        End While
+                        'Close Sql Data Reader
+                        dr2.Close()
+                    Else
+                        'Display error message
+                        lblError.Text = "No group found"
+                    End If
+
+                    'Bind database to gridview
+                Else
+
+
+
+                    While dr1.Read()
+                        'reading from the datareader
+                        Dim day As New CDay
+                        day.GroupID = dr1(0).ToString()
+                        day.GroupName = dr1(1).ToString()
+                        day.NumberOfStudent = dr1(2).ToString
+                        day.CourseID = dr1(3).ToString
+                        day.SemesterName = dr1(4).ToString()
+                        day.LecturerName = dr1(5).ToString()
+                        day.Day_1 = dr1(6).ToString()
+                        day.StartTime_1 = dr1(7).ToString()
+                        day.EndTime_1 = dr1(8).ToString()
+                        day.Type_1 = dr1(9).ToString()
+
+                        list.Add(day)
+                        'displaying the data from the table
+                        i = i + 1
+                    End While
+
+
+                    'Close Sql Data Reader
+                    dr1.Close()
+                End If
 
 
             Next
