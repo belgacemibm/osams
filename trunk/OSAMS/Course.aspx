@@ -68,7 +68,7 @@
                     </div>
                     
                     <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
-                    <asp:Button ID="btnFind" runat="server" Text="Find" />
+                    <asp:Button ID="btnFind" runat="server" Text="Find" Width="46px" />
                     <asp:Button ID="btnClear" runat="server" style="height: 26px" Text="Clear" />
                 </div>
             </div>
