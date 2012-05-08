@@ -32,176 +32,103 @@ Public Class checkAttendance
         ' Incoming Parameters
         '
         '------------------------------------------------------------
+        Dim type As String
 
         If (Session("Rememberme") = "false") Then
-            If PB.getAccountType(Session("ID")) = "5" Or PB.getAccountType(Session("ID")) = "2" Then
-                Response.Redirect("Home.aspx")
-            Else
-                If Not Page.IsPostBack Then
-                    Dim dtSem As DataTable
-                    Dim sqlSem As String
-                    Dim id As String = getUser()
-                    Dim user_type As String = PB.getAccountType(id)
-                    'load the data into the dropdownlist
-                    'sqlSem = "select semester_name from semester where active = 1 AND datediff(day, getdate(), [dbo].[semester].[end_date]) >= 0"
-                    If user_type = "4" Then
-                        sqlSem = "select distinct(g.semester_name) from [group] g, semester s where g.active = 1 AND g.lecturer_id ='" + id + "' AND datediff(day, getdate(), s.end_date) >= 0"
-                    Else
-                        sqlSem = "select semester_name from semester where active = 1 AND datediff(day, getdate(), [dbo].[semester].[end_date]) >= 0"
-
-                    End If
-                    dtSem = PB.getData(sqlSem)
-                    For Each dr As DataRow In dtSem.Rows
-                        ddlSemester.Items.Add(New ListItem(dr.Item("semester_name"), dr.Item("semester_name")))
-                    Next
-
-                    ddlSemester.SelectedIndex = 0
-                    loadcourse()
-
-
-                    'display group
-                    Dim group As String
-                    group = Request.QueryString("field")
-                    Dim value As String
-                    value = Request.QueryString("value")
-                    Dim edit As String
-                    edit = Request.QueryString("edit")
-                    If group <> "" Then
-                        Dim groupinfo As New ArrayList
-                        Dim data As Array
-
-                        data = Split(group, ",")
-                        For Each item In data
-                            groupinfo.Add(item)
-                        Next
-
-                        ddlSemester.SelectedValue = groupinfo(1)
-                        loadcourse()
-                        ddlCourse.SelectedValue = groupinfo(2)
-                        loadgroup()
-                        ddlGroup.SelectedValue = groupinfo(0)
-
-                        If value = "" And edit = "" Then
-
-                            buildtable(groupinfo(0))
-
-                        End If
-                        'save the attendance data
-                        If value <> "" And edit = "" Then
-
-                            checkAttendance(groupinfo(0), value)
-
-                            Response.Redirect("~/checkAttendance.aspx?field=" + group)
-                            lblMes.ForeColor = Drawing.Color.Black
-                            lblMes.Text = "Attendance updated"
-                        End If
-                        'edit attendance
-
-
-                        Dim va As Array
-                        Dim list As New ArrayList
-                        If edit <> "" And value = "" Then
-                            va = Split(edit, ",")
-
-                            list = editTable(va(0).ToString, va(1).ToString)
-
-
-                        End If
-
-                        If edit <> "" And value <> "" Then
-                            va = Split(edit, ",")
-                            list = getabstu(va(1).ToString, va(0).ToString)
-                            editAttendance(va(1).ToString, va(0).ToString, value, list)
-                            Response.Redirect("~/checkAttendance.aspx?field=" + group)
-                            lblMes.ForeColor = Drawing.Color.Black
-                            lblMes.Text = "Attendance updated"
-                        End If
-                    Else
-                        Response.Redirect("~/checkAttendance.aspx?field=" + ddlGroup.SelectedValue + "," + ddlSemester.SelectedValue + "," + ddlCourse.SelectedValue)
-                    End If
-                End If
-                End If
+            type = PB.getAccountType(Session("ID"))
         Else
-                If PB.getAccountType(Request.Cookies("ID").Value) = "5" Or PB.getAccountType(Request.Cookies("ID").Value) = "2" Then
-                    Response.Redirect("Home.aspx")
+            type = PB.getAccountType(Request.Cookies("ID").Value)
+        End If
+
+
+        If type = "5" Or type = "2" Then
+            Response.Redirect("Home.aspx")
+        Else
+            If Not Page.IsPostBack Then
+                Dim dtSem As DataTable
+                Dim sqlSem As String
+                Dim id As String = getUser()
+                Dim user_type As String = PB.getAccountType(id)
+                'load the data into the dropdownlist
+                'sqlSem = "select semester_name from semester where active = 1 AND datediff(day, getdate(), [dbo].[semester].[end_date]) >= 0"
+                If user_type = "4" Then
+                    sqlSem = "select distinct(g.semester_name) from [group] g, semester s where g.active = 1 AND g.lecturer_id ='" + id + "' AND datediff(day, getdate(), s.end_date) >= 0"
                 Else
-                If Not Page.IsPostBack Then
-                    Dim dtSem As DataTable
-                    Dim sqlSem As String
-                    'load the data into the dropdownlist
                     sqlSem = "select semester_name from semester where active = 1 AND datediff(day, getdate(), [dbo].[semester].[end_date]) >= 0"
-                    dtSem = PB.getData(sqlSem)
-                    For Each dr As DataRow In dtSem.Rows
-                        ddlSemester.Items.Add(New ListItem(dr.Item("semester_name"), dr.Item("semester_name")))
+
+                End If
+                dtSem = PB.getData(sqlSem)
+                For Each dr As DataRow In dtSem.Rows
+                    ddlSemester.Items.Add(New ListItem(dr.Item("semester_name"), dr.Item("semester_name")))
+                Next
+
+                ddlSemester.SelectedIndex = 0
+                loadcourse()
+
+
+                'display group
+                Dim group As String
+                group = Request.QueryString("field")
+                Dim value As String
+                value = Request.QueryString("value")
+                Dim edit As String
+                edit = Request.QueryString("edit")
+                If group <> "" Then
+                    Dim groupinfo As New ArrayList
+                    Dim data As Array
+
+                    data = Split(group, ",")
+                    For Each item In data
+                        groupinfo.Add(item)
                     Next
 
-                    ddlSemester.SelectedIndex = 0
+                    ddlSemester.SelectedValue = groupinfo(1)
                     loadcourse()
+                    ddlCourse.SelectedValue = groupinfo(2)
+                    loadgroup()
+                    ddlGroup.SelectedValue = groupinfo(0)
 
+                    If value = "" And edit = "" Then
 
-                    'display group
-                    Dim group As String
-                    group = Request.QueryString("field")
-                    Dim value As String
-                    value = Request.QueryString("value")
-                    Dim edit As String
-                    edit = Request.QueryString("edit")
-                    If group <> "" Then
-                        Dim groupinfo As New ArrayList
-                        Dim data As Array
+                        buildtable(groupinfo(0))
 
-                        data = Split(group, ",")
-                        For Each item In data
-                            groupinfo.Add(item)
-                        Next
-
-                        ddlSemester.SelectedValue = groupinfo(1)
-                        loadcourse()
-                        ddlCourse.SelectedValue = groupinfo(2)
-                        loadgroup()
-                        ddlGroup.SelectedValue = groupinfo(0)
-
-                        If value = "" And edit = "" Then
-
-                            buildtable(groupinfo(0))
-
-                        End If
-                        'save the attendance data
-                        If value <> "" And edit = "" Then
-
-                            checkAttendance(groupinfo(0), value)
-
-                            Response.Redirect("~/checkAttendance.aspx?field=" + group)
-                            lblMes.ForeColor = Drawing.Color.Black
-                            lblMes.Text = "Attendance updated"
-                        End If
-                        'edit attendance
-
-
-                        Dim va As Array
-                        Dim list As New ArrayList
-                        If edit <> "" And value = "" Then
-                            va = Split(edit, ",")
-
-                            list = editTable(va(0).ToString, va(1).ToString)
-
-
-                        End If
-
-                        If edit <> "" And value <> "" Then
-                            va = Split(edit, ",")
-                            list = getabstu(va(1).ToString, va(0).ToString)
-                            editAttendance(va(1).ToString, va(0).ToString, value, list)
-                            Response.Redirect("~/checkAttendance.aspx?field=" + group)
-                            lblMes.ForeColor = Drawing.Color.Black
-                            lblMes.Text = "Attendance updated"
-                        End If
-                    Else
-                        Response.Redirect("~/checkAttendance.aspx?field=" + ddlGroup.SelectedValue + "," + ddlSemester.SelectedValue + "," + ddlCourse.SelectedValue)
                     End If
+                    'save the attendance data
+                    If value <> "" And edit = "" Then
+
+                        checkAttendance(groupinfo(0), value)
+
+                        Response.Redirect("~/checkAttendance.aspx?field=" + group)
+                        lblMes.ForeColor = Drawing.Color.Black
+                        lblMes.Text = "Attendance updated"
+                    End If
+                    'edit attendance
+
+
+                    Dim va As Array
+                    Dim list As New ArrayList
+                    If edit <> "" And value = "" Then
+                        va = Split(edit, ",")
+
+                        list = editTable(va(0).ToString, va(1).ToString)
+
+
+                    End If
+
+                    If edit <> "" And value <> "" Then
+                        va = Split(edit, ",")
+                        list = getabstu(va(1).ToString, va(0).ToString)
+                        editAttendance(va(1).ToString, va(0).ToString, value, list)
+                        Response.Redirect("~/checkAttendance.aspx?field=" + group)
+                        lblMes.ForeColor = Drawing.Color.Black
+                        lblMes.Text = "Attendance updated"
+                    End If
+                Else
+                    Response.Redirect("~/checkAttendance.aspx?field=" + ddlGroup.SelectedValue + "," + ddlSemester.SelectedValue + "," + ddlCourse.SelectedValue)
                 End If
-                End If
+            End If
         End If
+       
 
 
 
@@ -399,8 +326,8 @@ Public Class checkAttendance
         Dim schedulesql, classsql As String
         Dim scheduledt, classdt As DataTable
 
-        schedulesql = "select schedule_id from schedule where group_id = " + group + " order by date"
-
+        'schedulesql = "select schedule_id from schedule where group_id = " + group + " order by date"
+        schedulesql = "select schedule_id from schedule where group_id = " + group + " order by schedule_id"
         classsql = "select distinct(S.date) from student_schedule SS, [group] G, schedule S where SS.schedule_id = S.schedule_id AND G.group_id = S.group_id " & _
             " AND G.group_id = " + group
         classdt = PB.getData(classsql)
