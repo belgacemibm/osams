@@ -25,22 +25,22 @@ Public Class Report
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         'Load the page
         If (Session("Rememberme") = "false") Then
-            If PB.getAccountType(Session("ID")) = "5" Then
-                Response.Redirect("Home.aspx")
-            Else
+            If PB.getAccountType(Session("ID")) = "1" Or PB.getAccountType(Session("ID")) = "2" Or PB.getAccountType(Session("ID")) = "3" Or PB.getAccountType(Session("ID")) = "4" Then
                 grdvwReport.Enabled = False 'Set GridView is invisible
                 tbxFromDate.Attributes.Add("readonly", "readonly") 'Set "From Date" textbox is readonly
                 tbxToDate.Attributes.Add("readonly", "readonly") 'Set "To Date" textbox is readonly
                 btnViewReport.Visible = False 'Set "View Report" button is invisible
+            Else
+                Response.Redirect("Home.aspx")
             End If
         Else
-            If PB.getAccountType(Request.Cookies("ID").Value) = "5" Then
-                Response.Redirect("Home.aspx")
-            Else
+            If PB.getAccountType(Request.Cookies("ID").Value) = "1" Or PB.getAccountType(Request.Cookies("ID").Value) = "2" Or PB.getAccountType(Request.Cookies("ID").Value) = "3" Or PB.getAccountType(Request.Cookies("ID").Value) = "4" Then
                 grdvwReport.Enabled = False 'Set GridView is invisible
                 tbxFromDate.Attributes.Add("readonly", "readonly") 'Set "From Date" textbox is readonly
                 tbxToDate.Attributes.Add("readonly", "readonly") 'Set "To Date" textbox is readonly
                 btnViewReport.Visible = False 'Set "View Report" button is invisible
+            Else
+                Response.Redirect("Home.aspx")
             End If
         End If
     End Sub
@@ -105,6 +105,22 @@ Public Class Report
         Return getCheckboxInGridview
     End Function
 
+    Private Function getCountCheckboxInGridview() As Integer
+        'Function to count the number of checkboxes is checked
+        getCountCheckboxInGridview = 0
+        Dim Chk As New CheckBox
+        Dim D As GridViewRow
+        For Each D In grdvwReport.Rows
+            Chk = D.FindControl("CheckBox1")
+            If Chk.Checked = True Then
+                getCountCheckboxInGridview = getCountCheckboxInGridview + 1
+            ElseIf Chk.Checked = False Then
+                getCountCheckboxInGridview = getCountCheckboxInGridview - 1
+            End If
+        Next
+        Return getCountCheckboxInGridview
+    End Function
+
     Private Function getSelectedGroupDetails() As String
         'Function to get selected group details
         getSelectedGroupDetails = ""
@@ -126,6 +142,10 @@ Public Class Report
             grdvwReport.Enabled = True 'Set GridView is visible
             btnViewReport.Visible = True 'Set "View Report" button is visible
             lblErrorMessage.Text = "Error: Please select at least one group!"
+        ElseIf getCountCheckboxInGridview() > 5 Then
+            grdvwReport.Enabled = True 'Set GridView is visible
+            btnViewReport.Visible = True 'Set "View Report" button is visible
+            lblErrorMessage.Text = "Error: Cannot select more than 5 groups!"
         Else
             Session("SelectedGroupDetails_SummaryReport") = Right(getSelectedGroupDetails(), getSelectedGroupDetails().Length - 1)
             Session("GroupID") = Right(getCheckboxInGridview(4), getCheckboxInGridview(4).Length - 1)
