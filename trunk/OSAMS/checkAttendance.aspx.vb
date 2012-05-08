@@ -137,6 +137,17 @@ Public Class checkAttendance
 
     End Sub
     Private Function getabstu(ByVal group As String, ByVal day As String) As ArrayList
+        '------------------------------------------------------------
+        ' function  : getabstu
+        ' Author      : Pham Sy Nhat Nam                Date   : 17/4/12
+        ' Aim         : to get the student id of absent student
+        '------------------------------------------------------------
+        ' Incoming Parameters
+        ' group: the group id of group want to check the attendance
+        'value: the student id of student who is absent from class
+        '
+        '------------------------------------------------------------
+        '
         Dim id As String = getEditSchedule(group, day)
         Dim array As New ArrayList
         Dim sql As String = "select student_id from student_schedule where schedule_id = " + id + " and status = 'absent'"
@@ -464,6 +475,7 @@ Public Class checkAttendance
         '  " AND [group].group_id = " + group & _
         '  "ORDER BY student.student_id"
         'sqlAttendance = checkPer(group)
+
         dtAttendance = New DataTable()
 
         dtAttendance = PB.getData(sqlAttendance)
@@ -501,44 +513,45 @@ Public Class checkAttendance
         Dim dtnum As DataTable = PB.getData(sqlnum)
 
         If dsday.Rows.Count > 1 Then
-            For u = 1 To dtnum.Rows.Count \ 2 + 1
-                'for 2 class day per week
-                c = New TableCell
-                c.ColumnSpan = 2
+            If dtnum.Rows.Count \ 2 > 11 Then
+                For u = 1 To dtnum.Rows.Count \ 2
+                    'for 2 class day per week
+                    c = New TableCell
+                    c.ColumnSpan = 2
 
-                c.Controls.Add(New LiteralControl("W" + CStr(u)))
-                r1.Cells.Add(c)
-            Next
+                    c.Controls.Add(New LiteralControl("W" + CStr(u)))
+                    r1.Cells.Add(c)
+                Next
+            Else
+                For u = 1 To dtnum.Rows.Count \ 2 + 1
+                    'for 2 class day per week
+                    c = New TableCell
+                    c.ColumnSpan = 2
 
+                    c.Controls.Add(New LiteralControl("W" + CStr(u)))
+                    r1.Cells.Add(c)
+                Next
+            End If
+            
 
-            'If dtnum.Rows.Count Mod 2 = 1 Then
-            '    For u = 1 To dtnum.Rows.Count \ 2
-            '        'for 2 class day per week
-            '        c = New TableCell
-            '        c.ColumnSpan = 2
-
-            '        c.Controls.Add(New LiteralControl("W" + CStr(u)))
-            '        r1.Cells.Add(c)
-            '    Next
-            'Else
-            '    For u = 1 To dtnum.Rows.Count \ 2 + 1
-            '        'for 2 class day per week
-            '        c = New TableCell
-            '        c.ColumnSpan = 2
-
-            '        c.Controls.Add(New LiteralControl("W" + CStr(u)))
-            '        r1.Cells.Add(c)
-            '    Next
-            'End If
 
         Else
-
-            For u = 1 To dtnum.Rows.Count + 1
-                'for 1 class per week
-                c = New TableCell
-                c.Controls.Add(New LiteralControl("W" + CStr(u)))
-                r1.Cells.Add(c)
-            Next
+            If dtnum.Rows.Count > 11 Then
+                For u = 1 To dtnum.Rows.Count
+                    'for 1 class per week
+                    c = New TableCell
+                    c.Controls.Add(New LiteralControl("W" + CStr(u)))
+                    r1.Cells.Add(c)
+                Next
+            Else
+                For u = 1 To dtnum.Rows.Count + 1
+                    'for 1 class per week
+                    c = New TableCell
+                    c.Controls.Add(New LiteralControl("W" + CStr(u)))
+                    r1.Cells.Add(c)
+                Next
+            End If
+            
 
 
 
@@ -581,56 +594,55 @@ Public Class checkAttendance
 
         If dsday.Rows.Count > 1 Then
             'add day for 2 class per week
+            If dtnum.Rows.Count \ 2 > 11 Then
+                For h = 1 To dtnum.Rows.Count \ 2
 
-            For h = 1 To dtnum.Rows.Count \ 2 + 1
+                    For Each dr As DataRow In dsday.Rows
+                        c = New TableCell
+                        c.Controls.Add(New LiteralControl(dr.Item("day_group").ToString))
+                        r2.Cells.Add(c)
 
-                For Each dr As DataRow In dsday.Rows
-                    c = New TableCell
-                    c.Controls.Add(New LiteralControl(dr.Item("day_group").ToString))
-                    r2.Cells.Add(c)
+                    Next
+
 
                 Next
+            Else
+                For h = 1 To dtnum.Rows.Count \ 2 + 1
+
+                    For Each dr As DataRow In dsday.Rows
+                        c = New TableCell
+                        c.Controls.Add(New LiteralControl(dr.Item("day_group").ToString))
+                        r2.Cells.Add(c)
+
+                    Next
 
 
-            Next
-                'If dtnum.Rows.Count Mod 2 = 1 Then
-                '    For h = 1 To dtnum.Rows.Count \ 2
+                Next
+            End If
+           
 
-                '        For Each dr As DataRow In dsday.Rows
-                '            c = New TableCell
-                '            c.Controls.Add(New LiteralControl(dr.Item("day_group").ToString))
-                '            r2.Cells.Add(c)
-
-                '        Next
-
-
-                '    Next
-                'Else
-                '    For h = 1 To dtnum.Rows.Count \ 2 + 1
-
-                '        For Each dr As DataRow In dsday.Rows
-                '            c = New TableCell
-                '            c.Controls.Add(New LiteralControl(dr.Item("day_group").ToString))
-                '            r2.Cells.Add(c)
-
-                '        Next
-
-
-                '    Next
-                'End If
 
         Else
                 'for only one class per week
                 Dim day As String
                 day = dsday.Rows(0).Item("day_group").ToString()
+            If dtnum.Rows.Count > 11 Then
+                For h = 1 To dtnum.Rows.Count
 
-
+                    c = New TableCell
+                    c.Controls.Add(New LiteralControl(day))
+                    r2.Cells.Add(c)
+                Next
+            Else
                 For h = 1 To dtnum.Rows.Count + 1
 
                     c = New TableCell
                     c.Controls.Add(New LiteralControl(day))
                     r2.Cells.Add(c)
                 Next
+            End If
+
+               
 
 
         End If
@@ -965,6 +977,17 @@ Public Class checkAttendance
 
     End Sub
     Private Sub loadgroup()
+        '------------------------------------------------------------
+        ' subroutine  : loadgroup
+        ' Author      : Pham Sy Nhat Nam                Date   : 17/4/12
+        ' Aim         : to to load the data into ddlgroup
+        '------------------------------------------------------------
+        ' Incoming Parameters
+        '
+        '
+        '
+        '------------------------------------------------------------
+        '
         ddlGroup.Items.Clear()
         Dim dtGroup As DataTable
         Dim sqlGroup As String
@@ -995,6 +1018,17 @@ Public Class checkAttendance
         End If
     End Sub
     Private Sub loadcourse()
+        '------------------------------------------------------------
+        ' subroutine  : loadcourse
+        ' Author      : Pham Sy Nhat Nam                Date   : 17/4/12
+        ' Aim         : to to load the data into ddlcourse
+        '------------------------------------------------------------
+        ' Incoming Parameters
+        '
+        '
+        '
+        '------------------------------------------------------------
+        '
         ddlCourse.Items.Clear()
 
         Dim dtCourse As DataTable
@@ -1023,6 +1057,18 @@ Public Class checkAttendance
         End If
     End Sub
     Private Function getgroup() As String
+
+        '------------------------------------------------------------
+        ' function  : getgroup
+        ' Author      : Pham Sy Nhat Nam                Date   : 17/4/12
+        ' Aim         : to create and return the sql for the group data
+        '------------------------------------------------------------
+        ' Incoming Parameters
+        ' value: the status of student attendance like present or absent
+        '
+        '
+        '------------------------------------------------------------
+        '
         Dim id As String = getUser()
         Dim type As String = PB.getAccountType(id)
 
@@ -1177,10 +1223,12 @@ Public Class checkAttendance
 
         sqlday = "select LEFT(day,3) as day_group from group_day, day_of_week where group_day.day_id = day_of_week.day_id AND group_day.group_id = " + group
         dsday = PB.getData(sqlday)
-
+        Dim sqlnum As String = "select distinct(s.schedule_id) from schedule s, student_schedule ss where s.schedule_id = ss.schedule_id AND s.group_id = " + group
+        Dim dtnum As DataTable = PB.getData(sqlnum)
 
         If dsday.Rows.Count > 1 Then
-            For u = 1 To 12
+
+            For u = 1 To dtnum.Rows.Count \ 2
                 'for 2 class day per week
                 c = New TableCell
                 c.ColumnSpan = 2
@@ -1188,12 +1236,12 @@ Public Class checkAttendance
                 c.Controls.Add(New LiteralControl("W" + CStr(u)))
                 r1.Cells.Add(c)
             Next
+
         Else
-            For u = 1 To 12
+
+            For u = 1 To dtnum.Rows.Count
                 'for 1 class per week
                 c = New TableCell
-
-
                 c.Controls.Add(New LiteralControl("W" + CStr(u)))
                 r1.Cells.Add(c)
             Next
@@ -1230,35 +1278,61 @@ Public Class checkAttendance
         r2.Cells.Add(c)
         Dim h As Integer
 
-
-
         If dsday.Rows.Count > 1 Then
             'add day for 2 class per week
-            For h = 1 To 12
 
+
+            For h = 1 To dtnum.Rows.Count / 2
                 For Each dr As DataRow In dsday.Rows
                     c = New TableCell
                     c.Controls.Add(New LiteralControl(dr.Item("day_group").ToString))
                     r2.Cells.Add(c)
 
                 Next
-
             Next
+            
+
         Else
             'for only one class per week
             Dim day As String
             day = dsday.Rows(0).Item("day_group").ToString()
 
-
-            For h = 1 To 12
+            For h = 1 To dtnum.Rows.Count
 
                 c = New TableCell
                 c.Controls.Add(New LiteralControl(day))
                 r2.Cells.Add(c)
             Next
 
-
         End If
+
+        'If dsday.Rows.Count > 1 Then
+        '    'add day for 2 class per week
+        '    For h = 1 To 12
+
+        '        For Each dr As DataRow In dsday.Rows
+        '            c = New TableCell
+        '            c.Controls.Add(New LiteralControl(dr.Item("day_group").ToString))
+        '            r2.Cells.Add(c)
+
+        '        Next
+
+        '    Next
+        'Else
+        '    'for only one class per week
+        '    Dim day As String
+        '    day = dsday.Rows(0).Item("day_group").ToString()
+
+
+        '    For h = 1 To 12
+
+        '        c = New TableCell
+        '        c.Controls.Add(New LiteralControl(day))
+        '        r2.Cells.Add(c)
+        '    Next
+
+
+        'End If
 
 
         tbattendace.Rows.Add(r2)
@@ -1432,7 +1506,7 @@ Public Class checkAttendance
 
 
             r = New TableRow
-            
+
 
             c = New TableCell
 
