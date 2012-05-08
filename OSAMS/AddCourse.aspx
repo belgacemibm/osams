@@ -12,15 +12,21 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="big_content">
 <div id="content">
-<div class="style18" id="caption">ADD NEW COURSE</div>
 <div id="table">
-
+    <div id="table_left">
+    <div id="table_left_logo"><img alt="logo" src="images/icons/full_page.png" width="80" height="80" /></div>
+    <div id="table_left_caption">COURSE<br />MANAGEMENT</div>
+    </div>
+    <div id="table_middle">
+    <div id="table_middle_caption">
+    &nbsp;<img alt="logo" src="images/add.png" width="14" height="14" />&nbsp;Add New Course</div>
+    <div id="table_middle_note">Adding your new data by follwing the below required textbox, input your infomation correctly by following the rule of the system.</div>
      <div id="error_message"><asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label></div>
-
+     <div id="table_middle_content">
     <table class="style21" style="text-align: left; float: left; clear: left;">
         <tr>
 
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
 
                 Course ID:</td>
             <td class="style24">
@@ -37,7 +43,7 @@
         </tr>
         <tr>
 
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
 
                 Course Name:</td>
             <td class="style24">
@@ -50,7 +56,7 @@
         </tr>
         <tr>
 
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
 
                 Level:</td>
             <td class="style24">
@@ -65,7 +71,7 @@
         </tr>
         <tr>
 
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
 
 
                 Credit:</td>
@@ -88,14 +94,24 @@
             <td class="style22">
                 &nbsp;</td>
         </tr>
-    </table>
-    <div id="button">
-        <div id="left">
-        <asp:Button ID="btnSave" runat="server" Text="Save" CausesValidation = "true"/>
-        </div> 
+        <tr>
+
+            <td>
+
+
+                &nbsp;</td>
+            <td class="style24">
+        <div id="button_right">
+        <asp:Button ID="btnSave" runat="server" Text="Save" CausesValidation = "true"/> 
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" CausesValidation = "false" />
+        </div></td>
+            <td class="style22">
+                &nbsp;</td>
+        </tr>
+    </table>
     </div>
     
+    </div>
 
     
     
@@ -103,4 +119,5 @@
 </div>
 </div>
 </div>
+
 </asp:Content>

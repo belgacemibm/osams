@@ -70,8 +70,16 @@
     width: 100%;
     text-align: left;
     clear: left;
+    margin-top: 15px;
 }
-
+#button_right
+{
+      float: left;
+    width: 100%;
+    text-align: right;
+    clear: left;
+    margin-top: 15px;
+}
 #header #logo
 {
     float: left;
@@ -196,12 +204,15 @@ a:hover {
     padding-left: 15px;
     font-weight: bold;
     text-align: left;
+    float: left;
 }
 #content #table
 {
     padding-top: 10px;
     padding-left: 15px;
     text-align: left;
+    float: left;
+    clear: left;
 }
 .style11 {
 	font-family: Geneva, Arial, Helvetica, sans-serif;
@@ -220,9 +231,10 @@ a:hover {
 	font-size: 24px;
 	font-weight: bold;
 }
-#selection {
-	
-	float: left;
+#selection
+{
+    float: left;
+    clear: left;
 }
 #maintable {
 	float: left;
@@ -240,6 +252,7 @@ a:hover {
 }
 #error_message
 {
+    padding: 5px;
     float: left;
     text-align: left;
     clear: left;
@@ -277,4 +290,84 @@ a:hover {
 {
     float: left;
     clear: left;
+}
+#table_left
+{
+    float: left;
+    text-align: center;
+    margin-top: 80px;
+}
+#table_left_caption
+{
+    font-family: Calibri;
+    font-size: 20px;
+    color: #CC0000;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+#table_middle
+{
+    background-position: right bottom;
+    border: 1px solid #CCCCCC;
+    float: left;
+    margin-left: 50px;
+    border-collapse: collapse;
+    background-image: url('../images/grey-checkmark-md.png');
+    background-repeat: no-repeat;
+    width: 700px;
+    margin-top: 30px;
+}
+#table_middle_caption
+{
+     font-weight: bold;
+    font-family: Calibri;
+    color: #FFFFFF;
+    background-color: #000000;
+    width: 700px;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+#table_middle_note
+{
+    padding: 5px;
+    float: left;
+    clear: left;
+}
+#table_middle_logo
+{
+    float: left;
+}
+#table_middle_title
+{
+    font-weight: bold;
+    font-family: Calibri;
+    color: #FFFFFF;
+    float: left;
+}
+#table_middle_content
+{
+    padding: 5px 5px 5px 10px;
+    float: left;
+    clear: left;
+}
+#content_header
+{
+    float: left;
+}
+#content_header_logo
+{
+    float: left;
+}
+#student_search
+{
+    border: 1px solid #CCCCCC;
+    float: left;
+    clear: left;
+    margin-top: 20px;
 }

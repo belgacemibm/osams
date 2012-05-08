@@ -13,16 +13,24 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<div id="big_content">
+    <div id="big_content">
 <div id="content">
-<div class="style18" id="caption">EDIT PROFILE</div>
+
 <div id="table" style="text-align: left">
-
+<div id="table_left">
+    <div id="table_left_logo"><img alt="logo" src="images/icons/edit_page.png" width="80" height="80" /></div>
+    <div id="table_left_caption">PROFILE<br />MANAGEMENT</div>
+</div>
     
-
+    <div id="table_middle">
+    <div id="table_middle_caption">
+    &nbsp;<img alt="logo" src="images/brush.png" width="14" height="14" />&nbsp;Edit Profile
+    </div>
+    <div id="table_middle_note">Editing your data by follwing the below controls, input your infomation correctly by following the rule of system validation.</div>
+    <div id="table_middle_content">
     <table class="style21">
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
 
     
 
@@ -33,7 +41,7 @@
             </td>
         </tr>
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
     <asp:Label ID="lblFamilyName" runat="server" Text="Family Name:"></asp:Label>
             </td>
             <td class="style22">
@@ -44,7 +52,7 @@
             </td>
         </tr>
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
     <asp:Label ID="lblMiddleName" runat="server" Text="Middle Name:"></asp:Label>
             </td>
             <td class="style22">
@@ -52,7 +60,7 @@
             </td>
         </tr>
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
     <asp:Label ID="lblGivenName" runat="server" Text="Given Name:"></asp:Label>
             </td>
             <td class="style22">
@@ -63,7 +71,7 @@
             </td>
         </tr>
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
     <asp:Label ID="lblGender" runat="server" Text="Gender:"></asp:Label>
             </td>
             <td class="style22">
@@ -74,7 +82,7 @@
             </td>
         </tr>
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
     <asp:Label ID="lblEmail" runat="server" Text="Email:"></asp:Label>
             </td>
             <td class="style22">
@@ -96,22 +104,9 @@
             </td>
         </tr>
     </table>
-    <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <br />
-&nbsp;&nbsp;&nbsp;
-    <br />
-&nbsp;&nbsp;
-    <br />
-&nbsp;&nbsp;&nbsp;&nbsp;
-    <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <br />
 
-    
-
+    </div>
+    </div>
 </div>
 </div>
 </div>

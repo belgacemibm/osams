@@ -14,7 +14,7 @@
         $(document).ready(function () {
             var screen_height = $(document).height();
             var footer_height = $("#bigfooter").height();
-            $("#content").css("min-height", (screen_height - footer_height - 125) + "px");
+            $("#content").css("min-height", (screen_height - footer_height - 115) + "px");
         });
     </script>
     <asp:ContentPlaceHolder id="head" runat="server">

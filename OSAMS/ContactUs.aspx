@@ -18,12 +18,15 @@ p.MsoNoSpacing
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<div id="big_content">
+    <div id="big_content">
 <div id="content">
-<div class="style18" id="caption">CONTACT US</div>
+<div id="content_header">
+     <div id="content_header_logo"><img alt="logo" src="images/icons/mobile_phone.png" width="50" height="50" /></div>
+     <div id="caption">CONTACT US</div>
+</div>
 <div id="table" style="text-align: left">
 
-        <strong style="font-size: 20px; font-family: Calibri;">RMIT International University Vietnam – Saigon South
+        <strong style="font-size: 20px; font-family: Calibri; color: #CC0000;">RMIT International University Vietnam – Saigon South
         </strong>
     <p class="MsoNoSpacing">
         702 Nguyen Van Linh, District 7, Ho Chi Minh City</p>
@@ -33,7 +36,7 @@ p.MsoNoSpacing
         Fax: (+848) 3776 1399</p>
 
         <br />
-        <strong style="font-size: 20px; font-family: Calibri;">OSAMS Development Team</strong>
+        <strong style="font-size: 20px; font-family: Calibri; color: #CC0000;">OSAMS Development Team</strong>
         <table id="contact" 
             style="border: 1px solid #CCCCCC; width: 600px; border-collapse: collapse; font-family: Calibri;">
         <tr>
@@ -96,7 +99,7 @@ p.MsoNoSpacing
 
     <div style="mso-element: para-border-div; mso-border-themecolor: accent1; mso-border-themetint: 51; mso-background-themecolor: accent1; mso-background-themetint: 51">
         <br />
-        <strong style="font-size: 20px; font-family: Calibri;">OSAMS Support
+        <strong style="font-size: 20px; font-family: Calibri; color: #CC0000;">OSAMS Support
     </strong>
     </div>
         <p class="MsoNoSpacing">

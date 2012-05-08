@@ -24,14 +24,21 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="big_content">
 <div id="content">
-<div class="style18" id="caption">ADD NEW STUDENT</div>
 <div id="table">
-
+    <div id="table_left">
+    <div id="table_left_logo"><img alt="logo" src="images/icons/id_card.png" width="80" height="80" /></div>
+    <div id="table_left_caption">STUDENT<br />MANAGEMENT</div>
+    </div>
+    <div id="table_middle">
+    <div id="table_middle_caption">
+    &nbsp;<img alt="logo" src="images/add.png" width="14" height="14" />&nbsp;Add New Student
+    </div>
+    <div id="table_middle_note">Adding your new data by follwing the below required textbox, input your infomation correctly by following the rule of the system.</div>
     <div id="error_message"><asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label></div>
-
+    <div id="table_middle_content">
     <table class="style21" style="text-align: left; float: left; clear: left;">
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
                 Student ID:</td>
             <td class="style23">
                 <asp:TextBox ID="txtStudentID" runat="server"></asp:TextBox>
@@ -46,7 +53,7 @@
             </td>
         </tr>
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
                 Program:</td>
             <td class="style23">
                 <asp:DropDownList ID="ddlProgram" runat="server">
@@ -70,7 +77,7 @@
                 &nbsp;</td>
         </tr>
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
                 Stream:</td>
             <td class="style23">
                 <asp:DropDownList ID="ddlStream" runat="server">
@@ -85,7 +92,7 @@
                 &nbsp;</td>
         </tr>
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
                 Family Name:</td>
             <td class="style23">
                 <asp:TextBox ID="txtFamilyName" runat="server"></asp:TextBox>
@@ -96,7 +103,7 @@
             </td>
         </tr>
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
                 Middle Name:</td>
             <td class="style23">
                 <asp:TextBox ID="txtMiddleName" runat="server"></asp:TextBox>
@@ -105,7 +112,7 @@
                 &nbsp;</td>
         </tr>
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
                 Given Name:</td>
             <td class="style23">
                 <asp:TextBox ID="txtGivenName" runat="server"></asp:TextBox>
@@ -116,8 +123,7 @@
             </td>
         </tr>
         <tr>
-            <td class="style22" 
-                style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td class="style22">
                 Gender:</td>
             <td class="style24">
                 <asp:DropDownList ID="ddlGender" runat="server">
@@ -136,7 +142,7 @@
                 &nbsp;</td>
         </tr>
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
                 Semester:</td>
             <td class="style23">
                 <asp:DropDownList ID="ddlSemester" runat="server" DataTextField="semester_name" 
@@ -150,7 +156,7 @@
             </td>
         </tr>
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
                 Course:</td>
             <td class="style23">
                 <asp:DropDownList ID="ddlCourse" runat="server" AutoPostBack="True" DataTextField="course_name" 
@@ -162,7 +168,7 @@
                 &nbsp;</td>
         </tr>
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
                 Group:</td>
             <td class="style23">
                 <asp:DropDownList ID="ddlGroup" runat="server" AutoPostBack="True">
@@ -171,17 +177,21 @@
             <td>
                 &nbsp;</td>
         </tr>
+        <tr>
+            <td>
+                &nbsp;</td>
+            <td class="style23">
+               <div id="button_right">        
+                    <asp:Button ID="btnSave" runat="server" Text="Save" CausesValidation = "true" />        
+                    <asp:Button ID="btnCancel" runat="server" Text="Cancel"  CausesValidation = "false"/>
+                </div></td>
+            <td>
+                &nbsp;</td>
+        </tr>
     </table>
-
-    <div id="button">
-        <div id="left">
-        <asp:Button ID="btnSave" runat="server" Text="Save" CausesValidation = "true" />
-        </div> 
-        <asp:Button ID="btnCancel" runat="server" Text="Cancel"  CausesValidation = "false"/>
     </div>
-
-    
-
+      
+    </div>
 </div>
 </div>
 </div>
