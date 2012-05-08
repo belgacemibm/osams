@@ -56,6 +56,7 @@ Public Class checkAttendance
                     Next
 
                     ddlSemester.SelectedIndex = 0
+                    loadcourse()
 
 
                     'display group
@@ -115,7 +116,8 @@ Public Class checkAttendance
                             lblMes.ForeColor = Drawing.Color.Black
                             lblMes.Text = "Attendance updated"
                         End If
-
+                    Else
+                        buildtable(ddlGroup.SelectedValue)
                     End If
                 End If
                 End If
@@ -134,6 +136,7 @@ Public Class checkAttendance
                     Next
 
                     ddlSemester.SelectedIndex = 0
+                    loadcourse()
 
 
                     'display group
@@ -193,7 +196,8 @@ Public Class checkAttendance
                             lblMes.ForeColor = Drawing.Color.Black
                             lblMes.Text = "Attendance updated"
                         End If
-
+                    Else
+                        buildtable(ddlGroup.SelectedValue)
                     End If
                 End If
                 End If
