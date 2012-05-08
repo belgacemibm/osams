@@ -1319,7 +1319,7 @@ Public Class Student
         dt = PB.getData(sql)
         Dim insert As String = ""
         For Each dr As DataRow In dt.Rows
-            insert = insert + " insert into student_schedule values('absent', 1, " + dr.Item("schedule_id") + ", '" + sID + "')"
+            insert = insert + " insert into student_schedule values('absent', 1, " + dr.Item("schedule_id").ToString + ", '" + sID + "')"
 
         Next
 
