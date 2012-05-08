@@ -97,9 +97,9 @@
 
     <div id="button">
         <div id="left">
-        <asp:Button ID="btnSave" runat="server" Text="Save" />
+        <asp:Button ID="btnSave" runat="server" Text="Save" CausesValidation = "true"  />
         </div> 
-        <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" CausesValidation ="false"  />
         
     </div>
     
