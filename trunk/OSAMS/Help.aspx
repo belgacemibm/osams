@@ -4,9 +4,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div id="big_content">
 <div id="content">
-<div class="style18" id="caption">HELP</div>
+<div id="content_header">
+            <div id="content_header_logo"><img alt="logo" src="images/icons/help.png" width="50" height="50" /></div>
+            <div id="caption">HELP</div>
+            </div>
 <div id="table" style="text-align: left">
-
+<img alt="logo" src="images/website-under-construction.gif" />
 
 </div>
 </div>

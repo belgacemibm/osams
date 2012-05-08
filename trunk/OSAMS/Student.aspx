@@ -232,7 +232,7 @@
         </div> 
     </div>
 
-
+    <div id="student_div_search">
     <div id="student_search">
     <div id="table_middle_caption">
     &nbsp;<img alt="logo" src="images/logo_red.png" width="16" height="16" />Student Search
@@ -278,7 +278,7 @@
         
     </div>
     
-    
+    </div>
     </div>
 </div>
 </div>
