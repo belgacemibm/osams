@@ -4,9 +4,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="big_content">
 <div id="content">
-<div class="style18" id="caption">USER PROFILE</div>
+<div id="content_header">
+     <div id="content_header_logo"><img alt="logo" src="images/icons/edit_page.png" width="50" height="50" /></div>
+     <div id="caption">USER PROFILE</div>
+</div>
 <div id="table" style="text-align: left">
-    &nbsp;<br />
+    
+    <div id="grid_view">
     <asp:DetailsView ID="DtpfvwUserProfile" runat="server" CellPadding="4"
         EnableModelValidation="True" Height="50px" Width="292px" 
         ForeColor="#333333" GridLines="None">
@@ -21,7 +25,7 @@
         <RowStyle BackColor="#CCCCCC" />
 
     </asp:DetailsView>
-
+   
     <br />
     <asp:Button ID="btnEditProfile" runat="server" Text="Edit Profile" 
         Width="150px" />
@@ -29,6 +33,7 @@
         Text="Change Password" Width="150px" />
 
     <br />
+     </div>
 </div>
 </div>
 </div>

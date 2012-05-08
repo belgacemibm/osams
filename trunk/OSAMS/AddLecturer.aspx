@@ -3,31 +3,32 @@
     <style type="text/css">
         .style21
         {
-            width: 751px;
+            width: 650px;
             float: left;
         }
-        .style22
-        {
-            width: 141px;
-        }
-        .style23
-        {
-            width: 104px;
-        }
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="big_content">
 <div id="content">
-<div class="style18" id="caption">ADD NEW LECTURER</div>
 <div id="table">
 
-    
+    <div id="table_left">
+    <div id="table_left_logo"><img alt="logo" src="images/icons/user.png" width="80" height="80" /></div>
+    <div id="table_left_caption">LECTURER<br />MANAGEMENT</div>
+    </div>
+    <div id="table_middle">
+    <div id="table_middle_caption">
+    &nbsp;<img alt="logo" src="images/add.png" width="14" height="14" />&nbsp;Add New Lecturer
+    </div>
+    <div id="table_middle_note">Adding your new data by follwing the below required textbox, input your infomation correctly by following the rule of the system.</div>
     <div id="error_message"><asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label></div>
+    <div id="table_middle_content">
     <table class="style21" style="text-align: left; float: left; clear: left;">
         <tr>
 
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
 
                 Lecturer ID:</td>
             <td class="style22">
@@ -44,7 +45,7 @@
         </tr>
         <tr>
 
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
 
                 Family Name:</td>
             <td class="style22">
@@ -57,7 +58,7 @@
         </tr>
         <tr>
 
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
 
                 Middle Name:</td>
             <td class="style22">
@@ -68,7 +69,7 @@
         </tr>
         <tr>
 
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
 
                 Given Name:</td>
             <td class="style22">
@@ -81,7 +82,7 @@
         </tr>
         <tr>
 
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
 
                 Gender:</td>
             <td class="style22">
@@ -95,7 +96,7 @@
         </tr>
         <tr>
 
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
 
                 Role:</td>
             <td class="style22">
@@ -107,16 +108,23 @@
             <td>
                 &nbsp;</td>
         </tr>
-    </table>
+        <tr>
 
-    
-    <div id="button">
-        <div id="left">
-        <asp:Button ID="btnSave" runat="server" Text="Save" />
-        </div> 
-        <asp:Button ID="btnCancel" runat="server" Text="Cancel" CausesValidation ="false"  />
+            <td>
+
+                &nbsp;</td>
+            <td class="style22">
+                <div id="button_right">        
+                    <asp:Button ID="btnSave" runat="server" Text="Save" />
+                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" CausesValidation ="false"  />
+                </div></td>
+            <td>
+                &nbsp;</td>
+        </tr>
+    </table>
     </div>
     
+    </div>
 </div>
 </div>
 </div>

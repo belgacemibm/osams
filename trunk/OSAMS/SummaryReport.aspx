@@ -5,7 +5,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="big_content">
 <div id="content">
-<div class="style18" id="caption">SUMMARY REPORT</div>
+<div id="content_header">
+     <div id="content_header_logo"><img alt="logo" src="images/icons/chart_up.png" width="50" height="50" /></div>
+     <div id="caption">SUMMARY REPORT</div>
+</div>
 <div id="table" style="text-align: left">
 
     <asp:Label ID="lblFromDate" runat="server" Text="From Date:"></asp:Label>

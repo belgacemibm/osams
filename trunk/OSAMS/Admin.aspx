@@ -4,7 +4,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="big_content">
 <div id="content">
-<div class="style18" id="caption">ADMIN MANAGEMENT</div>
+<div id="content_header">
+     <div id="content_header_logo"><img alt="logo" src="images/icons/prize_winner.png" width="50" height="50" /></div>
+     <div id="caption">ADMIN MANAGEMENT</div>
+</div>
 <div id="table">
     <div id="error_message"><asp:Label ID="lblError" runat="server"></asp:Label></div>
     <div id="grid_view">

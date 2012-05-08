@@ -77,6 +77,15 @@ Partial Public Class AddGroup
     Protected WithEvents cbxDay1 As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''cbxDay2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbxDay2 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''cbxStartHour1 control.
     '''</summary>
     '''<remarks>
@@ -93,42 +102,6 @@ Partial Public Class AddGroup
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cbxStartMinute1 As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''cbxEndHour1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cbxEndHour1 As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''cbxEndMinute1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cbxEndMinute1 As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''cbxType1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cbxType1 As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''cbxDay2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cbxDay2 As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''cbxStartHour2 control.
@@ -149,6 +122,24 @@ Partial Public Class AddGroup
     Protected WithEvents cbxStartMinute2 As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''cbxEndHour1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbxEndHour1 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''cbxEndMinute1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cbxEndMinute1 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''cbxEndHour2 control.
     '''</summary>
     '''<remarks>
@@ -167,13 +158,22 @@ Partial Public Class AddGroup
     Protected WithEvents cbxEndMinute2 As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''cbxType2 control.
+    '''cbxType1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cbxType2 As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents cbxType1 As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''DropDownList1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DropDownList1 As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''FileUpload control.

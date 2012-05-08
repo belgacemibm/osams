@@ -4,7 +4,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="big_content">
 <div id="content">
-<div class="style18" id="caption">LECTURER MANAGEMENT</div>
+<div id="content_header">
+    <div id="content_header_logo"><img alt="logo" src="images/icons/user.png" width="50" height="50" /></div>
+    <div id="caption">LECTURER MANAGEMENT</div>
+</div>
 <div id="table">
 
     <div id="button">

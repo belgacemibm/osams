@@ -9,13 +9,13 @@
         }
         .style22
         {
-            width: 900px;
+            width: 670px;
             float: left;
             
         }
         .style23
         {
-            width: 350px;
+            width: 380px;
             float: left;
             
         }
@@ -24,26 +24,33 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="big_content">
 <div id="content">
-<div class="style18" id="caption">ADD NEW GROUP</div>
 <div id="table">
-
+<div id="table_left">
+    <div id="table_left_logo"><img alt="logo" src="images/icons/users.png" width="80" height="80" /></div>
+    <div id="table_left_caption">GROUP<br />MANAGEMENT</div>
+    </div>
+<div id="table_middle">
+<div id="table_middle_caption">
+    &nbsp;<img alt="logo" src="images/add.png" width="14" height="14" />&nbsp;Add New Group
+    </div>
+<div id="table_middle_note">Adding your new data by follwing the below required textbox, input your infomation correctly by following the rule of the system.</div>
 <div id="error_message">
 <asp:Label ID="lbl" runat="server" Text=""></asp:Label>
 <asp:Label ID="lblError" runat="server" ForeColor="Red" align="center"></asp:Label>
 </div>
 
 <form method="get">
-
+<div id="table_middle_content">
     <table align="left" class="style21" style="float: left; clear: left;">
         <tr>
-            <td style="text-align: left; background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
                 Group Name:</td>
             <td style="text-align: left">
                 <asp:TextBox ID="txtGroupName" runat="server" Width="200px"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td style="text-align: left; background-color: #000000; color: #FFFFFF; font-weight: bold;" 
+            <td 
                 class="style24">
                 Semester:</td>
             <td style="text-align: left" class="style24">
@@ -52,7 +59,7 @@
             </td>
         </tr>
         <tr>
-            <td style="text-align: left; background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
                 Course:</td>
             <td style="text-align: left">
                 <asp:DropDownList ID="cbxCourse" runat="server" Height="20px" Width="200px">
@@ -60,7 +67,7 @@
             </td>
         </tr>
         <tr>
-            <td style="text-align: left; background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
                 Lecturer:</td>
             <td style="text-align: left">
                 <asp:DropDownList ID="cbxLecturer" runat="server" Height="20px" Width="200px">
@@ -68,13 +75,14 @@
             </td>
         </tr>
     </table>
+   
 
   
     <table align="left" class="style22" 
         style="clear: left; float: left; margin-top: 15px;">
         <tr>
-            <td style="text-align: left; background-color: #000000; color: #FFFFFF; font-weight: bold;">
-                Day 1:</td>
+            <td>
+                <strong>Day 1:</strong></td>
             <td style="text-align: left">
                 <asp:DropDownList ID="cbxDay1" runat="server">
                     <asp:ListItem Value="1">Monday</asp:ListItem>
@@ -86,39 +94,10 @@
                     <asp:ListItem Value="7">Sunday</asp:ListItem>
                 </asp:DropDownList>
             </td>
-            <td style="text-align: left; background-color: #000000; color: #FFFFFF; font-weight: bold;">
-                Start Time:</td>
+            <td>
+                <strong>Day 2:</strong></td>
             <td style="text-align: left">
-                <asp:DropDownList ID="cbxStartHour1" runat="server">
-                </asp:DropDownList>
-                (h) :
-                <asp:DropDownList ID="cbxStartMinute1" runat="server">
-                </asp:DropDownList>
-                (m)</td>
-            <td style="text-align: left; background-color: #000000; color: #FFFFFF; font-weight: bold;">
-                End Time:</td>
-            <td style="text-align: left">
-                <asp:DropDownList ID="cbxEndHour1" runat="server">
-                </asp:DropDownList>
-                (h) :
-                <asp:DropDownList ID="cbxEndMinute1" runat="server">
-                </asp:DropDownList>
-                (m)</td>
-            <td style="text-align: left; background-color: #000000; color: #FFFFFF; font-weight: bold;">
-                Type:</td>
-            <td style="text-align: left">
-                <asp:DropDownList ID="cbxType1" runat="server">
-                    <asp:ListItem>Lecture</asp:ListItem>
-                    <asp:ListItem>Tutorial</asp:ListItem>
-                    <asp:ListItem>Both</asp:ListItem>
-                </asp:DropDownList>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: left; background-color: #000000; color: #FFFFFF; font-weight: bold;">
-                Day 2:</td>
-            <td style="text-align: left">
-                <asp:DropDownList ID="cbxDay2" runat="server">
+               <asp:DropDownList ID="cbxDay2" runat="server">
                     <asp:ListItem Value="0">None</asp:ListItem>
                     <asp:ListItem Value="1">Monday</asp:ListItem>
                     <asp:ListItem Value="2">Tuesday</asp:ListItem>
@@ -127,9 +106,20 @@
                     <asp:ListItem Value="5">Friday</asp:ListItem>
                     <asp:ListItem Value="6">Saturday</asp:ListItem>
                     <asp:ListItem Value="7">Sunday</asp:ListItem>
+                </asp:DropDownList></td>
+        </tr>
+        <tr>
+            <td>
+                Start Time:</td>
+            <td style="text-align: left">
+                <asp:DropDownList ID="cbxStartHour1" runat="server">
                 </asp:DropDownList>
+                (h) :
+                <asp:DropDownList ID="cbxStartMinute1" runat="server">
+                </asp:DropDownList>
+                (m) 
             </td>
-            <td style="text-align: left; background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
                 Start Time:</td>
             <td style="text-align: left">
                 <asp:DropDownList ID="cbxStartHour2" runat="server">
@@ -138,24 +128,44 @@
                 <asp:DropDownList ID="cbxStartMinute2" runat="server">
                 </asp:DropDownList>
                 (m)</td>
-            <td style="text-align: left; background-color: #000000; color: #FFFFFF; font-weight: bold;">
+        </tr>
+        <tr>
+            <td>
                 End Time:</td>
             <td style="text-align: left">
-                <asp:DropDownList ID="cbxEndHour2" runat="server">
+                  <asp:DropDownList ID="cbxEndHour1" runat="server">
+                </asp:DropDownList>
+                (h) :
+                <asp:DropDownList ID="cbxEndMinute1" runat="server">
+                </asp:DropDownList>
+                (m)</td>
+            <td>
+                End Time:</td>
+            <td style="text-align: left">
+                  <asp:DropDownList ID="cbxEndHour2" runat="server">
                 </asp:DropDownList>
                 (h) :
                 <asp:DropDownList ID="cbxEndMinute2" runat="server">
                 </asp:DropDownList>
                 (m)</td>
-            <td style="text-align: left; background-color: #000000; color: #FFFFFF; font-weight: bold;">
+        </tr>
+        <tr>
+            <td>
                 Type:</td>
-            <td style="text-align: left" id="cbxType2">
-                <asp:DropDownList ID="cbxType2" runat="server">
+            <td style="text-align: left">
+                <asp:DropDownList ID="cbxType1" runat="server">
                     <asp:ListItem>Lecture</asp:ListItem>
                     <asp:ListItem>Tutorial</asp:ListItem>
                     <asp:ListItem>Both</asp:ListItem>
-                </asp:DropDownList>
-            </td>
+                </asp:DropDownList></td>
+            <td>
+                Type:</td>
+            <td style="text-align: left">
+                <asp:DropDownList ID="DropDownList1" runat="server">
+                    <asp:ListItem>Lecture</asp:ListItem>
+                    <asp:ListItem>Tutorial</asp:ListItem>
+                    <asp:ListItem>Both</asp:ListItem>
+                </asp:DropDownList></td>
         </tr>
     </table>
 
@@ -163,7 +173,7 @@
  
     <table class="style23" style="clear: left; float: left; margin-top: 15px;">
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold;">
+            <td>
                 Upload File:</td>
             <td>
                 <asp:FileUpload ID="FileUpload" runat="server" />
@@ -173,16 +183,14 @@
         </tr>
         
     </table>
-
+    </div>
     <div id="button">
-    <br />
-  <div id="left">
-  &nbsp;
-  </div>
         <asp:Button ID="btnSubmit" runat="server" Text="Submit" />
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
     </div>
+  
 </form>
+  </div>
     <%
     'Dim groupname As String
     'groupname = Request.QueryString("txtGroupName")

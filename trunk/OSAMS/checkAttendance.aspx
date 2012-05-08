@@ -106,12 +106,18 @@
 </script>
 <div id="big_content">
 <div id="content">
-<div class="style18" id="caption"> MARK ATTENDANCE</div>
+<div id="content_header">
+     <div id="content_header_logo"><img alt="logo" src="images/icons/page_accept.png" width="50" height="50" /></div>
+     <div id="caption">MARK ATTENDANCE</div>
+</div>
 <div id="table">
+<div id="error_message">
+<asp:Label ID="lblMes" runat="server" Text="" ForeColor="Red"></asp:Label>
+</div>
 <div id="selection">
 
 
-    <asp:Label ID="lblMes" runat="server" Text="" ForeColor="Red"></asp:Label>
+    
 <table width="700" border="0" align="left" cellpadding="2" cellspacing="0">
   <tr>
     <td align="left" valign="middle">Semester:&nbsp;

@@ -14,7 +14,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="big_content">
 <div id="content">
-<div class="style18" id="caption">STUDENT MANAGEMENT</div>
+<div id="content_header">
+     <div id="content_header_logo"><img alt="logo" src="images/icons/id_card.png" width="50" height="50" /></div>
+     <div id="caption">STUDENT MANAGEMENT</div>
+</div>
 <div id="table">
 <div id="selection">
 <table border="0" align="left" cellpadding="2" cellspacing="0" style="width: 488px">
@@ -228,9 +231,13 @@
             <asp:Button ID="btnRemove" runat="server" Text="Remove Student" Width="114px" />
         </div> 
     </div>
-    <div id="textbox">
-        
-        <table class="style21">
+
+
+    <div id="student_search">
+    <div id="table_middle_caption">
+    &nbsp;<img alt="logo" src="images/logo_red.png" width="16" height="16" />Student Search
+    </div>    
+        <table class="style21" style="padding: 2px">
             <tr>
                 <td class="style22">
                     <asp:Label ID="lblAssignStudentID" runat="server" Text="Student ID"></asp:Label>
@@ -275,5 +282,5 @@
     </div>
 </div>
 </div>
-    </div>
+
 </asp:Content>

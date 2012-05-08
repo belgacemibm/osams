@@ -20,12 +20,15 @@
             margin-top: 0in;
             margin-bottom: .0001pt;
         }
-    </style>
+        </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="big_content">
 <div id="content">
-<div class="style18" id="caption">FAQs</div>
+<div id="content_header">
+     <div id="content_header_logo"><img alt="logo" src="images/icons/help.png" width="50" height="50" /></div>
+     <div id="caption">FAQs</div>
+</div>
 <div id="table" style="text-align: left">
     <p class="style21">
         <strong style="color: #FF3300">Q:</strong> What does OSAMS stand for?</p>
@@ -40,6 +43,13 @@
         Lecturer, and Student.</p>
     <p class="style21">
         <o:p>&nbsp;</o:p></p>
+    <p class="style21">
+        <strong style="color: #FF0000">Q:</strong> What can I do in OSAMS?</p>
+    <p class="style21">
+        <strong>A:</strong> Depending on your role, you can manage administrative records (courses, 
+        lecturers, etc), manage attendance and view reports.</p>
+    <p class="style21">
+        &nbsp;</p>
     <p class="style21">
         <strong style="color: #FF0000">Q:</strong> What is the cost to use OSAMS?</p>
     <p class="style21">

@@ -15,7 +15,10 @@
     </style>
     <div id="big_content">
 <div id="content">
-<div class="style18" id="caption">VIEW ATTENDANCE</div>
+<div id="content_header">
+     <div id="content_header_logo"><img alt="logo" src="images/icons/page_accept.png" width="50" height="50" /></div>
+     <div id="caption">ATTENDANCE MANAGEMENT</div>
+</div>
 <div id="table">
 <div id="selection">
     <asp:Label ID="lblError" runat="server" Text="" ForeColor="Red"></asp:Label>

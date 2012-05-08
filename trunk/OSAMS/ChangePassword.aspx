@@ -4,26 +4,31 @@
     <style type="text/css">
         .style21
         {
-            width: 800px;
+            width: 650px;
             float: left;
         }
-        .style22
-        {
-            width: 600px;
-        }
+   
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="big_content">
 <div id="content">
-<div class="style18" id="caption">CHANGE PASSWORD</div>
+
 <div id="table" style="text-align: left">
-
+<div id="table_left">
+    <div id="table_left_logo"><img alt="logo" src="images/icons/lock.png" width="80" height="80" /></div>
+    <div id="table_left_caption">PASSWORD<br />MANAGEMENT</div>
+</div>
     
-
+<div id="table_middle">
+<div id="table_middle_caption">
+    &nbsp;<img alt="logo" src="images/lock.png" width="14" height="14" />&nbsp;Change Password
+</div>
+<div id="table_middle_note">Changing your password by follwing the below controls, and input your infomation correctly by following the rule of the system validation.</div>
+<div id="table_middle_content">   
     <table class="style21">
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold">
+            <td>
 
     
 
@@ -35,7 +40,7 @@
             </td>
         </tr>
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold">
+            <td>
     <asp:Label ID="lblOldPassword" runat="server" Text="Old Password:"></asp:Label>
             </td>
             <td class="style22">
@@ -49,7 +54,7 @@
             </td>
         </tr>
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold">
+            <td>
     <asp:Label ID="lblNewPassword" runat="server" Text="New Password:"></asp:Label>
             </td>
             <td class="style22">
@@ -61,7 +66,7 @@
             </td>
         </tr>
         <tr>
-            <td style="background-color: #000000; color: #FFFFFF; font-weight: bold">
+            <td>
     <asp:Label ID="lblNewPasswordConfirm" runat="server" 
         Text="New Password (Confirm):"></asp:Label>
             </td>
@@ -86,17 +91,8 @@
             </td>
         </tr>
     </table>
-    <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <br />
-    &nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;
-    <br />
-
+    </div>
+    </div>
     
 
 </div>
