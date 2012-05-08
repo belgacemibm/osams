@@ -110,6 +110,8 @@ Public Class SemesterAttendance
                 context.Response.Flush()
                 context.Response.End()
                 'buildtable(groupinfo(0))
+            Else
+                buildtable(ddlGroup.SelectedValue.ToString)
             End If
         End If
         'If Page.IsPostBack Then
