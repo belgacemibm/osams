@@ -409,21 +409,21 @@ Public Class AddGroup
         '------------------------------------------------------------
         Dim val As Boolean
         val = True
-        Dim mes As String
-        mes = "Error: Please change the following thing: <br />"
+        Dim mes As String = String.Empty
+
         If txtGroupName.Text = "" Then
             val = False
-            mes = mes + "Enter the group name. <br />"
+            mes = "Error: Enter the group name. <br />"
         End If
         If (cbxStartHour1.SelectedValue * 60 + cbxStartMinute1.SelectedValue >= cbxEndHour1.SelectedValue * 60 + cbxEndMinute1.SelectedValue) Or ((cbxStartHour2.SelectedValue * 60 + cbxStartMinute2.SelectedValue >= cbxEndHour2.SelectedValue * 60 + cbxEndMinute2.SelectedValue) And cbxDay2.SelectedValue <> 0) Then
             val = False
-            mes = mes + "The start time must be before the end time. <br />"
+            mes = "Error: The start time must be before the end time. <br />"
 
         End If
 
         If cbxDay2.SelectedValue - cbxDay1.SelectedValue <= 0 And cbxDay2.SelectedValue <> 0 Then
             val = False
-            mes = mes + "The day 2 must be after day 1 <br />"
+            mes = "Error: The day 2 must be after day 1 <br />"
         End If
 
         If val = False Then

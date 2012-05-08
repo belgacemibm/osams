@@ -47,6 +47,8 @@
                 Group Name:</td>
             <td style="text-align: left">
                 <asp:TextBox ID="txtGroupName" runat="server" Width="200px"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                    ControlToValidate="txtGroupName" ErrorMessage="*"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
@@ -161,7 +163,7 @@
             <td>
                 Type:</td>
             <td style="text-align: left">
-                <asp:DropDownList ID="DropDownList1" runat="server">
+                <asp:DropDownList ID="cbxType2" runat="server">
                     <asp:ListItem>Lecture</asp:ListItem>
                     <asp:ListItem>Tutorial</asp:ListItem>
                     <asp:ListItem>Both</asp:ListItem>
@@ -185,8 +187,8 @@
     </table>
     </div>
     <div id="button">
-        <asp:Button ID="btnSubmit" runat="server" Text="Submit" />
-        <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+        <asp:Button ID="btnSubmit" runat="server" Text="Submit" CausesValidation ="true" />
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" CausesValidation ="false" />
     </div>
   
 </form>
