@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Template.Master" CodeBehind="SemesterAttendance.aspx.vb" Inherits="OSAMS.SemesterAttendance" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Template.Master" CodeBehind="SemesterAttendance.aspx.vb" Inherits="OSAMS.SemesterAttendance" EnableSessionState="True" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
