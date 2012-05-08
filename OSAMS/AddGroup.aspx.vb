@@ -319,7 +319,7 @@ Public Class AddGroup
 
                     schdulesql = schdulesql + "insert into schedule values ('" + lecDate.ToString("yyyyMMdd") + "', 1, " + gID + ") "
 
-                    If cbxDay2.SelectedItem.ToString <> "none" Then
+                    If cbxDay2.SelectedValue > 0 Then
 
                         tutDate = DateAdd("d", cbxDay2.SelectedValue - 1 + i * 7, semesterStartDate)
                         schdulesql = schdulesql + "insert into schedule values ('" + tutDate.ToString("yyyyMMdd") + "', 1, " + gID + ") "
