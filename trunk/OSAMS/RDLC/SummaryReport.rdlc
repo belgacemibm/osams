@@ -69,31 +69,31 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.19679in</Width>
+              <Width>1.15234in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.19679in</Width>
+              <Width>1.15234in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.19679in</Width>
+              <Width>1.15234in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.8257in</Width>
+              <Width>0.78125in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.19679in</Width>
+              <Width>1.15234in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.19679in</Width>
+              <Width>1.15234in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.19679in</Width>
+              <Width>1.15234in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.19679in</Width>
+              <Width>1.15234in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.19679in</Width>
+              <Width>1.15234in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -775,7 +775,7 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Height>0.5in</Height>
-        <Width>10.40002in</Width>
+        <Width>10in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1068,10 +1068,10 @@
           </Style>
         </ChartNoDataMessage>
         <DataSetName>DataSet1</DataSetName>
-        <Top>1.62167in</Top>
-        <Left>0.87167in</Left>
-        <Height>2.41667in</Height>
-        <Width>8.71875in</Width>
+        <Top>1.955in</Top>
+        <Left>0.49667in</Left>
+        <Height>2.86458in</Height>
+        <Width>9.0625in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -1083,10 +1083,10 @@
         </Style>
       </Chart>
     </ReportItems>
-    <Height>4.17375in</Height>
+    <Height>5in</Height>
     <Style />
   </Body>
-  <Width>10.40002in</Width>
+  <Width>10in</Width>
   <Page>
     <PageHeader>
       <Height>0.61459in</Height>
@@ -1140,7 +1140,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox4</rd:DefaultName>
           <Top>0.26042in</Top>
-          <Left>7.82502in</Left>
+          <Left>7.32502in</Left>
           <Height>0.28125in</Height>
           <Width>2.45833in</Width>
           <ZIndex>1</ZIndex>
@@ -1161,6 +1161,8 @@
         </Border>
       </Style>
     </PageHeader>
+    <PageHeight>8.5in</PageHeight>
+    <PageWidth>12in</PageWidth>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>
     <TopMargin>1in</TopMargin>
