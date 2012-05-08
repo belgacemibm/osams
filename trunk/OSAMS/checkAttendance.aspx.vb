@@ -45,10 +45,13 @@ Public Class checkAttendance
             Response.Redirect("Home.aspx")
         Else
             If Not Page.IsPostBack Then
+
                 Dim dtSem As DataTable
                 Dim sqlSem As String
                 Dim id As String = getUser()
                 Dim user_type As String = PB.getAccountType(id)
+                'fix the font size for the table
+                tbattendace.Font.Size = 9
                 'load the data into the dropdownlist
                 'sqlSem = "select semester_name from semester where active = 1 AND datediff(day, getdate(), [dbo].[semester].[end_date]) >= 0"
                 If user_type = "4" Then
@@ -1345,10 +1348,6 @@ Public Class checkAttendance
 
             Dim r As TableRow
             r = New TableRow
-
-
-
-
 
             Dim cbx As New CheckBox
             Dim numday As Integer
