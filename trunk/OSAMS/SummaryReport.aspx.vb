@@ -105,22 +105,6 @@ Public Class Report
         Return getCheckboxInGridview
     End Function
 
-    Private Function getCountCheckboxInGridview() As Integer
-        'Function to count the number of checkboxes is checked
-        getCountCheckboxInGridview = 0
-        Dim i As Integer
-        Dim Chk As New CheckBox
-        Dim D As GridViewRow
-        For i = 0 To grdvwReport.Rows.Count - 1
-            If Chk.Checked = True Then
-                getCountCheckboxInGridview = getCountCheckboxInGridview + 1
-            Else
-                getCountCheckboxInGridview = getCountCheckboxInGridview - 1
-            End If
-        Next
-                Return getCountCheckboxInGridview
-    End Function
-
     Private Function getSelectedGroupDetails() As String
         'Function to get selected group details
         getSelectedGroupDetails = ""
@@ -142,10 +126,6 @@ Public Class Report
             grdvwReport.Enabled = True 'Set GridView is visible
             btnViewReport.Visible = True 'Set "View Report" button is visible
             lblErrorMessage.Text = "Error: Please select at least one group!"
-        ElseIf getCountCheckboxInGridview() > 5 Then
-            grdvwReport.Enabled = True 'Set GridView is visible
-            btnViewReport.Visible = True 'Set "View Report" button is visible
-            lblErrorMessage.Text = "Error: Cannot select more than 5 groups!"
         Else
             Session("SelectedGroupDetails_SummaryReport") = Right(getSelectedGroupDetails(), getSelectedGroupDetails().Length - 1)
             Session("GroupID") = Right(getCheckboxInGridview(4), getCheckboxInGridview(4).Length - 1)
