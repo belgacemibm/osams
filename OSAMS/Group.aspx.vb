@@ -353,10 +353,153 @@ Public Class Group
             dt = PB.getData(strSelect)
             Dim list As New List(Of CDay)
 
+            If dt.Rows.Count > 0 Then
+
+                lblError.Text = ""
+                For Each dr As DataRow In dt.Rows
+
+
+                    'Select group, lecturer, group_day query
+                    Dim sqlGeneralStatement As String = "select TOP 1 [group].[group_id], [group].[group_name], [group].[number_of_student], [group].[course_id], [group].[semester_name], ([lecturer].[given_name] + ' ' + [lecturer].[middle_name] + ' ' + [lecturer].[family_name])  AS lecturer_name," & _
+        " day_of_week.[day] AS day1, CONVERT (varchar(15), group_day.start_time, 108) AS start_time_day1, CONVERT (varchar(15), group_day.end_time, 108) AS end_time_day1, group_day.type AS type_day1 " & _
+        " from group_day inner join day_of_week on  [group_day].day_id = [day_of_week].day_id inner join [group] on [group_day].group_id =[group].group_id" & _
+        " inner join [lecturer] on [group].[lecturer_id] = [lecturer].[lecturer_id]" & _
+        " where [group].[active] = 1 AND [group].semester_name = '" & ddlSemester.SelectedValue & "' AND [group].course_id = '" & ddlCourse.SelectedValue & "' AND [group].[group_id] = '" & dr.Item("group_id") & "'" & _
+        " ORDER BY [group_day].[group_day_id] ASC"
+
+
+
+                    Dim selectTutorialStatement As String = "select TOP 1 day_of_week.[day] AS day2, CONVERT (varchar(15), group_day.start_time, 108) AS start_time_day2, CONVERT (varchar(15), group_day.end_time, 108) AS end_time_day2, group_day.type AS type_day2" & _
+        " from group_day inner join day_of_week on  [group_day].day_id = [day_of_week].day_id inner join [group] on [group_day].group_id =[group].group_id" & _
+        " inner join [lecturer] on [group].[lecturer_id] = [lecturer].[lecturer_id]" & _
+        " where [group].[active] = 1 AND [group].semester_name = '" & ddlSemester.SelectedValue & "' AND [group].course_id = '" & ddlCourse.SelectedValue & "' AND [group].[group_id] = '" & dr.Item("group_id") & "'" & _
+        " ORDER BY [group_day].[group_day_id] DESC"
+
+
+                    'execute query
+                    Dim cmd As New SqlCommand(sqlGeneralStatement, connection)
+
+                    Dim cmd1 As New SqlCommand(selectTutorialStatement, connection)
+
+                    dr1 = cmd.ExecuteReader
+
+
+                    While dr1.Read()
+                        'reading from the datareader
+                        Dim day As New CDay
+                        day.GroupID = dr1(0).ToString()
+                        day.GroupName = dr1(1).ToString()
+                        day.NumberOfStudent = dr1(2).ToString
+                        day.CourseID = dr1(3).ToString
+                        day.SemesterName = dr1(4).ToString()
+                        day.LecturerName = dr1(5).ToString()
+                        day.Day_1 = dr1(6).ToString()
+                        day.StartTime_1 = dr1(7).ToString()
+                        day.EndTime_1 = dr1(8).ToString()
+                        day.Type_1 = dr1(9).ToString()
+
+                        list.Add(day)
+                        'displaying the data from the table
+
+                    End While
+
+
+                    'Close Sql Data Reader
+                    dr1.Close()
+
+
+                    'Add value to list
+                    If (list.Count > 0) Then
+
+                        dr2 = cmd1.ExecuteReader
+                        While dr2.Read()
+                            list(i).Day_2 = dr2(0).ToString()
+                            list(i).StartTime_2 = dr2(1).ToString()
+                            list(i).EndTime_2 = dr2(2).ToString()
+                            list(i).Type_2 = dr2(3).ToString()
+                            i += 1
+                        End While
+                        'Close Sql Data Reader
+                        dr2.Close()
+
+                    End If
+
+
+                Next
+                'Bind database to gridview
+                grdvwGroup.DataSource = list
+                grdvwGroup.DataBind()
+            Else
+                lblError.Text = "No group found"
+                'Bind database to gridview
+                grdvwGroup.DataSource = ""
+                grdvwGroup.DataBind()
+
+            End If
+        Catch ex As System.Data.SqlClient.SqlException
+            Dim msg As String = "Fetch Error:"
+            msg += ex.Message
+            Throw New Exception(msg)
+        Finally
+            'close connection
+
+            connection.Close()
+        End Try
+
+    End Sub
+
+    Public Sub bind()
+        '------------------------------------------------------------ 
+        ' Aim           : Bind group database
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : group id, group name, number of student, course id, semester name, lecturer full name
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            : 
+
+        '------------------------------------------------------------ 
+        ' Aim           : show group in gridview
+        '              
+        ' Edit/Create by: Nguyen Tran Dang Khoa
+        ' Date          : 17/04/2012
+        '     This function is created in reference of materials in RMIT VN BlackBoard
+
+        '------------------------------------------------------------ 
+        ' Incoming Parameters    : group id, group name, number of student, course id, semester name, lecturer full name
+        '                                 
+        ' Outgoing Parameters    :  
+        '                          
+        ' Return data            : 
+
+        'declare datatable
+
+
+        Dim dr1, dr2 As SqlDataReader
+
+        Dim i As Integer
+        i = 0
+
+        'get connection
+        Dim connection As New SqlConnection(PB.getConnectionString())
+        'sql
+        Dim strSelect As String = "Select distinct [group].[group_id] from group_day inner join day_of_week on  [group_day].day_id = [day_of_week].day_id inner join [group] on [group_day].group_id =[group].group_id inner join [lecturer] on [group].[lecturer_id] = [lecturer].[lecturer_id] where [group].[active] = 1 AND [group].semester_name = '" & ddlSemester.SelectedValue & "' AND [group].course_id = '" & ddlCourse.SelectedValue & "'"
+        Dim dt As DataTable
+        'open connection
+        connection.Open()
+        Try
+            dt = PB.getData(strSelect)
+            Dim list As New List(Of CDay)
+
 
             For Each dr As DataRow In dt.Rows
 
-               
+
                 'Select group, lecturer, group_day query
                 Dim sqlGeneralStatement As String = "select TOP 1 [group].[group_id], [group].[group_name], [group].[number_of_student], [group].[course_id], [group].[semester_name], ([lecturer].[given_name] + ' ' + [lecturer].[middle_name] + ' ' + [lecturer].[family_name])  AS lecturer_name," & _
     " day_of_week.[day] AS day1, CONVERT (varchar(15), group_day.start_time, 108) AS start_time_day1, CONVERT (varchar(15), group_day.end_time, 108) AS end_time_day1, group_day.type AS type_day1 " & _
@@ -405,7 +548,7 @@ Public Class Group
                 'Close Sql Data Reader
                 dr1.Close()
 
-               
+
                 'Add value to list
                 If (list.Count > 0) Then
                     lblError.Text = ""
@@ -430,6 +573,8 @@ Public Class Group
             Next
             grdvwGroup.DataSource = list
             grdvwGroup.DataBind()
+
+
         Catch ex As System.Data.SqlClient.SqlException
             Dim msg As String = "Fetch Error:"
             msg += ex.Message
@@ -439,110 +584,6 @@ Public Class Group
 
             connection.Close()
         End Try
-    End Sub
-
-    Public Sub bind()
-        '------------------------------------------------------------ 
-        ' Aim           : Bind group database
-        '              
-        ' Edit/Create by: Nguyen Tran Dang Khoa
-        ' Date          : 17/04/2012
-        '     This function is created in reference of materials in RMIT VN BlackBoard
-
-        '------------------------------------------------------------ 
-        ' Incoming Parameters    : group id, group name, number of student, course id, semester name, lecturer full name
-        '                                 
-        ' Outgoing Parameters    :  
-        '                          
-        ' Return data            : 
-
-        'declare datatable
-        Dim dr1, dr2 As SqlDataReader
-
-        'get connection
-        Dim connection As New SqlConnection(PB.getConnectionString())
-
-        Try
-            'open connection
-            connection.Open()
-            'select query
-            Dim sqlGeneralStatement As String = "select [group].[group_id], [group].[group_name], [group].[number_of_student], [group].[course_id], [group].[semester_name], ([lecturer].[given_name] + ' ' + [lecturer].[middle_name] + ' ' + [lecturer].[family_name])  AS lecturer_name," & _
-" day_of_week.[day] AS day1, CONVERT (varchar(15), group_day.start_time, 108) AS start_time1, CONVERT (varchar(15), group_day.end_time, 108) AS end_time1, group_day.type AS type1 " & _
-" from group_day inner join day_of_week on  [group_day].day_id = [day_of_week].day_id inner join [group] on [group_day].group_id =[group].group_id" & _
-" inner join [lecturer] on [group].[lecturer_id] = [lecturer].[lecturer_id]" & _
-" where [group].[active] = 1 AND [group].semester_name = '" & ddlSemester.SelectedValue & "' AND [group].course_id = '" & ddlCourse.SelectedValue & "' " & _
-" and ([group_day].type = 'lecture' or [group_day].type = 'both')"
-
-
-            Dim selectTutorialStatement As String = "select day_of_week.[day] AS day2, CONVERT (varchar(15), group_day.start_time, 108) AS start_time2, CONVERT (varchar(15), group_day.end_time, 108) AS end_time2, group_day.type AS type2" & _
-" from group_day inner join day_of_week on  [group_day].day_id = [day_of_week].day_id inner join [group] on [group_day].group_id =[group].group_id" & _
-" inner join [lecturer] on [group].[lecturer_id] = [lecturer].[lecturer_id]" & _
-" where [group].[active] = 1 AND [group].semester_name = '" & ddlSemester.SelectedValue & "' AND [group].course_id = '" & ddlCourse.SelectedValue & "' " & _
-" and ([group_day].type = 'tutorial' or [group_day].type = 'both')"
-
-
-            Dim t1 As New CDay
-
-
-            'execute query
-            Dim cmd As New SqlCommand(sqlGeneralStatement, connection)
-            Dim cmd1 As New SqlCommand(selectTutorialStatement, connection)
-
-            Dim list As New List(Of CDay)
-
-            dr1 = cmd.ExecuteReader
-
-            While dr1.Read()
-                'reading from the datareader
-                Dim day As New CDay
-                day.GroupID = dr1(0).ToString()
-                day.GroupName = dr1(1).ToString()
-                day.NumberOfStudent = dr1(2).ToString
-                day.CourseID = dr1(3).ToString
-                day.SemesterName = dr1(4).ToString()
-                day.LecturerName = dr1(5).ToString()
-                day.Day_1 = dr1(6).ToString()
-                day.StartTime_1 = dr1(7).ToString()
-                day.EndTime_1 = dr1(8).ToString()
-                day.Type_1 = dr1(9).ToString()
-
-                list.Add(day)
-                'displaying the data from the table
-            End While
-            'Close Sql Data Reader
-            dr1.Close()
-
-            Dim i As Integer
-            i = 0
-            'Add database to list
-            If (list.Count > 0) Then
-                dr2 = cmd1.ExecuteReader
-                While dr2.Read()
-                    list(i).Day_2 = dr2(0).ToString()
-                    list(i).StartTime_2 = dr2(1).ToString()
-                    list(i).EndTime_2 = dr2(2).ToString()
-                    list(i).Type_2 = dr2(3).ToString()
-                    i += 1
-                End While
-                'Close Sql Data Reader
-                dr2.Close()
-
-            End If
-
-            'Bind database to gridview
-            grdvwGroup.DataSource = list
-            grdvwGroup.DataBind()
-
-
-        Catch ex As System.Data.SqlClient.SqlException
-            Dim msg As String = "Fetch Error:"
-            msg += ex.Message
-            Throw New Exception(msg)
-        Finally
-            'close connection
-            connection.Close()
-        End Try
-
 
     End Sub
 
