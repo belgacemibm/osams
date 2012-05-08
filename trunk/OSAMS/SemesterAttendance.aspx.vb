@@ -47,6 +47,7 @@ Public Class SemesterAttendance
                 sqlSem = "select distinct(semester_name) from [group] where active = 1 AND lecturer_id ='" + id + "'"
             ElseIf user_type = "5" Then
                 sqlSem = "select distinct(g.semester_name) from [group] g, student_group sg where g.group_id = sg.group_id AND sg.student_id = '" + id + "'"
+                ddlGroup.Enabled = False
             Else
                 sqlSem = "select semester_name from semester where active = 1"
 
@@ -160,22 +161,17 @@ Public Class SemesterAttendance
         '
         'call the build table function
 
-        If ddlSemester.SelectedItem.ToString <> "" Then
+        If ddlSemester.SelectedItem.ToString <> "select" Then
+            buildtable(ddlGroup.SelectedValue.ToString)
+            'If ddlGroup.Enabled = True Then
+            '    buildtable(ddlGroup.SelectedValue.ToString)
+            'Else
+            '    Dim group As String = getGroupId()
+            '    buildtable(group)
 
-            If ddlGroup.Visible = True Then
-                buildtable(ddlGroup.SelectedValue.ToString)
-            Else
-                Dim group As String = getGroupId()
-                buildtable(group)
 
-
-            End If
+            'End If
         End If
-       
-
-
-
-
 
 
 
@@ -222,7 +218,7 @@ Public Class SemesterAttendance
         'build the table if the attendance data is existed
 
         If dtAttendance.Rows.Count > 0 Then
-            btnExport.Visible = True
+            btnExport.Enabled = True
 
             Dim r1 As New TableRow
             Dim c As New TableCell
@@ -430,24 +426,24 @@ Public Class SemesterAttendance
         '
         '------------------------------------------------------------
         '
-        If ddlGroup.Visible = True Then
+        'If ddlGroup.Enabled = True Then
 
-            btnExport.Visible = False
-            ddlGroup.Items.Clear()
-            Dim dtGroup As DataTable
-            Dim sqlGroup As String
-            dtGroup = New DataTable()
-            'sqlGroup = "select group_name, group_id from [group] where active = 1 AND semester_name = '" + ddlSemester.SelectedValue + "' AND course_id = '" + ddlCourse.SelectedValue + "'"
-            'MsgBox(sqlGroup)
-            sqlGroup = getgroup()
+        btnExport.Enabled = False
+        ddlGroup.Items.Clear()
+        Dim dtGroup As DataTable
+        Dim sqlGroup As String
+        dtGroup = New DataTable()
+        'sqlGroup = "select group_name, group_id from [group] where active = 1 AND semester_name = '" + ddlSemester.SelectedValue + "' AND course_id = '" + ddlCourse.SelectedValue + "'"
+        'MsgBox(sqlGroup)
+        sqlGroup = getgroup()
 
-            dtGroup = PB.getData(sqlGroup)
-            For Each dr As DataRow In dtGroup.Rows
-                ddlGroup.Items.Add(New ListItem(dr.Item("group_name"), dr.Item("group_id")))
-            Next
+        dtGroup = PB.getData(sqlGroup)
+        For Each dr As DataRow In dtGroup.Rows
+            ddlGroup.Items.Add(New ListItem(dr.Item("group_name"), dr.Item("group_id")))
+        Next
 
-        End If
-        
+        ' End If
+
 
     End Sub
 
@@ -464,7 +460,7 @@ Public Class SemesterAttendance
         '------------------------------------------------------------
         '
         If ddlSemester.SelectedItem.ToString <> "" Then
-            btnExport.Visible = False
+            btnExport.Enabled = False
             ddlCourse.Items.Clear()
 
             Dim dtCourse As DataTable
@@ -481,8 +477,9 @@ Public Class SemesterAttendance
                 ddlCourse.Items.Add(New ListItem(dr1.Item("course_id") + ": " + dr1.Item("course_name"), dr1.Item("course_id")))
             Next
 
+            ddlCourse.SelectedIndex = 0
 
-            If ddlCourse.SelectedItem.ToString <> "" And ddlGroup.Visible = True Then
+            If ddlCourse.SelectedItem.ToString <> "" Then 'And ddlGroup.Enabled = True Then
                 ddlGroup.Items.Clear()
                 Dim dtGroup As DataTable
                 Dim sqlGroup As String
@@ -494,7 +491,7 @@ Public Class SemesterAttendance
                 For Each dr As DataRow In dtGroup.Rows
                     ddlGroup.Items.Add(New ListItem(dr.Item("group_name"), dr.Item("group_id")))
                 Next
-
+                ddlGroup.SelectedIndex = 0
             End If
 
         End If
@@ -506,6 +503,8 @@ Public Class SemesterAttendance
         Dim sql As String
         If type = "4" Then
             sql = "select group_name, group_id from [group] where active = 1 AND semester_name = '" + ddlSemester.SelectedValue + "' AND course_id = '" + ddlCourse.SelectedValue + "' AND lecturer_id = '" + id + "'"
+        ElseIf type = "5" Then
+            sql = "select g.group_name, g.group_id from [group] g, student_group sg where g.group_id = sg.group_id AND sg.active = 1 AND semester_name = '" + ddlSemester.SelectedValue + "' AND course_id = '" + ddlCourse.SelectedValue + "' AND sg.student_id = '" + id + "'"
         Else
             sql = "select group_name, group_id from [group] where active = 1 AND semester_name = '" + ddlSemester.SelectedValue + "' AND course_id = '" + ddlCourse.SelectedValue + "'"
 
@@ -529,7 +528,7 @@ Public Class SemesterAttendance
         '------------------------------------------------------------
         '
 
-        If ddlGroup.Visible = True Then
+        If ddlGroup.Enabled = True Then
             'export if not student
             If ddlGroup.SelectedValue <> Nothing Then
                 Response.Redirect("~/SemesterAttendance.aspx?field=" + ddlGroup.SelectedValue + "," + ddlSemester.SelectedValue + "," + ddlCourse.SelectedValue)
@@ -540,7 +539,7 @@ Public Class SemesterAttendance
             Response.Redirect("~/SemesterAttendance.aspx?field=" + group + "," + ddlSemester.SelectedValue + "," + ddlCourse.SelectedValue)
 
         End If
-        
+
     End Sub
 
 
@@ -572,148 +571,148 @@ Public Class SemesterAttendance
 
 
     End Function
-    
 
-        Private Function checkPer(ByVal group As String) As String
-            '------------------------------------------------------------
-            ' function  : checkPer
-            ' Author      : Pham Sy Nhat Nam                Date   : 17/4/12
-            ' Aim         : to get the type of user like lecturer or student to reurn the properly sql query
-            '------------------------------------------------------------
-            ' Incoming Parameters
-            ' 
-            '
-            '
-            '------------------------------------------------------------
-            '
+
+    Private Function checkPer(ByVal group As String) As String
+        '------------------------------------------------------------
+        ' function  : checkPer
+        ' Author      : Pham Sy Nhat Nam                Date   : 17/4/12
+        ' Aim         : to get the type of user like lecturer or student to reurn the properly sql query
+        '------------------------------------------------------------
+        ' Incoming Parameters
+        ' 
+        '
+        '
+        '------------------------------------------------------------
+        '
         Dim id As String = getUser()
 
         Dim user_type As String = PB.getAccountType(id)
 
-            Dim sql As String
-            sql = "select * from student, student_schedule, [group], schedule, student_group " & _
-           " where student.student_id = student_schedule.student_id " & _
-           " AND student_schedule.schedule_id = schedule.schedule_id " & _
-           " AND schedule.group_id = [group].group_id " & _
-           " AND student.student_id = student_group.student_id " & _
-           " AND [group].group_id = student_group.group_id " & _
-           " AND [group].group_id = " + group & _
-           " AND student_group.active = 1"
+        Dim sql As String
+        sql = "select * from student, student_schedule, [group], schedule, student_group " & _
+       " where student.student_id = student_schedule.student_id " & _
+       " AND student_schedule.schedule_id = schedule.schedule_id " & _
+       " AND schedule.group_id = [group].group_id " & _
+       " AND student.student_id = student_group.student_id " & _
+       " AND [group].group_id = student_group.group_id " & _
+       " AND [group].group_id = " + group & _
+       " AND student_group.active = 1"
 
 
-            'sql = "select * from student_group INNER JOIN student on student.student_id = student_group.student_id " & _
-            '    "INNER JOIN student_schedule on student.student_id = student_schedule.student_id " & _
-            '    "INNER JOIN schedule on schedule.schedule_id = student_schedule.schedule_id " & _
-            '    "INNER JOIN [group] on [group].group_id = schedule.group_id " & _
-            '    "WHERE student_group.active = 1 "
+        'sql = "select * from student_group INNER JOIN student on student.student_id = student_group.student_id " & _
+        '    "INNER JOIN student_schedule on student.student_id = student_schedule.student_id " & _
+        '    "INNER JOIN schedule on schedule.schedule_id = student_schedule.schedule_id " & _
+        '    "INNER JOIN [group] on [group].group_id = schedule.group_id " & _
+        '    "WHERE student_group.active = 1 "
 
-            'If accountType = "1" Or accountType = "2" Or accountType = "3" Then
-            '    sql = sql + "AND [student_group].group_id = " + group + " AND [group].group_id = " + group + " ORDER BY student.student_id"
-            'ElseIf accountType = "4" Then
+        'If accountType = "1" Or accountType = "2" Or accountType = "3" Then
+        '    sql = sql + "AND [student_group].group_id = " + group + " AND [group].group_id = " + group + " ORDER BY student.student_id"
+        'ElseIf accountType = "4" Then
 
-            '    sql = sql + "AND [student_group].group_id = " + group + " AND [group].group_id = " + group + " ORDER BY student.student_id"
+        '    sql = sql + "AND [student_group].group_id = " + group + " AND [group].group_id = " + group + " ORDER BY student.student_id"
 
-            'Else
-            If user_type = "5" Then
-                If ddlGroup.Visible = True Then
-                    ddlGroup.Visible = False
+        'Else
+        If user_type = "5" Then
+            'If ddlGroup.Enabled = True Then
+            '    ddlGroup.Enabled = False
 
-
-                End If
-                Dim array As ArrayList = getSemCou(group)
-
-                sql = sql + " AND student.student_id = '" + id + "'"
-
-            End If
-
-
-
-
-            sql = sql + " ORDER BY student.student_id, student_schedule.schedule_id"
-            'If accountType = "1" Or accountType = "2" Or accountType = "3" Then
-            '    sql = sql + "AND [student_group].group_id = " + group + " AND [group].group_id = " + group + " ORDER BY student.student_id"
-            'ElseIf accountType = "4" Then
-
-            '    sql = sql + "AND [student_group].group_id = " + group + " AND [group].group_id = " + group + " ORDER BY student.student_id"
-
-            'Else
-            '    If ddlGroup.Visible = True Then
-            '        ddlGroup.Visible = False
-
-
-            '    End If
-            '    Dim array As ArrayList = getSemCou(group)
-
-            '    sql = sql + " AND student.student_id = '" + id + "' AND [group].course_id = '" + array(1).ToString + "' AND [group].semester_name = '" + array(0).ToString + "'"
 
             'End If
+            'Dim array As ArrayList = getSemCou(group)
+
+            sql = sql + " AND student.student_id = '" + id + "'"
+
+        End If
 
 
 
-            Return sql
 
-        End Function
+        sql = sql + " ORDER BY student.student_id, student_schedule.schedule_id"
+        'If accountType = "1" Or accountType = "2" Or accountType = "3" Then
+        '    sql = sql + "AND [student_group].group_id = " + group + " AND [group].group_id = " + group + " ORDER BY student.student_id"
+        'ElseIf accountType = "4" Then
 
-        Private Function getSemCou(ByVal group As String) As ArrayList
-            '------------------------------------------------------------
-            ' function  : getSemCou
-            ' Author      : Pham Sy Nhat Nam                Date   : 17/4/12
-            ' Aim         : to get the semester name and course id from group id
-            '------------------------------------------------------------
-            ' Incoming Parameters
-            ' group: the group id of the group
-            '
-            '
-            '------------------------------------------------------------
-            Dim array As New ArrayList
-            Dim sql As String = "select semester_name, course_id from [group] where group_id = " + group
-            Dim dt As DataTable = PB.getData(sql)
-            array.Add(dt.Rows(0).Item("semester_name"))
-            array.Add(dt.Rows(0).Item("course_id"))
+        '    sql = sql + "AND [student_group].group_id = " + group + " AND [group].group_id = " + group + " ORDER BY student.student_id"
 
-            Return array
+        'Else
+        '    If ddlGroup.Enabled = True Then
+        '        ddlGroup.Enabled = False
 
-        End Function
 
-        Private Function checkDisplay() As String
-            '------------------------------------------------------------
-            ' function  : checkPer
-            ' Author      : Pham Sy Nhat Nam                Date   : 17/4/12
-            ' Aim         : to display the properly values of dropdownlists
-            '------------------------------------------------------------
-            ' Incoming Parameters
-            ' 
-            '
-            '
-            '------------------------------------------------------------
+        '    End If
+        '    Dim array As ArrayList = getSemCou(group)
+
+        '    sql = sql + " AND student.student_id = '" + id + "' AND [group].course_id = '" + array(1).ToString + "' AND [group].semester_name = '" + array(0).ToString + "'"
+
+        'End If
+
+
+
+        Return sql
+
+    End Function
+
+    'Private Function getSemCou(ByVal group As String) As ArrayList
+    '    '------------------------------------------------------------
+    '    ' function  : getSemCou
+    '    ' Author      : Pham Sy Nhat Nam                Date   : 17/4/12
+    '    ' Aim         : to get the semester name and course id from group id
+    '    '------------------------------------------------------------
+    '    ' Incoming Parameters
+    '    ' group: the group id of the group
+    '    '
+    '    '
+    '    '------------------------------------------------------------
+    '    Dim array As New ArrayList
+    '    Dim sql As String = "select semester_name, course_id from [group] where group_id = " + group
+    '    Dim dt As DataTable = PB.getData(sql)
+    '    array.Add(dt.Rows(0).Item("semester_name"))
+    '    array.Add(dt.Rows(0).Item("course_id"))
+
+    '    Return array
+
+    'End Function
+
+    Private Function checkDisplay() As String
+        '------------------------------------------------------------
+        ' function  : checkPer
+        ' Author      : Pham Sy Nhat Nam                Date   : 17/4/12
+        ' Aim         : to display the properly values of dropdownlists
+        '------------------------------------------------------------
+        ' Incoming Parameters
+        ' 
+        '
+        '
+        '------------------------------------------------------------
 
         Dim id As String = getUser()
 
         Dim user_type As String = PB.getAccountType(id)
-            Dim sql As String
-            If user_type = "1" Or user_type = "2" Or user_type = "3" Then
-                sql = "select distinct([group].course_id), course.course_name from [group], course where [group].course_id = course.course_id AND [group].active = 1 AND [group].semester_name= '" + ddlSemester.SelectedValue + "'"
-            ElseIf user_type = "4" Then
+        Dim sql As String
+        If user_type = "1" Or user_type = "2" Or user_type = "3" Then
+            sql = "select distinct([group].course_id), course.course_name from [group], course where [group].course_id = course.course_id AND [group].active = 1 AND [group].semester_name= '" + ddlSemester.SelectedValue + "'"
+        ElseIf user_type = "4" Then
 
-                sql = "select distinct([group].course_id), course.course_name from [group], course where [group].course_id = course.course_id AND [group].active = 1 AND [group].semester_name= '" + ddlSemester.SelectedValue + "' AND [group].lecturer_id = '" + id + "'"
-            ElseIf user_type = "5" Then
+            sql = "select distinct([group].course_id), course.course_name from [group], course where [group].course_id = course.course_id AND [group].active = 1 AND [group].semester_name= '" + ddlSemester.SelectedValue + "' AND [group].lecturer_id = '" + id + "'"
+        ElseIf user_type = "5" Then
 
-                If ddlGroup.Visible = True Then
-                    ddlGroup.Visible = False
-
-
-                End If
-                'sql = sql + " AND student.student_id = '" + id + "'"
-                sql = "select distinct([group].course_id), course.course_name from [group], student_group, course where [group].course_id = course.course_id AND [group].group_id = student_group.group_id AND [group].active = 1 AND [group].semester_name= '" + ddlSemester.SelectedValue + "' AND student_group.student_id = '" + id + "'"
-            Else
-                sql = "select distinct([group].course_id), course.course_name from [group], course where [group].course_id = course.course_id AND [group].active = 1 AND [group].semester_name= '" + ddlSemester.SelectedValue + "'"
+            'If ddlGroup.Enabled = True Then
+            '    ddlGroup.Enabled = False
 
 
-            End If
+            'End If
+            'sql = sql + " AND student.student_id = '" + id + "'"
+            sql = "select distinct([group].course_id), course.course_name from [group], student_group, course where [group].course_id = course.course_id AND [group].group_id = student_group.group_id AND [group].active = 1 AND [group].semester_name= '" + ddlSemester.SelectedValue + "' AND student_group.student_id = '" + id + "'"
+        Else
+            sql = "select distinct([group].course_id), course.course_name from [group], course where [group].course_id = course.course_id AND [group].active = 1 AND [group].semester_name= '" + ddlSemester.SelectedValue + "'"
 
-            Return sql
 
-        End Function
+        End If
+
+        Return sql
+
+    End Function
         Private Function getGroupId() As String
             Dim groupid As String
             Dim sql As String
@@ -725,6 +724,7 @@ Public Class SemesterAttendance
             Return groupid
 
         End Function
+
 
 
 End Class
