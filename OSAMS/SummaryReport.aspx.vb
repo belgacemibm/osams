@@ -29,6 +29,8 @@ Public Class Report
                 Response.Redirect("Home.aspx")
             Else
                 grdvwReport.Enabled = False 'Set GridView is invisible
+                tbxFromDate.Attributes.Add("readonly", "readonly") 'Set "From Date" textbox is readonly
+                tbxToDate.Attributes.Add("readonly", "readonly") 'Set "To Date" textbox is readonly
                 btnViewReport.Visible = False 'Set "View Report" button is invisible
             End If
         Else
@@ -36,6 +38,8 @@ Public Class Report
                 Response.Redirect("Home.aspx")
             Else
                 grdvwReport.Enabled = False 'Set GridView is invisible
+                tbxFromDate.Attributes.Add("readonly", "readonly") 'Set "From Date" textbox is readonly
+                tbxToDate.Attributes.Add("readonly", "readonly") 'Set "To Date" textbox is readonly
                 btnViewReport.Visible = False 'Set "View Report" button is invisible
             End If
         End If
