@@ -41,6 +41,15 @@ Partial Public Class AddGroup
     Protected WithEvents txtGroupName As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''RequiredFieldValidator1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''cbxSemester control.
     '''</summary>
     '''<remarks>
@@ -167,13 +176,13 @@ Partial Public Class AddGroup
     Protected WithEvents cbxType1 As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''DropDownList1 control.
+    '''cbxType2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents DropDownList1 As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents cbxType2 As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''FileUpload control.
