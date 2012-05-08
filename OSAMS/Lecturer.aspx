@@ -9,9 +9,9 @@
     <div id="caption">LECTURER MANAGEMENT</div>
 </div>
 <div id="table">
-
-    <div id="button">
-        
+    <div id="error_message"><asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label></div>
+    
+        <div id="grid_view">
          <asp:gridview autogeneratecolumns="False" runat="server" id="grdvwLecturer" 
             AutoGenerateEditButton="True"  CellPadding="3" EnableModelValidation="True" 
             ForeColor="Black" GridLines="Vertical" BackColor="White" 
@@ -85,20 +85,20 @@
             <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
             <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
         </asp:gridview>
-           
-    </div>
-    <div id="left">
+        </div>
+    <div id="button">       
+    
         <asp:Button ID="btnAddNewLecturer" runat="server" Text="Add New Lecturer" />
-        </div> 
-    
+   
+    </div>
 
-    <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
     
-
+    
+    <div id="find" style="float: left; clear: left;">
     <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
     <asp:Button ID="btnFind" runat="server" Text="Find" />
     <asp:Button ID="btnClear" runat="server" Text="Clear" />
-    
+    </div>
 
 </div>
 </div>

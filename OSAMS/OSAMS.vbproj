@@ -145,6 +145,7 @@
     <Content Include="Group.aspx" />
     <Content Include="Help.aspx" />
     <Content Include="Home.aspx" />
+    <Content Include="images\about-us-main1.jpg" />
     <Content Include="images\add.png" />
     <Content Include="images\brush.png" />
     <Content Include="images\btn_back.png" />
@@ -240,10 +241,12 @@
     <Content Include="images\logo_red.png" />
     <Content Include="images\notification_error.png" />
     <Content Include="images\paper.jpg" />
+    <Content Include="images\photo_about-us.jpg" />
     <Content Include="images\play-button.png" />
     <Content Include="images\report.jpg" />
     <Content Include="images\textbg.png" />
     <Content Include="images\time.jpeg" />
+    <Content Include="images\website-under-construction.gif" />
     <Content Include="OSAMS.Publish.xml" />
     <Content Include="Profile.aspx" />
     <Content Include="images\drop-arrow.gif" />
