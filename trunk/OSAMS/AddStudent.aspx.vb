@@ -138,8 +138,9 @@ Public Class AddStudent
                 lblError.Text = "Error: The student ID has been existed"
 
         Else
-            lblError.Text = ""
+
             If cbAssign.Checked Then
+
                 If ddlSemester.SelectedValue = "Select" Or ddlProgram.SelectedValue = "Select" Or ddlGroup.SelectedValue = "" Then
                     lblMessage.Text = "Error: Please select semester, course and group"
                 Else
@@ -153,18 +154,20 @@ Public Class AddStudent
                         a = PB.runquery(sql)
 
                         If a = True Then
+                            addAttendance(txtStudentID.Text, ddlGroup.SelectedValue)
                             confirm(studentID)
+
                         End If
                     End If
                 End If
             Else
-
+                lblMessage.Text = ""
                 'execute query
                 Dim b As Boolean
                 b = PB.runquery(insertSql)
 
                 If b = True Then
-                    addAttendance(txtStudentID.Text, ddlGroup.SelectedValue)
+
                     confirm(studentID)
 
                 End If
@@ -301,7 +304,7 @@ Public Class AddStudent
         dt = PB.getData(sql)
         Dim insert As String = ""
         For Each dr As DataRow In dt.Rows
-            insert = insert + " insert into student_schedule values('absent', 1, " + dr.Item("schedule_id") + ", '" + sID + "')"
+            insert = insert + " insert into student_schedule values('absent', 1, " + dr.Item("schedule_id").ToString + ", '" + sID + "')"
 
         Next
 
