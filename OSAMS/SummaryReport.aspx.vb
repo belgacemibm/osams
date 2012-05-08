@@ -108,17 +108,17 @@ Public Class Report
     Private Function getCountCheckboxInGridview() As Integer
         'Function to count the number of checkboxes is checked
         getCountCheckboxInGridview = 0
+        Dim i As Integer
         Dim Chk As New CheckBox
         Dim D As GridViewRow
-        For Each D In grdvwReport.Rows
-            Chk = D.FindControl("CheckBox1")
+        For i = 0 To grdvwReport.Rows.Count - 1
             If Chk.Checked = True Then
                 getCountCheckboxInGridview = getCountCheckboxInGridview + 1
-            ElseIf Chk.Checked = False Then
+            Else
                 getCountCheckboxInGridview = getCountCheckboxInGridview - 1
             End If
         Next
-        Return getCountCheckboxInGridview
+                Return getCountCheckboxInGridview
     End Function
 
     Private Function getSelectedGroupDetails() As String
