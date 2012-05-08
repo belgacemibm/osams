@@ -40,8 +40,16 @@ Public Class checkAttendance
                 If Not Page.IsPostBack Then
                     Dim dtSem As DataTable
                     Dim sqlSem As String
+                    Dim id As String = getUser()
+                    Dim user_type As String = PB.getAccountType(id)
                     'load the data into the dropdownlist
                     sqlSem = "select semester_name from semester where active = 1 AND datediff(day, getdate(), [dbo].[semester].[end_date]) >= 0"
+                    If user_type = "4" Then
+                        sqlSem = "select distinct(g.semester_name) from [group] g, semester s where g.active = 1 AND g.lecturer_id ='" + id + "' AND datediff(day, getdate(), s.end_date) >= 0"
+                    Else
+                        sqlSem = sqlSem = "select semester_name from semester where active = 1 AND datediff(day, getdate(), [dbo].[semester].[end_date]) >= 0"
+
+                    End If
                     dtSem = PB.getData(sqlSem)
                     For Each dr As DataRow In dtSem.Rows
                         ddlSemester.Items.Add(New ListItem(dr.Item("semester_name"), dr.Item("semester_name")))
@@ -193,54 +201,7 @@ Public Class checkAttendance
 
 
 
-            '    'build the table
-            '    Dim groupinfo As New ArrayList
-            '    If group <> "" Then
-            '        Dim data As Array
 
-            '        data = Split(group, ",")
-            '        For Each item In data
-            '            groupinfo.Add(item)
-            '        Next
-            '        ddlSemester.SelectedValue = groupinfo(1)
-            '        ddlCourse.SelectedValue = groupinfo(2)
-            '        ddlGroup.SelectedValue = groupinfo(0)
-            '    End If
-            '    If group <> "" And value = "" And edit = "" Then
-
-            '        buildtable(groupinfo(0))
-
-            '    End If
-            '    'save the attendance data
-            '    If value <> "" And group <> "" And edit = "" Then
-
-            '        checkAttendance(groupinfo(0), value)
-
-            '        Response.Redirect("~/checkAttendance.aspx?field=" + group)
-            '        lblMes.ForeColor = Drawing.Color.Black
-            '        lblMes.Text = "Attendance updated"
-            '    End If
-            '    'edit attendance
-
-
-            '    Dim va As Array
-            '    Dim list As New ArrayList
-            '    If edit <> "" And group <> "" And value = "" Then
-            '        va = Split(edit, ",")
-
-            '        list = editTable(va(0).ToString, va(1).ToString)
-
-
-            '    End If
-
-            '    If edit <> "" And value <> "" And group <> "" Then
-            '        va = Split(edit, ",")
-            '        list = getabstu(va(1).ToString, va(0).ToString)
-            '        editAttendance(va(1).ToString, va(0).ToString, value, list)
-            '        Response.Redirect("~/checkAttendance.aspx?field=" + group)
-            '        lblMes.ForeColor = Drawing.Color.Black
-            '        lblMes.Text = "Attendance updated"
-            '    End If
 
 
     End Sub
@@ -902,10 +863,10 @@ Public Class checkAttendance
                 c.Controls.Add(New LiteralControl("<input id='Edit1' type='button' value='Edit' onclick='javascript:edit(" + Chr(34) + (numday).ToString + "," + group + Chr(34) + ");'/>"))
                 r.Cells.Add(c)
             ElseIf numday = 1 Then
-                c = New TableCell
-                c.Controls.Add(New LiteralControl("&nbsp;"))
+                'c = New TableCell
+                'c.Controls.Add(New LiteralControl("&nbsp;"))
 
-                r.Cells.Add(c)
+                'r.Cells.Add(c)
                 c = New TableCell
                 c.Controls.Add(New LiteralControl("<input id='Edit1' type='button' value='Edit' onclick='javascript:edit(" + Chr(34) + (numday).ToString + "," + group + Chr(34) + ");'/>"))
                 r.Cells.Add(c)
@@ -1079,7 +1040,7 @@ Public Class checkAttendance
     End Sub
     Private Function getgroup() As String
         Dim id As String = getUser()
-        Dim type As String = getUserType()
+        Dim type As String = PB.getAccountType(id)
 
         Dim sql As String
         If type = "4" Then
@@ -1108,79 +1069,21 @@ Public Class checkAttendance
         '------------------------------------------------------------
         '
 
-        Dim id As String = ""
-
-        If Request.Cookies("ID") Is Nothing Then
+       Dim id1 As String = ""
 
 
-            If Session("ID") Is Nothing Then
-
-            Else
-                id = Session("ID")
-
-            End If
-
-
+        If (Session("Rememberme") = "false") Then
+            id1 = HttpContext.Current.Session("ID")
         Else
-
-            id = Request.Cookies("ID").Value
-
-
+            id1 = System.Web.HttpContext.Current.Request.Cookies("ID").Value
         End If
 
 
-        Return id
+        Return id1
 
 
     End Function
 
-    Private Function getUserType() As String
-        '------------------------------------------------------------
-        ' function  : getUserType
-        ' Author      : Pham Sy Nhat Nam                Date   : 17/4/12
-        ' Aim         : to get the type of user like lecturer or student
-        '------------------------------------------------------------
-        ' Incoming Parameters
-        ' 
-        '
-        '
-        '------------------------------------------------------------
-        '
-        Dim id As String
-        id = getUser()
-
-        Dim sql As String
-        Dim dt As DataTable
-        sql = "select account_type.account_type_id from account, account_type where account.account_type_id = account_type.account_type_id and account.user_name = '" + id + "'"
-        dt = PB.getData(sql)
-        Dim accountType As String = dt.Rows(0).Item("account_type_id")
-
-        Return accountType
-
-    End Function
-
-
-
-    'Private Function getSemCou(ByVal group As String) As ArrayList
-    '    '------------------------------------------------------------
-    '    ' function  : getSemCou
-    '    ' Author      : Pham Sy Nhat Nam                Date   : 17/4/12
-    '    ' Aim         : to get the semester name and course id from group id
-    '    '------------------------------------------------------------
-    '    ' Incoming Parameters
-    '    ' group: the group id of the group
-    '    '
-    '    '
-    '    '------------------------------------------------------------
-    '    Dim array As New ArrayList
-    '    Dim sql As String = "select semester_name, course_id from [group] where group_id = " + group
-    '    Dim dt As DataTable = PB.getData(sql)
-    '    array.Add(dt.Rows(0).Item("semester_name"))
-    '    array.Add(dt.Rows(0).Item("course_id"))
-
-    '    Return array
-
-    'End Function
 
     Private Function checkDisplay() As String
         '------------------------------------------------------------
@@ -1196,7 +1099,7 @@ Public Class checkAttendance
 
         Dim id As String = getUser()
 
-        Dim accountType As String = getUserType()
+        Dim accountType As String = PB.getAccountType(id)
         Dim sql As String
         If accountType = "1" Or accountType = "2" Or accountType = "3" Then
             sql = "select distinct([group].course_id), course.course_name from [group], course where [group].course_id = course.course_id AND [group].active = 1 AND [group].semester_name= '" + ddlSemester.SelectedValue + "'"
