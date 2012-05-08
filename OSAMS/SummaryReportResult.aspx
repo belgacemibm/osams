@@ -25,8 +25,8 @@
     <br />
     <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" 
         Font-Size="8pt" InteractiveDeviceInfos="(Collection)" 
-        WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="1024px" 
-        Height="520px" style="margin-right: 0px">
+        WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="10.4in" 
+        Height="6.4in" style="margin-right: 0px">
         <LocalReport ReportPath="RDLC\SummaryReport.rdlc">
             <DataSources>
                 <rsweb:ReportDataSource DataSourceId="SqlDataSource" Name="DataSet1" />
