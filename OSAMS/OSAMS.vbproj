@@ -111,7 +111,6 @@
     <Content Include="AboutUs.aspx" />
     <Content Include="AddAdmin.aspx" />
     <Content Include="AddCourse.aspx" />
-    <Content Include="AddCourseTest.aspx" />
     <Content Include="AddGroup.aspx" />
     <Content Include="AddLecturer.aspx" />
     <Content Include="AddSemester.aspx" />
@@ -141,7 +140,6 @@
     <Content Include="EditProfile.aspx" />
     <Content Include="FAQs.aspx" />
     <Content Include="GenderReport.aspx" />
-    <Content Include="GenderReportResult.aspx" />
     <Content Include="Group.aspx" />
     <Content Include="Help.aspx" />
     <Content Include="Home.aspx" />
@@ -241,7 +239,6 @@
     <Content Include="images\logo_red.png" />
     <Content Include="images\notification_error.png" />
     <Content Include="images\paper.jpg" />
-    <Content Include="images\photo_about-us.jpg" />
     <Content Include="images\play-button.png" />
     <Content Include="images\report.jpg" />
     <Content Include="images\textbg.png" />
@@ -264,10 +261,8 @@
     <Content Include="Semester.aspx" />
     <Content Include="SemesterAttendance.aspx" />
     <Content Include="SessionReport.aspx" />
-    <Content Include="SessionReportResult.aspx" />
     <Content Include="Student.aspx" />
     <Content Include="SummaryReport.aspx" />
-    <Content Include="SummaryReportResult.aspx" />
     <Content Include="TermsConditions.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -299,13 +294,6 @@
     </Compile>
     <Compile Include="AddCourse.aspx.vb">
       <DependentUpon>AddCourse.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="AddCourseTest.aspx.designer.vb">
-      <DependentUpon>AddCourseTest.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AddCourseTest.aspx.vb">
-      <DependentUpon>AddCourseTest.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="AddGroup.aspx.designer.vb">
@@ -403,13 +391,6 @@
       <DependentUpon>GenderReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="GenderReportResult.aspx.designer.vb">
-      <DependentUpon>GenderReportResult.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GenderReportResult.aspx.vb">
-      <DependentUpon>GenderReportResult.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Group.aspx.designer.vb">
       <DependentUpon>Group.aspx</DependentUpon>
     </Compile>
@@ -496,13 +477,6 @@
       <DependentUpon>SessionReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SessionReportResult.aspx.designer.vb">
-      <DependentUpon>SessionReportResult.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SessionReportResult.aspx.vb">
-      <DependentUpon>SessionReportResult.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Student.aspx.designer.vb">
       <DependentUpon>Student.aspx</DependentUpon>
     </Compile>
@@ -515,13 +489,6 @@
     </Compile>
     <Compile Include="SummaryReport.aspx.vb">
       <DependentUpon>SummaryReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SummaryReportResult.aspx.designer.vb">
-      <DependentUpon>SummaryReportResult.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SummaryReportResult.aspx.vb">
-      <DependentUpon>SummaryReportResult.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Template.Master.designer.vb">
