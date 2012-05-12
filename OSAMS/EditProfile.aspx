@@ -26,7 +26,7 @@
     <div id="table_middle_caption">
     &nbsp;<img alt="logo" src="images/brush.png" width="14" height="14" />&nbsp;Edit Profile
     </div>
-    <div id="table_middle_note">Editing your data by follwing the below controls, input your infomation correctly by following the rule of system validation.</div>
+    <div id="table_middle_note">Editing your data in the fields below. For instructions, please check out <a href="Help.aspx">Help</a> page.</div>
     <div id="table_middle_content">
     <table class="style21">
         <tr>
