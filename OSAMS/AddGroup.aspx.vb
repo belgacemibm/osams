@@ -237,9 +237,9 @@ Public Class AddGroup
                         Stream = dr.Item("Stream")
                     End If
 
-                    family_name = dr.Item("Family Name")
-                    middle_name = dr.Item("Middle Name")
-                    given_name = dr.Item("Given Name")
+                    family_name = dr.Item("Family Name").ToString
+                    middle_name = dr.Item("Middle Name").ToString
+                    given_name = dr.Item("Given Name").ToString
                     gender = dr.Item("Gender")
 
                     exist = PB.checkEsixtedData(" select student_id from student where student_id = 's" + StudentID + "'")
@@ -282,7 +282,7 @@ Public Class AddGroup
                 Dim enrolsql As String
                 enrolsql = " "
                 'insert the group day data
-                If cbxDay2.SelectedValue <> "none" Then
+                If cbxDay2.SelectedValue > 0 Then
                     enrolsql = enrolsql + " insert into group_day values ('" + cbxStartHour1.SelectedValue + ":" + cbxStartMinute1.SelectedValue + ":00', '" + cbxEndHour1.SelectedValue + ":" + cbxEndMinute1.SelectedValue + ":00', '" + cbxType1.SelectedValue + "', 1, " + gID + ", " + cbxDay1.SelectedValue + ") "
 
                     enrolsql = enrolsql + " insert into group_day values ('" + cbxStartHour2.SelectedValue + ":" + cbxStartMinute2.SelectedValue + ":00', '" + cbxEndHour2.SelectedValue + ":" + cbxEndMinute2.SelectedValue + ":00', '" + cbxType2.SelectedValue + "', 1, " + gID + ", " + cbxDay2.SelectedValue + ") "
@@ -333,7 +333,7 @@ Public Class AddGroup
                 Dim id = getUser()
 
                 sendingLectureMail(gID, cbxSemester.SelectedValue, cbxCourse.SelectedValue, cbxLecturer.SelectedValue + "@rmit.edu.vn")
-                'sendingLectureMail(gID, cbxSemester.SelectedValue, cbxCourse.SelectedValue, "s3220658@rmit.edu.vn")
+
                 sendingMail(gID, cbxSemester.SelectedValue, cbxCourse.SelectedValue, id + "@rmit.edu.vn")
 
             Catch
