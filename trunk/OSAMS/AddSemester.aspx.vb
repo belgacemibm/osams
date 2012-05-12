@@ -52,6 +52,9 @@ Public Class AddSemester
                 ' fill year list
                 If Not Page.IsPostBack Then
                     fillYearList()
+                    lblError.ForeColor = System.Drawing.Color.Red
+                Else
+                    lblError.ForeColor = System.Drawing.Color.Red
                 End If
             Else
                 Response.Redirect("Home.aspx")
@@ -61,6 +64,9 @@ Public Class AddSemester
                 ' fill year list
                 If Not Page.IsPostBack Then
                     fillYearList()
+                    lblError.ForeColor = System.Drawing.Color.Red
+                Else
+                    lblError.ForeColor = System.Drawing.Color.Red
                 End If
             Else
                 Response.Redirect("Home.aspx")
@@ -134,7 +140,7 @@ Public Class AddSemester
                     nonqueryCommand.ExecuteNonQuery()
 
                     ' Display message to confirm
-                    lblError.ForeColor = System.Drawing.Color.Black
+                    lblError.ForeColor = System.Drawing.Color.Green
                     lblError.Text = "The semester " + strYearOrder + " has been created successfully"
 
                     ' ClearTextBoxes()
