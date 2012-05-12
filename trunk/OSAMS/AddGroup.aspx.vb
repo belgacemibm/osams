@@ -382,7 +382,7 @@ Public Class AddGroup
 
                 success = saveData(cbxLecturer.SelectedValue)
                 If success = True Then
-                    lblError.ForeColor = System.Drawing.Color.Black
+                    lblError.ForeColor = System.Drawing.Color.Green
 
                     lblError.Text = "The group has been added successfully."
 
