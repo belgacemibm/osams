@@ -106,7 +106,7 @@ Public Class AddAdmin
                             If a = True Then
                                 'Display confirm message
                 lblError.ForeColor = System.Drawing.Color.Green
-                                lblError.Text = "Admin " + staffID + " has been created"
+                lblError.Text = "Admin " + staffID + " has been added"
 
                                 'clear textbox
                                 txtStaffID.Text = ""
