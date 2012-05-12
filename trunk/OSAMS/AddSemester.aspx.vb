@@ -141,7 +141,7 @@ Public Class AddSemester
 
                     ' Display message to confirm
                     lblError.ForeColor = System.Drawing.Color.Green
-                    lblError.Text = "Semester " + strYearOrder + " has been added"
+                    lblError.Text = "The semester " + strYearOrder + " has been added"
 
                     ' ClearTextBoxes()
                     txtStartDate.Text = ""
