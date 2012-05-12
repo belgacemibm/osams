@@ -103,7 +103,7 @@ Public Class AddCourse
             nonqueryCommand = New SqlCommand("INSERT  INTO course (course_id, course_name, credit, level, active) VALUES ('" & courseID.ToUpper & "','" & courseName & "','" & courseCredit & "','" & courseLevel & "','" & "1" & "')", connection)
             nonqueryCommand.ExecuteNonQuery()
             'display confirm message 
-            lblError.ForeColor = System.Drawing.Color.Black
+            lblError.ForeColor = System.Drawing.Color.Green
             lblError.Text = " The course " + courseName + " has been added"
 
             'clear textbox
