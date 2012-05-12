@@ -2,7 +2,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div id="big_content">
 <div id="content">
-<div class="style18" id="caption">TERMS & CONDITIONS</div>
+<div id="content_header">
+            <div id="content_header_logo"><img alt="logo" src="images/icons/remove.png" width="50" height="50" /></div>
+            <div id="caption">TERMS & CONDITIONS</div>
+            </div>
 <div id="table" style="text-align: left">
    
 
@@ -133,7 +136,7 @@ mso-ansi-language:EN-US;mso-fareast-language:EN-US;mso-bidi-language:AR-SA">If t
     </table>
 
 
-
+    <br />
 
 
     

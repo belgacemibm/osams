@@ -89,16 +89,16 @@
     <div id="button">       
     
         <asp:Button ID="btnAddNewLecturer" runat="server" Text="Add New Lecturer" />
-   
+    
+    <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
+    <asp:Button ID="btnFind" runat="server" Text="Find" />
+    <asp:Button ID="btnClear" runat="server" Text="Clear" />
+    
     </div>
 
     
     
-    <div id="find" style="float: left; clear: left;">
-    <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
-    <asp:Button ID="btnFind" runat="server" Text="Find" />
-    <asp:Button ID="btnClear" runat="server" Text="Clear" />
-    </div>
+   
 
 </div>
 </div>
