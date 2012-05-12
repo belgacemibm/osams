@@ -12,7 +12,7 @@
             <div id="caption">COURSE MANAGEMENT</div>
             </div>
             <div id="table">
-            <div id="error_message"><asp:Label ID="lblMessage" runat="server"></asp:Label></div>
+            <div id="error_message"><asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label></div>
             <div id="grid_view">
             <asp:gridview autogeneratecolumns="False" runat="server" id="grdvwCourse" 
             AutoGenerateEditButton="True"  CellPadding="3" EnableModelValidation="True" 
