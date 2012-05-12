@@ -20,7 +20,7 @@
     <div id="table_middle">
     <div id="table_middle_caption">
     &nbsp;<img alt="logo" src="images/add.png" width="14" height="14" />&nbsp;Add New Course</div>
-    <div id="table_middle_note">Adding your new data by follwing the below required textbox, input your infomation correctly by following the rule of the system.</div>
+    <div id="table_middle_note">Adding your data into the fields below. For instructions, please check out <a href="Help.aspx">Help</a> page.</div>
      <div id="error_message"><asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label></div>
      <div id="table_middle_content">
     <table class="style21" style="text-align: left; float: left; clear: left;">
