@@ -143,6 +143,8 @@
     <Content Include="Group.aspx" />
     <Content Include="Help.aspx" />
     <Content Include="Home.aspx" />
+    <Content Include="images\1336814977_br_down.png" />
+    <Content Include="images\1336814986_arrow_sans_down_32.png" />
     <Content Include="images\about-us-main1.jpg" />
     <Content Include="images\add.png" />
     <Content Include="images\brush.png" />
@@ -536,6 +538,7 @@
     <Content Include="fileupload\group2_test.xlsx" />
     <Content Include="fileupload\group3_sample.xlsx" />
     <Content Include="fileupload\group3_test.xlsx" />
+    <None Include="fileupload\OSAMS - User Manual %281.0%29.pdf" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

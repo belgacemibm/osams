@@ -9,7 +9,15 @@
             <div id="caption">HELP</div>
             </div>
 <div id="table" style="text-align: left">
-<img alt="logo" src="images/website-under-construction.gif" width="500" height="500"/>
+<div class="download">
+<div class="download_content">
+<a href="fileupload/OSAMS - User Manual (1.0).pdf">User Manual</a></div>
+</div>
+<br />
+<div class="download">
+<div class="download_content">
+<a href="fileupload/sample.xlsx">Group Excel Sample</a></div>
+</div>
 
 </div>
 </div>
