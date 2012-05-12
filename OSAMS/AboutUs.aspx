@@ -17,7 +17,7 @@
     <div id="big_content">
 <div id="content">
 <div id="content_header">
-     <div id="content_header_logo"><img alt="logo" src="images/icons/new_page.png" width="50" height="50" /></div>
+     <div id="content_header_logo"><img alt="logo" src="images/icons/home.png" width="50" height="50" /></div>
      <div id="caption">ABOUT US</div>
 </div>
 <div id="table" style="text-align: left">
