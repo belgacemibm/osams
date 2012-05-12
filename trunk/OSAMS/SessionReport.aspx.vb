@@ -32,7 +32,7 @@ Public Class SessionReport
         'Load the page
         If (Session("Rememberme") = "false") Then
             If PB.getAccountType(Session("ID")) = "1" Or PB.getAccountType(Session("ID")) = "2" Or PB.getAccountType(Session("ID")) = "3" Or PB.getAccountType(Session("ID")) = "4" Then
-                grdvwReport.Enabled = False 'Set GridView is invisible
+                grdvwReport.Visible = False 'Set GridView is invisible
                 tbxFromDate.Attributes.Add("readonly", "readonly") 'Set "From Date" textbox is readonly
                 tbxToDate.Attributes.Add("readonly", "readonly") 'Set "To Date" textbox is readonly
                 btnViewReport.Visible = False 'Set "View Report" button is invisible
@@ -43,7 +43,7 @@ Public Class SessionReport
             End If
         Else
             If PB.getAccountType(Request.Cookies("ID").Value) = "1" Or PB.getAccountType(Request.Cookies("ID").Value) = "2" Or PB.getAccountType(Request.Cookies("ID").Value) = "3" Or PB.getAccountType(Request.Cookies("ID").Value) = "4" Then
-                grdvwReport.Enabled = False 'Set GridView is invisible
+                grdvwReport.Visible = False 'Set GridView is invisible
                 tbxFromDate.Attributes.Add("readonly", "readonly") 'Set "From Date" textbox is readonly
                 tbxToDate.Attributes.Add("readonly", "readonly") 'Set "To Date" textbox is readonly
                 btnViewReport.Visible = False 'Set "View Report" button is invisible
@@ -58,7 +58,7 @@ Public Class SessionReport
     Protected Sub btnShow_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnShow.Click
         'Show button is clicked
 
-        lblErrorMessage.Text = ""
+        lblErrorMessage.Text = "" 'Reset error message
         cmdstrAdmin = "SELECT DISTINCT g.semester_name AS 'Semester Name', g.course_id AS 'Course ID', g.group_name AS 'Group Name', g.group_id AS 'Group ID' FROM dbo.schedule AS s INNER JOIN dbo.[group] AS g ON s.group_id = g.group_id INNER JOIN dbo.student_schedule ON s.schedule_id = dbo.student_schedule.schedule_id and (s.date between '" & tbxFromDate.Text & "' and '" & tbxToDate.Text & "')"
         If (Session("Rememberme") = "false") Then 'If username is remembered
             cmdstrLecturer = "SELECT DISTINCT g.semester_name AS 'Semester Name', g.course_id AS 'Course ID', g.group_name AS 'Group Name', g.group_id AS 'Group ID' FROM dbo.schedule AS s INNER JOIN dbo.[group] AS g ON s.group_id = g.group_id INNER JOIN dbo.student_schedule ON s.schedule_id = dbo.student_schedule.schedule_id and (s.date between '" & tbxFromDate.Text & "' and '" & tbxToDate.Text & "') and g.lecturer_id = '" & Session("ID") & "'"
@@ -92,13 +92,14 @@ Public Class SessionReport
             cmd = New SqlCommand(" " & cmdstr & " ", cnn)
             dr = cmd.ExecuteReader
             If dr.Read() Then
-                grdvwReport.Enabled = True 'Set GridView is visible
+                grdvwReport.Visible = True 'Set GridView is visible
                 btnViewReport.Visible = True 'Set "View Report" button is visible
                 btnSelectAll.Visible = True 'Set "Select All" button is visible
                 btnUnselectAll.Visible = True 'Set "Unselect All" button is visible
                 grdvwReport.DataSource = dr
                 grdvwReport.DataBind()
             Else
+                grdvwReport.Visible = False 'Set GridView is invisible
                 lblErrorMessage.Text = "Error: There is no group found between selected time period!"
             End If
         Catch ex As Exception
