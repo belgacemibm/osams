@@ -101,8 +101,10 @@
                 &nbsp;</td>
             <td style="text-align: right">
                 <div id="button_right">
-                    <asp:Button ID="btnSave" runat="server" Text="Save" CausesValidation ="true"  />
-                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" CausesValidation = "false"  />
+
+                    <asp:Button ID="btnSave" runat="server" Text="Save" CausesValidation ="true" />
+                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" CausesValidation ="false" />
+
                 </div></td>
             <td>
                 &nbsp;</td>
