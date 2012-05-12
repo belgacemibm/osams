@@ -99,7 +99,7 @@ Public Class GenderReport
                 grdvwReport.DataSource = dr
                 grdvwReport.DataBind()
             Else
-                lblErrorMessage.Text = "ERROR: There is no group found between selected time period!"
+                lblErrorMessage.Text = "Error: There is no group found between selected time period!"
             End If
         Catch ex As Exception
             Response.Write(ex)
