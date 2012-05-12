@@ -54,7 +54,7 @@ Public Class checkAttendance
                 tbattendace.Font.Size = 9
                 'load the data into the dropdownlist
                 'sqlSem = "select semester_name from semester where active = 1 AND datediff(day, getdate(), [dbo].[semester].[end_date]) >= 0"
-                If user_type = "4" Then
+                If user_type = "4" Or user_type = "3" Then
                     sqlSem = "select distinct(g.semester_name) from [group] g, semester s where g.active = 1 AND g.lecturer_id ='" + id + "' AND datediff(day, getdate(), s.end_date) >= 0"
                 Else
                     sqlSem = "select semester_name from semester where active = 1 AND datediff(day, getdate(), [dbo].[semester].[end_date]) >= 0"
@@ -1032,32 +1032,35 @@ Public Class checkAttendance
         '
         '------------------------------------------------------------
         '
-        ddlCourse.Items.Clear()
+        If ddlSemester.SelectedItem.ToString <> "" Then
+            ddlCourse.Items.Clear()
 
-        Dim dtCourse As DataTable
+            Dim dtCourse As DataTable
 
-        Dim sqlCourse As String
-        dtCourse = New DataTable()
-        'sqlCourse = "select distinct(course.course_id) from course, [group] where [group].course_id = course.course_id AND course.active = 1 AND [group].semester_name= '" + ddlSemester.SelectedValue + "'"
-        sqlCourse = checkDisplay()
-        dtCourse = PB.getData(sqlCourse)
+            Dim sqlCourse As String
+            dtCourse = New DataTable()
+            'sqlCourse = "select distinct(course.course_id) from course, [group] where [group].course_id = course.course_id AND course.active = 1 AND [group].semester_name= '" + ddlSemester.SelectedValue + "'"
+            sqlCourse = checkDisplay()
+            dtCourse = PB.getData(sqlCourse)
 
-        For Each dr1 As DataRow In dtCourse.Rows
-            ddlCourse.Items.Add(New ListItem(dr1.Item("course_id") + ": " + dr1.Item("course_name"), dr1.Item("course_id")))
-        Next
-        If ddlCourse.SelectedItem.ToString <> "" Then
-            ddlGroup.Items.Clear()
-            Dim dtGroup As DataTable
-            Dim sqlGroup As String
-            dtGroup = New DataTable()
-            'sqlGroup = "select group_name, group_id from [group] where active = 1 AND semester_name = '" + ddlSemester.SelectedValue + "' AND course_id = '" + ddlCourse.SelectedValue + "'"
-            sqlGroup = getgroup()
-            dtGroup = PB.getData(sqlGroup)
-            For Each dr As DataRow In dtGroup.Rows
-                ddlGroup.Items.Add(New ListItem(dr.Item("group_name"), dr.Item("group_id")))
+            For Each dr1 As DataRow In dtCourse.Rows
+                ddlCourse.Items.Add(New ListItem(dr1.Item("course_id") + ": " + dr1.Item("course_name"), dr1.Item("course_id")))
             Next
+            If ddlCourse.SelectedItem.ToString <> "" Then
+                ddlGroup.Items.Clear()
+                Dim dtGroup As DataTable
+                Dim sqlGroup As String
+                dtGroup = New DataTable()
+                'sqlGroup = "select group_name, group_id from [group] where active = 1 AND semester_name = '" + ddlSemester.SelectedValue + "' AND course_id = '" + ddlCourse.SelectedValue + "'"
+                sqlGroup = getgroup()
+                dtGroup = PB.getData(sqlGroup)
+                For Each dr As DataRow In dtGroup.Rows
+                    ddlGroup.Items.Add(New ListItem(dr.Item("group_name"), dr.Item("group_id")))
+                Next
 
+            End If
         End If
+        
     End Sub
     Private Function getgroup() As String
 
