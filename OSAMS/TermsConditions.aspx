@@ -3,7 +3,7 @@
 <div id="big_content">
 <div id="content">
 <div id="content_header">
-            <div id="content_header_logo"><img alt="logo" src="images/icons/remove.png" width="50" height="50" /></div>
+            <div id="content_header_logo"><img alt="logo" src="images/icons/info.png" width="50" height="50" /></div>
             <div id="caption">TERMS & CONDITIONS</div>
             </div>
 <div id="table" style="text-align: left">
