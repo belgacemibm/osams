@@ -54,7 +54,7 @@
 <div id="bigfooter">
 <div class="style11" id="footer">
 <div id="footerleft">
-Copyright © 2012, OSAMS v1.2.0</div>
+Copyright © 2012, OSAMS v1.2.1</div>
 </div>
 </div>
     </form>

@@ -77,7 +77,7 @@
         </asp:ContentPlaceHolder>
 <div id="bigfooter">
 <div class="style11" id="footer">
-<div id="footerleft" style="font-size: 11px">Copyright © 2012, OSAMS v1.2.0</div>
+<div id="footerleft" style="font-size: 11px">Copyright © 2012, OSAMS v1.2.1</div>
 <div id="footerright"><span class="style14"><a href="Home.aspx">Home</a> | <a href="FAQs.aspx">FAQ</a> | <a href="ContactUs.aspx">Contact us</a> | <a href="AboutUs.aspx">About</a> | <a href="Help.aspx">Help</a> | <a href="TermsConditions.aspx">Terms & Conditions</a></span></div>
 </div>
 </div>
