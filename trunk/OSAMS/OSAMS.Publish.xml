@@ -3,30 +3,31 @@
   <publishProfile publishUrl="C:\Users\Dell\Desktop\Test" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
     <file relUrl="bin/office.dll" publishTime="05/08/2012 18:51:35" />
     <file relUrl="images/icons/edit.png" publishTime="05/08/2012 22:25:52" />
-    <file relUrl="FAQs.aspx" publishTime="05/08/2012 22:25:54" />
+    <file relUrl="FAQs.aspx" publishTime="05/12/2012 16:53:29" />
     <file relUrl="images/icons/info.png" publishTime="05/08/2012 22:25:52" />
-    <file relUrl="bin/OSAMS.xml" publishTime="05/09/2012 00:40:26" />
+    <file relUrl="bin/OSAMS.xml" publishTime="05/12/2012 17:41:33" />
     <file relUrl="images/icons/protection.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/logo_red.png" publishTime="05/08/2012 18:47:58" />
-    <file relUrl="EditProfile.aspx" publishTime="05/08/2012 22:25:54" />
+    <file relUrl="EditProfile.aspx" publishTime="05/12/2012 16:53:29" />
     <file relUrl="images/login.jpg" publishTime="05/08/2012 18:47:50" />
-    <file relUrl="AboutUs.aspx" publishTime="05/08/2012 23:20:17" />
+    <file relUrl="AboutUs.aspx" publishTime="05/12/2012 16:53:29" />
     <file relUrl="Home.aspx" publishTime="05/08/2012 18:48:00" />
-    <file relUrl="Web.config" publishTime="05/09/2012 00:22:08" />
+    <file relUrl="Web.config" publishTime="05/12/2012 17:44:15" />
     <file relUrl="SummaryReport.aspx" publishTime="05/08/2012 22:25:33" />
     <file relUrl="images/icons/shopping_cart.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="fileupload/sample.xlsx" publishTime="05/08/2012 18:48:04" />
     <file relUrl="bin/Microsoft.Office.Interop.Excel.xml" publishTime="05/08/2012 18:51:46" />
     <file relUrl="images/icons/dollar_currency_sign.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/icons/zoom_in.png" publishTime="05/08/2012 22:25:52" />
-    <file relUrl="images/about-us-main1.jpg" publishTime="05/08/2012 23:20:16" />
-    <file relUrl="images/icons/back.png" publishTime="05/08/2012 22:25:53" />
+    <file relUrl="SemesterAttendance.aspx" publishTime="05/08/2012 22:25:54" />
+    <file relUrl="images/about-us-main1.jpg" publishTime="05/12/2012 16:53:28" />
     <file relUrl="images/lock.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="images/icons/users.png" publishTime="05/08/2012 22:25:52" />
-    <file relUrl="AddStudent.aspx" publishTime="05/08/2012 22:25:53" />
+    <file relUrl="AddStudent.aspx" publishTime="05/12/2012 16:53:29" />
     <file relUrl="images/icons/email.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/icons/iphone.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/time.jpeg" publishTime="05/08/2012 18:47:50" />
+    <file relUrl="StudentMenu.sitemap" publishTime="05/08/2012 18:47:24" />
     <file relUrl="images/icons/new_page.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="Semester.aspx" publishTime="05/08/2012 22:25:33" />
     <file relUrl="bin/AjaxControlToolkit.dll" publishTime="05/08/2012 18:51:31" />
@@ -34,7 +35,9 @@
     <file relUrl="fileupload/group3_test.xlsx" publishTime="05/08/2012 18:48:04" />
     <file relUrl="App_Browsers/Chrome.browser" publishTime="05/08/2012 18:51:47" />
     <file relUrl="bin/Microsoft.Vbe.Interop.dll" publishTime="05/08/2012 18:51:46" />
-    <file relUrl="images/icons/delete.png" publishTime="05/08/2012 22:25:52" />
+    <file relUrl="images/icons/add_page.png" publishTime="05/08/2012 22:25:52" />
+    <file relUrl="images/icons/find.png" publishTime="05/08/2012 22:25:53" />
+    <file relUrl="images/1336814986_arrow_sans_down_32.png" publishTime="05/12/2012 17:40:53" />
     <file relUrl="images/icons/yen_currency_sign.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="images/icons/receive_mail.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="images/icons/download_page.png" publishTime="05/08/2012 22:25:53" />
@@ -44,18 +47,20 @@
     <file relUrl="images/brush.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/grey-checkmark-md.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="images/icons/help.png" publishTime="05/08/2012 22:25:53" />
-    <file relUrl="fileupload/Group 1.xlsx" publishTime="05/09/2012 00:16:17" />
+    <file relUrl="SessionReport.aspx" publishTime="05/08/2012 22:25:52" />
+    <file relUrl="bin/Microsoft.ReportViewer.WebForms.dll" publishTime="05/08/2012 18:49:11" />
+    <file relUrl="fileupload/Group 1.xlsx" publishTime="05/12/2012 17:00:59" />
     <file relUrl="images/icons/favorite.png" publishTime="05/08/2012 22:25:52" />
-    <file relUrl="fileupload/group1_test.xlsx" publishTime="05/08/2012 18:55:47" />
+    <file relUrl="fileupload/group1_test.xlsx" publishTime="05/12/2012 17:12:19" />
     <file relUrl="images/icons/chart.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/icons/refresh.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="images/paper.jpg" publishTime="05/08/2012 18:47:50" />
     <file relUrl="images/icons/star.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="images/btn_pause.png" publishTime="05/08/2012 18:47:58" />
-    <file relUrl="images/icons/up.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="images/logo1_s.ico" publishTime="05/08/2012 18:47:58" />
     <file relUrl="images/drop-arrow.gif" publishTime="05/08/2012 18:47:58" />
     <file relUrl="images/add.png" publishTime="05/08/2012 22:25:53" />
+    <file relUrl="images/icons/film.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="bin/Microsoft.ReportViewer.Common.dll" publishTime="05/08/2012 18:47:24" />
     <file relUrl="images/icons/warning.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="ChangePassword.aspx" publishTime="05/08/2012 22:25:54" />
@@ -63,36 +68,32 @@
     <file relUrl="images/icons/tools.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/Info-icon.png" publishTime="05/08/2012 18:47:58" />
     <file relUrl="images/icons/remove.png" publishTime="05/08/2012 22:25:52" />
-    <file relUrl="bin/OSAMS.pdb" publishTime="05/09/2012 00:40:26" />
-    <file relUrl="images/icons/cloud_commen.png" publishTime="05/08/2012 22:25:52" />
+    <file relUrl="Student.aspx" publishTime="05/09/2012 00:56:38" />
+    <file relUrl="bin/OSAMS.pdb" publishTime="05/12/2012 17:41:33" />
     <file relUrl="bin/Microsoft.Office.Interop.Excel.dll" publishTime="05/08/2012 18:48:23" />
     <file relUrl="bin/office.xml" publishTime="05/08/2012 18:48:27" />
-    <file relUrl="StudentMenu.sitemap" publishTime="05/08/2012 18:47:24" />
+    <file relUrl="fileupload/All Students.xlsx" publishTime="05/08/2012 18:48:04" />
     <file relUrl="Scripts/slideshow.js" publishTime="05/08/2012 18:42:23" />
-    <file relUrl="AddCourse.aspx" publishTime="05/08/2012 22:25:53" />
-    <file relUrl="images/icons/search_mail.png" publishTime="05/08/2012 22:25:52" />
+    <file relUrl="AddCourse.aspx" publishTime="05/12/2012 16:53:29" />
     <file relUrl="images/icons/home.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="images/icons/edit_page.png" publishTime="05/08/2012 22:25:53" />
-    <file relUrl="fileupload/All Students.xlsx" publishTime="05/08/2012 18:48:04" />
-    <file relUrl="AddCourseTest.aspx" publishTime="05/08/2012 18:47:24" />
+    <file relUrl="images/icons/cloud_commen.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/icons/remove_from_shopping_cart.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/icons/add.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="images/icons/put_in_shopping_cart.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="images/icons/cut.png" publishTime="05/08/2012 22:25:52" />
+    <file relUrl="css/style_body.css" publishTime="05/12/2012 17:40:53" />
     <file relUrl="images/icons/trash.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="checkAttendance.aspx" publishTime="05/08/2012 22:25:33" />
     <file relUrl="AdminMenu.sitemap" publishTime="05/08/2012 18:48:06" />
     <file relUrl="database/SQLQuery - For Report.sql" publishTime="05/08/2012 18:48:06" />
-    <file relUrl="css/style_body.css" publishTime="05/09/2012 00:57:09" />
+    <file relUrl="images/OSAMS_banner3.png" publishTime="05/08/2012 18:47:58" />
     <file relUrl="images/icons/text_page.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/icons/photo_camera.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="images/website-under-construction.gif" publishTime="05/08/2012 23:20:16" />
-    <file relUrl="TermsConditions.aspx" publishTime="05/08/2012 18:47:29" />
-    <file relUrl="images/icons/folder.png" publishTime="05/08/2012 22:25:52" />
+    <file relUrl="TermsConditions.aspx" publishTime="05/12/2012 16:53:28" />
     <file relUrl="images/icons/ipod.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="images/btn_back.png" publishTime="05/08/2012 18:47:50" />
-    <file relUrl="AddGroup.aspx" publishTime="05/08/2012 22:51:29" />
-    <file relUrl="images/photo_about-us.jpg" publishTime="05/08/2012 23:20:16" />
     <file relUrl="images/icons/process.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="Default.aspx" publishTime="05/08/2012 18:47:29" />
     <file relUrl="images/icons/full_page.png" publishTime="05/08/2012 22:25:52" />
@@ -101,14 +102,12 @@
     <file relUrl="images/textbg.png" publishTime="05/08/2012 18:47:50" />
     <file relUrl="images/icons/attachment.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/icons/globe.png" publishTime="05/08/2012 22:25:53" />
-    <file relUrl="Admin.aspx" publishTime="05/08/2012 22:25:54" />
+    <file relUrl="Admin.aspx" publishTime="05/12/2012 14:00:00" />
     <file relUrl="SummaryReportResult.aspx" publishTime="05/08/2012 20:26:49" />
-    <file relUrl="images/OSAMS_banner3.png" publishTime="05/08/2012 18:47:58" />
     <file relUrl="images/icons/mobile_phone.png" publishTime="05/08/2012 22:25:53" />
-    <file relUrl="fileupload/group2_sample.xlsx" publishTime="05/08/2012 18:48:04" />
+    <file relUrl="fileupload/group2_sample.xlsx" publishTime="05/12/2012 17:12:35" />
     <file relUrl="Scripts/jquery-1.4.1.js" publishTime="05/08/2012 18:47:29" />
     <file relUrl="images/icons/prize_winner.png" publishTime="05/08/2012 22:25:52" />
-    <file relUrl="RDLC/SessionReport.rdlc" publishTime="05/08/2012 20:26:49" />
     <file relUrl="bin/Microsoft.ReportViewer.DataVisualization.dll" publishTime="05/08/2012 18:47:24" />
     <file relUrl="images/icons/calendar.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="images/icons/add_to_shopping_cart.png" publishTime="05/08/2012 22:25:52" />
@@ -119,30 +118,31 @@
     <file relUrl="bin/Microsoft.ReportViewer.WebForms.xml" publishTime="05/08/2012 18:48:07" />
     <file relUrl="GenderReportResult.aspx" publishTime="05/08/2012 18:51:48" />
     <file relUrl="fileupload/group2_test.xlsx" publishTime="05/08/2012 18:48:04" />
-    <file relUrl="Help.aspx" publishTime="05/08/2012 23:20:17" />
-    <file relUrl="AddLecturer.aspx" publishTime="05/08/2012 22:25:54" />
+    <file relUrl="Help.aspx" publishTime="05/12/2012 17:40:53" />
+    <file relUrl="AddLecturer.aspx" publishTime="05/12/2012 16:53:29" />
     <file relUrl="images/icons/lock.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/icons/database.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/icons/puzzle.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="fileupload/group3_sample.xlsx" publishTime="05/08/2012 18:48:04" />
     <file relUrl="images/icons/next.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/data.jpg" publishTime="05/08/2012 18:47:58" />
-    <file relUrl="AddAdmin.aspx" publishTime="05/08/2012 22:25:54" />
+    <file relUrl="AddAdmin.aspx" publishTime="05/12/2012 16:53:29" />
     <file relUrl="images/icons/sterling_pound_currency_sign.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/icons/promotion.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/icons/euro_currency_sign.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="SuperAdminMenu.sitemap" publishTime="05/08/2012 18:48:06" />
     <file relUrl="Scripts/jquery-1.4.1-vsdoc.js" publishTime="05/08/2012 18:47:29" />
-    <file relUrl="AddSemester.aspx" publishTime="05/09/2012 00:02:59" />
-    <file relUrl="bin/OSAMS.dll" publishTime="05/09/2012 00:40:26" />
+    <file relUrl="AddSemester.aspx" publishTime="05/12/2012 16:53:29" />
+    <file relUrl="bin/OSAMS.dll" publishTime="05/12/2012 17:41:33" />
     <file relUrl="images/play-button.png" publishTime="05/08/2012 18:47:58" />
     <file relUrl="images/icons/zoom.png" publishTime="05/08/2012 22:25:52" />
+    <file relUrl="images/1336814977_br_down.png" publishTime="05/12/2012 17:40:53" />
     <file relUrl="LecturerMenu.sitemap" publishTime="05/08/2012 18:47:59" />
-    <file relUrl="Lecturer.aspx" publishTime="05/08/2012 23:20:16" />
+    <file relUrl="Lecturer.aspx" publishTime="05/12/2012 16:53:28" />
     <file relUrl="Profile.aspx" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/icons/user.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="images/icons/accept.png" publishTime="05/08/2012 22:25:53" />
-    <file relUrl="LoginForm.aspx" publishTime="05/08/2012 18:51:47" />
+    <file relUrl="LoginForm.aspx" publishTime="05/12/2012 16:53:29" />
     <file relUrl="fileupload/group1_sample.xlsx" publishTime="05/08/2012 18:48:04" />
     <file relUrl="images/icons/download.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/icons/delete_page.png" publishTime="05/08/2012 22:25:52" />
@@ -151,36 +151,36 @@
     <file relUrl="images/report.jpg" publishTime="05/08/2012 18:47:58" />
     <file relUrl="images/icons/television.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="GenderReport.aspx" publishTime="05/08/2012 22:25:54" />
-    <file relUrl="OSAMS.Publish.xml" publishTime="05/09/2012 00:45:21" />
+    <file relUrl="OSAMS.Publish.xml" publishTime="05/09/2012 00:57:47" />
     <file relUrl="images/icons/pin.png" publishTime="05/08/2012 22:25:53" />
-    <file relUrl="bin/Microsoft.ReportViewer.WebForms.dll" publishTime="05/08/2012 18:49:11" />
-    <file relUrl="images/icons/find.png" publishTime="05/08/2012 22:25:53" />
+    <file relUrl="AddGroup.aspx" publishTime="05/12/2012 16:53:29" />
+    <file relUrl="images/icons/search_mail.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/icons/rss.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/icons/calculator.png" publishTime="05/08/2012 22:25:52" />
-    <file relUrl="images/icons/add_page.png" publishTime="05/08/2012 22:25:52" />
+    <file relUrl="images/icons/delete.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/notification_error.png" publishTime="05/08/2012 18:47:50" />
     <file relUrl="images/icons/clock.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/icons/chart_up.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="Group.aspx" publishTime="05/08/2012 22:25:54" />
     <file relUrl="css/slideshow.css" publishTime="05/08/2012 18:47:59" />
-    <file relUrl="SemesterAttendance.aspx" publishTime="05/08/2012 22:25:54" />
+    <file relUrl="images/icons/back.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="images/icons/zoom_out.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="images/icons/chart_down.png" publishTime="05/08/2012 22:25:53" />
-    <file relUrl="Course.aspx" publishTime="05/08/2012 22:25:33" />
+    <file relUrl="Course.aspx" publishTime="05/12/2012 16:53:28" />
     <file relUrl="database/SQL-script.sql" publishTime="05/08/2012 18:48:06" />
     <file relUrl="images/icons/unlock.png" publishTime="05/08/2012 22:25:52" />
-    <file relUrl="images/icons/equalizer.png" publishTime="05/08/2012 22:25:52" />
+    <file relUrl="images/icons/folder.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="images/btn_next.png" publishTime="05/08/2012 18:47:58" />
     <file relUrl="RDLC/GenderReport.rdlc" publishTime="05/08/2012 20:26:49" />
     <file relUrl="images/icons/send_mail.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="ContactUs.aspx" publishTime="05/08/2012 22:25:54" />
-    <file relUrl="Template.Master" publishTime="05/08/2012 23:20:17" />
-    <file relUrl="SessionReport.aspx" publishTime="05/08/2012 22:25:52" />
+    <file relUrl="Template.Master" publishTime="05/12/2012 16:53:29" />
+    <file relUrl="images/icons/up.png" publishTime="05/08/2012 22:25:53" />
     <file relUrl="fileupload/Group 2.xlsx" publishTime="05/09/2012 00:19:13" />
-    <file relUrl="Student.aspx" publishTime="05/09/2012 00:56:38" />
+    <file relUrl="images/icons/equalizer.png" publishTime="05/08/2012 22:25:52" />
     <file relUrl="SessionReportResult.aspx" publishTime="05/08/2012 18:48:06" />
     <file relUrl="css/style.css" publishTime="05/08/2012 18:47:59" />
-    <file relUrl="images/icons/film.png" publishTime="05/08/2012 22:25:52" />
+    <file relUrl="RDLC/SessionReport.rdlc" publishTime="05/08/2012 20:26:49" />
     <file relUrl="images/icons/id_card.png" publishTime="05/08/2012 22:25:52" />
   </publishProfile>
 </publishData>
