@@ -119,6 +119,9 @@
     <Content Include="bin\AjaxControlToolkit.dll" />
     <Content Include="bin\Microsoft.Office.Interop.Excel.dll" />
     <Content Include="bin\Microsoft.Office.Interop.Excel.xml" />
+    <Content Include="bin\Microsoft.ReportViewer.Common.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.DataVisualization.dll" />
+    <Content Include="bin\Microsoft.ReportViewer.ProcessingObjectModel.dll" />
     <Content Include="bin\Microsoft.ReportViewer.WebForms.dll" />
     <Content Include="bin\Microsoft.ReportViewer.WebForms.xml" />
     <Content Include="bin\Microsoft.Vbe.Interop.dll" />
@@ -140,6 +143,7 @@
     <Content Include="EditProfile.aspx" />
     <Content Include="FAQs.aspx" />
     <Content Include="GenderReport.aspx" />
+    <Content Include="GenderReportResult.aspx" />
     <Content Include="Group.aspx" />
     <Content Include="Help.aspx" />
     <Content Include="Home.aspx" />
@@ -263,8 +267,10 @@
     <Content Include="Semester.aspx" />
     <Content Include="SemesterAttendance.aspx" />
     <Content Include="SessionReport.aspx" />
+    <Content Include="SessionReportResult.aspx" />
     <Content Include="Student.aspx" />
     <Content Include="SummaryReport.aspx" />
+    <Content Include="SummaryReportResult.aspx" />
     <Content Include="TermsConditions.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -393,6 +399,13 @@
       <DependentUpon>GenderReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="GenderReportResult.aspx.designer.vb">
+      <DependentUpon>GenderReportResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GenderReportResult.aspx.vb">
+      <DependentUpon>GenderReportResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Group.aspx.designer.vb">
       <DependentUpon>Group.aspx</DependentUpon>
     </Compile>
@@ -479,6 +492,13 @@
       <DependentUpon>SessionReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="SessionReportResult.aspx.designer.vb">
+      <DependentUpon>SessionReportResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SessionReportResult.aspx.vb">
+      <DependentUpon>SessionReportResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Student.aspx.designer.vb">
       <DependentUpon>Student.aspx</DependentUpon>
     </Compile>
@@ -491,6 +511,13 @@
     </Compile>
     <Compile Include="SummaryReport.aspx.vb">
       <DependentUpon>SummaryReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SummaryReportResult.aspx.designer.vb">
+      <DependentUpon>SummaryReportResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SummaryReportResult.aspx.vb">
+      <DependentUpon>SummaryReportResult.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Template.Master.designer.vb">
@@ -538,7 +565,7 @@
     <Content Include="fileupload\group2_test.xlsx" />
     <Content Include="fileupload\group3_sample.xlsx" />
     <Content Include="fileupload\group3_test.xlsx" />
-    <None Include="fileupload\OSAMS - User Manual %281.0%29.pdf" />
+    <Content Include="fileupload\OSAMS - User Manual %281.0%29.pdf" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
