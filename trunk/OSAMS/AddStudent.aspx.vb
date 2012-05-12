@@ -250,7 +250,7 @@ Public Class AddStudent
     Public Sub confirm(ByVal str As String)
         'display confirm message
         lblError.ForeColor = System.Drawing.Color.Green
-        lblError.Text = "Student " + str + " has been created"
+        lblError.Text = "Student " + str + " has been added"
         'clear text box
         txtFamilyName.Text = ""
         txtGivenName.Text = ""
