@@ -26,7 +26,7 @@
     <div id="big_content">
 <div id="content">
 <div id="content_header">
-     <div id="content_header_logo"><img alt="logo" src="images/icons/help.png" width="50" height="50" /></div>
+     <div id="content_header_logo"><img alt="logo" src="images/icons/comment.png" width="50" height="50" /></div>
      <div id="caption">FAQs</div>
 </div>
 <div id="table" style="text-align: left">
@@ -88,7 +88,8 @@
     <p class="style21">
         <strong>A:</strong> Go to <i style="mso-bidi-font-style:normal">Report</i> menu group (not 
         available for students).</p>
-
+<br />
+<br />
 </div>
 </div>
 </div>
