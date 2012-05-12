@@ -126,7 +126,7 @@ Public Class AddLecturer
                 If a = True Then
                     'Display confirm message
                     lblError.ForeColor = System.Drawing.Color.Green
-                    lblError.Text = "Lecturer " + lecturerID + " has been created"
+                    lblError.Text = "Lecturer " + lecturerID + " has been added"
 
                     'Clear textbox
                     txtLecturerID.Text = ""
