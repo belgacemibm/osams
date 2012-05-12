@@ -423,3 +423,22 @@ C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Caps
 C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Capstone project)\Codes\Final v1.1.2\OSAMS\obj\Debug\OSAMS.dll
 C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Capstone project)\Codes\Final v1.1.2\OSAMS\obj\Debug\OSAMS.xml
 C:\Documents and Settings\Duong Nguyen\Desktop\Assignments-DN\ISYS2132 (BIS Capstone project)\Codes\Final v1.1.2\OSAMS\obj\Debug\OSAMS.pdb
+C:\Users\Dell\Desktop\OSAMS\OSAMS\bin\OSAMS.dll
+C:\Users\Dell\Desktop\OSAMS\OSAMS\bin\OSAMS.pdb
+C:\Users\Dell\Desktop\OSAMS\OSAMS\bin\OSAMS.xml
+C:\Users\Dell\Desktop\OSAMS\OSAMS\bin\Microsoft.ReportViewer.Common.dll
+C:\Users\Dell\Desktop\OSAMS\OSAMS\bin\Microsoft.ReportViewer.DataVisualization.dll
+C:\Users\Dell\Desktop\OSAMS\OSAMS\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll
+C:\Users\Dell\Desktop\OSAMS\OSAMS\bin\Microsoft.ReportViewer.WebForms.xml
+C:\Users\Dell\Desktop\OSAMS\OSAMS\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Dell\Desktop\OSAMS\OSAMS\obj\Debug\OSAMS.vbproj.ResolveComReference.cache
+C:\Users\Dell\Desktop\OSAMS\OSAMS\obj\Debug\OSAMS.Resources.resources
+C:\Users\Dell\Desktop\OSAMS\OSAMS\obj\Debug\GenerateResource-ResGen.read.1.tlog
+C:\Users\Dell\Desktop\OSAMS\OSAMS\obj\Debug\ResGen.read.1.tlog
+C:\Users\Dell\Desktop\OSAMS\OSAMS\obj\Debug\GenerateResource-ResGen.write.1.tlog
+C:\Users\Dell\Desktop\OSAMS\OSAMS\obj\Debug\ResGen.write.1.tlog
+C:\Users\Dell\Desktop\OSAMS\OSAMS\obj\Debug\RdlCompile.cache
+C:\Users\Dell\Desktop\OSAMS\OSAMS\obj\Debug\RdlCompile.compiled
+C:\Users\Dell\Desktop\OSAMS\OSAMS\obj\Debug\OSAMS.dll
+C:\Users\Dell\Desktop\OSAMS\OSAMS\obj\Debug\OSAMS.xml
+C:\Users\Dell\Desktop\OSAMS\OSAMS\obj\Debug\OSAMS.pdb

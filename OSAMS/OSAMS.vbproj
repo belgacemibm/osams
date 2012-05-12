@@ -563,6 +563,12 @@
     <Content Include="fileupload\Group 1.xlsx" />
     <Content Include="fileupload\Group 2.xlsx" />
     <Content Include="fileupload\sample.xlsx" />
+    <Content Include="fileupload\group1_sample.xlsx" />
+    <Content Include="fileupload\group1_test.xlsx" />
+    <Content Include="fileupload\group2_sample.xlsx" />
+    <Content Include="fileupload\group2_test.xlsx" />
+    <Content Include="fileupload\group3_sample.xlsx" />
+    <Content Include="fileupload\group3_test.xlsx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
