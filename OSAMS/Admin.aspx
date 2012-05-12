@@ -9,7 +9,7 @@
      <div id="caption">ADMIN MANAGEMENT</div>
 </div>
 <div id="table">
-    <div id="error_message"><asp:Label ID="lblError" runat="server"></asp:Label></div>
+    <div id="error_message"><asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label></div>
     <div id="grid_view">
             <asp:GridView ID="grdvwAdmin" runat="server" AllowPaging="True" 
                 AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="staff_id" 
