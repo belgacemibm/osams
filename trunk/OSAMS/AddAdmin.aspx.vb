@@ -105,7 +105,7 @@ Public Class AddAdmin
                             a = PB.runquery(sql)
                             If a = True Then
                                 'Display confirm message
-                                lblError.ForeColor = System.Drawing.Color.Black
+                lblError.ForeColor = System.Drawing.Color.Green
                                 lblError.Text = "Admin " + staffID + " has been created"
 
                                 'clear textbox
