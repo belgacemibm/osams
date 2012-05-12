@@ -23,7 +23,7 @@
 <div id="table" style="text-align: left">
 <img alt="logo" src="images/about-us-main1.jpg" width="300" height="300" 
         style="float: left" />
-    <div style="float: left; width: 500px; padding-right: 5px; padding-left: 10px; padding-bottom: 5px;">
+    <div style="padding: 40px 5px 5px 10px; float: left; width: 500px; font-family: Calibri;">
     
         Online Student Attendance Management System (OSAMS) is an online web service 
         that helps lecturers manage their student attendance anytime, anywhere. OSAMS 
