@@ -17,6 +17,7 @@
 ' 04/05/2012   Vo Ngoc Diep       Adding Select All, Unselect All buttons
 '                                 Validation for all fields
 ' 06/05/2012   Vo Ngoc Diep       Getting selected group details
+' 12/05/2012   Vo Ngoc Diep       Validate the gridview, if there is no group found between the selected time period
 '------------------------------------------------------------ 
 
 Imports System.Data.SqlClient
@@ -57,20 +58,17 @@ Public Class GenderReport
     Protected Sub btnShow_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnShow.Click
         'Show button is clicked
 
-        grdvwReport.Enabled = True 'Set GridView is visible
-        btnViewReport.Visible = True 'Set "View Report" button is visible
-        btnSelectAll.Visible = True 'Set "Select All" button is visible
-        btnUnselectAll.Visible = True 'Set "Unselect All" button is visible
-        cmdstrAdmin = "Select distinct g.semester_name as 'Semester Name', g.course_id as 'Course ID', g.group_name as 'Group Name', g.group_id as 'Group ID' from schedule as s, [group] as g where s.group_id = g.group_id and (s.date between '" & tbxFromDate.Text & "' and '" & tbxToDate.Text & "')"
+        lblErrorMessage.Text = ""
+        cmdstrAdmin = "SELECT DISTINCT g.semester_name AS 'Semester Name', g.course_id AS 'Course ID', g.group_name AS 'Group Name', g.group_id AS 'Group ID' FROM dbo.schedule AS s INNER JOIN dbo.[group] AS g ON s.group_id = g.group_id INNER JOIN dbo.student_schedule ON s.schedule_id = dbo.student_schedule.schedule_id and (s.date between '" & tbxFromDate.Text & "' and '" & tbxToDate.Text & "')"
         If (Session("Rememberme") = "false") Then 'If username is remembered
-            cmdstrLecturer = "Select distinct g.semester_name as 'Semester Name', g.course_id as 'Course ID', g.group_name as 'Group Name', g.group_id as 'Group ID' from schedule as s, [group] as g where s.group_id = g.group_id and (s.date between '" & tbxFromDate.Text & "' and '" & tbxToDate.Text & "') and g.lecturer_id = '" & Session("ID") & "'"
+            cmdstrLecturer = "SELECT DISTINCT g.semester_name AS 'Semester Name', g.course_id AS 'Course ID', g.group_name AS 'Group Name', g.group_id AS 'Group ID' FROM dbo.schedule AS s INNER JOIN dbo.[group] AS g ON s.group_id = g.group_id INNER JOIN dbo.student_schedule ON s.schedule_id = dbo.student_schedule.schedule_id and (s.date between '" & tbxFromDate.Text & "' and '" & tbxToDate.Text & "') and g.lecturer_id = '" & Session("ID") & "'"
             If PB.getAccountType(Session("ID")) = "4" Then
                 getInfo(cmdstrLecturer)
             Else
                 getInfo(cmdstrAdmin)
             End If
         Else 'Username is not remembered
-            cmdstrLecturer = "Select distinct g.semester_name as 'Semester Name', g.course_id as 'Course ID', g.group_name as 'Group Name', g.group_id as 'Group ID' from schedule as s, [group] as g where s.group_id = g.group_id and (s.date between '" & tbxFromDate.Text & "' and '" & tbxToDate.Text & "') and g.lecturer_id = '" & Request.Cookies("ID").Value & "'"
+            cmdstrLecturer = "SELECT DISTINCT g.semester_name AS 'Semester Name', g.course_id AS 'Course ID', g.group_name AS 'Group Name', g.group_id AS 'Group ID' FROM dbo.schedule AS s INNER JOIN dbo.[group] AS g ON s.group_id = g.group_id INNER JOIN dbo.student_schedule ON s.schedule_id = dbo.student_schedule.schedule_id and (s.date between '" & tbxFromDate.Text & "' and '" & tbxToDate.Text & "') and g.lecturer_id = '" & Request.Cookies("ID").Value & "'"
             If PB.getAccountType(Request.Cookies("ID").Value) = "4" Then
                 getInfo(cmdstrLecturer)
             Else
@@ -93,8 +91,16 @@ Public Class GenderReport
             cnn.Open()
             cmd = New SqlCommand(" " & cmdstr & " ", cnn)
             dr = cmd.ExecuteReader
-            grdvwReport.DataSource = dr
-            grdvwReport.DataBind()
+            If dr.Read() Then
+                grdvwReport.Enabled = True 'Set GridView is visible
+                btnViewReport.Visible = True 'Set "View Report" button is visible
+                btnSelectAll.Visible = True 'Set "Select All" button is visible
+                btnUnselectAll.Visible = True 'Set "Unselect All" button is visible
+                grdvwReport.DataSource = dr
+                grdvwReport.DataBind()
+            Else
+                lblErrorMessage.Text = "ERROR: There is no group found between selected time period!"
+            End If
         Catch ex As Exception
             Response.Write(ex)
             cnn.Close()
