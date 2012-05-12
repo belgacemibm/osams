@@ -18,7 +18,7 @@
      <div id="content_header_logo"><img alt="logo" src="images/icons/id_card.png" width="50" height="50" /></div>
      <div id="caption">STUDENT MANAGEMENT</div>
 </div>
-<div id="table">
+<div id="table" style="float: left; clear: left">
 <div id="selection">
 <table border="0" align="left" cellpadding="2" cellspacing="0" style="width: 488px">
   <tr>
@@ -142,7 +142,7 @@
             <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
         </asp:gridview>
         </div>
-
+        <div id="grid_view2">
         <asp:gridview autogeneratecolumns="False" runat="server" id="grdvwNoneStudent" 
             AutoGenerateEditButton="True"  CellPadding="3" EnableModelValidation="True" 
             ForeColor="Black" GridLines="Vertical" BackColor="White" 
@@ -224,7 +224,7 @@
             <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
             <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
         </asp:gridview>
-
+        </div>
     <div id="button">
         <div id="left">
         <asp:Button ID="btnAddNewStudent" runat="server" Text="Add New Student" />
@@ -235,7 +235,7 @@
     <div id="student_div_search">
     <div id="student_search">
     <div id="table_middle_caption">
-    &nbsp;<img alt="logo" src="images/logo_red.png" width="16" height="16" />Student Search
+    &nbsp;<img alt="logo" src="images/add.png" width="14" height="14" />Add Student to Group
     </div>    
         <table class="style21" style="padding: 2px">
             <tr>

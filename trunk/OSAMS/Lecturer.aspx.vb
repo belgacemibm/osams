@@ -486,6 +486,8 @@ Public Class Lecturer
 
             Else
                 grdvwLecturer.AllowPaging = True
+                grdvwLecturer.DataSource = ""
+                grdvwLecturer.DataBind()
                 lblError.ForeColor = System.Drawing.Color.Black
                 lblError.Text = "No lecturer found"
             End If
