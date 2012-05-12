@@ -1076,7 +1076,7 @@ Public Class checkAttendance
         Dim type As String = PB.getAccountType(id)
 
         Dim sql As String
-        If type = "4" Then
+        If type = "4" Or type = "3" Then
             sql = "select group_name, group_id from [group] where active = 1 AND semester_name = '" + ddlSemester.SelectedValue + "' AND course_id = '" + ddlCourse.SelectedValue + "' AND lecturer_id = '" + id + "'"
         Else
             sql = "select group_name, group_id from [group] where active = 1 AND semester_name = '" + ddlSemester.SelectedValue + "' AND course_id = '" + ddlCourse.SelectedValue + "'"
