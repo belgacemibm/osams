@@ -1,4 +1,5 @@
-
+create database [osams]
+use [osams]
 
 --create table
 CREATE TABLE dbo.account_type(
@@ -40,7 +41,7 @@ CREATE TABLE dbo.semester(
 	end_date datetime NOT NULL,
 	active bit NULL
 	)
-CREATE TABLE dbo.lecturer(
+CREATE TABLE lecturer(
 	lecturer_id varchar(10) NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES account(user_name),
 	family_name varchar(500) NULL,
 	middle_name varchar(500) NULL,
@@ -49,14 +50,14 @@ CREATE TABLE dbo.lecturer(
 	email varchar(500) NULL,
 	active bit NULL
 	)
-CREATE TABLE dbo.day_of_week(
+CREATE TABLE day_of_week(
 	day_id int NOT NULL PRIMARY KEY,
 	day varchar(500) NOT NULL,
 	active bit NULL
 	)
 
 
-CREATE TABLE dbo.course
+CREATE TABLE course
 	(
 	course_id varchar(500) NOT NULL PRIMARY KEY,
 	course_name varchar(500) NOT NULL,
@@ -142,226 +143,225 @@ values ('Student', 5)
 insert into account
 VALUES ('v00000', '1234', 1, 1)
 insert into [dbo].[admin]
-values ('v00000', 'Vo', 'Ngoc', 'Diep', 'M', 's3231181@rmit.edu.vn', 1)
-
-
-
---sample data
-
-
-
-insert into semester
-values ('2011C', '2011-10-17', '2012-01-21', 1)
-insert into semester
-values ('2012A', '2012-02-20', '2012-05-30', 1)
-insert into course
-values ('ISYS2132', 'Capstone Project', 12, 'Bachelor', 1)
-insert into course
-values ('BAFI3184', 'Business Finance', 12, 'Bachelor', 1)
-insert into account
-VALUES ('v92345', '1234', 1, 3)
-insert into account
-VALUES ('v91111', '1234', 1, 3)
-insert into account
-VALUES ('v92222', '1234', 1, 4)
-insert into lecturer
-values ('v92345', 'Nelson', '', 'Leung', 'M', 's3220658@rmit.edu.vn', 1)
-insert into lecturer
-values ('v91111', 'James', '', 'Murphy', 'M', 's3220658@rmit.edu.vn', 1)
-insert into lecturer
-values ('v92222', 'Pierre', '', 'Rostan', 'M', 's3220658@rmit.edu.vn', 1)
-insert into account
-VALUES ('s9220658', '1234', 1, 5)
-insert into account
-VALUES ('s9220670', '1234', 1, 5)
-insert into account
-VALUES ('s9220677', '1234', 1, 5)
-insert into account
-VALUES ('s9231181', '1234', 1, 5)
-insert into account
-VALUES ('s9246051', '1234', 1, 5)
-insert into student
-values ('s9220658', 'Nguyen', 'Ly', 'Nam', 'M', 's3220658@rmit.edu.vn', 'BP138', '', 1)
-insert into student
-values ('s9220670', 'Nguyen', 'Tran Dang', 'Khoa', 'M', 's3220670@rmit.edu.vn', 'BP138', '', 1)
-insert into student
-values ('s9220677', 'Ha', 'Hong', 'Truong', 'M', 's3220677@rmit.edu.vn', 'BP138', '', 1)
-insert into student
-values ('s9231181', 'Nguyen', 'Duc Hai', 'Duong', 'M', 's3231181@rmit.edu.vn', 'BP138', '', 1)
-insert into student
-values ('s9246051', 'Vo', 'Ngoc', 'Diep', 'F', 's3246051@rmit.edu.vn', 'BP181', 'M', 1)
-
-
-
-insert into [dbo].[group] values ('1', 4, 1, 'ISYS2132', '2012A', 'v91111') 
-insert into group_day values ('08:00:00', '11:00:00', 'Lecture', 1, 1, 1)  
-insert into group_day values ('07:00:00', '09:00:00', 'Tutorial', 1, 1, 3)  
-insert into student_group values (NULL, NULL, NULL, 1, 1, 's9220658')  
-insert into student_group values (NULL, NULL, NULL, 1, 1, 's9220670')  
-insert into student_group values (NULL, NULL, NULL, 1, 1, 's9220677')    
-insert into student_group values (NULL, NULL, NULL, 1, 1, 's9231181')  
-
-
-insert into schedule values ('20120220', 1, 1)
-insert into schedule values ('20120222', 1, 1)
-insert into schedule values ('20120227', 1, 1) 
-insert into schedule values ('20120229', 1, 1)
-insert into schedule values ('20120305', 1, 1) 
-insert into schedule values ('20120307', 1, 1) 
-insert into schedule values ('20120312', 1, 1)
-insert into schedule values ('20120314', 1, 1) 
-insert into schedule values ('20120319', 1, 1) 
-insert into schedule values ('20120321', 1, 1) 
-insert into schedule values ('20120326', 1, 1)
-insert into schedule values ('20120328', 1, 1) 
-insert into schedule values ('20120402', 1, 1) 
-insert into schedule values ('20120404', 1, 1) 
-insert into schedule values ('20120409', 1, 1) 
-insert into schedule values ('20120411', 1, 1) 
-insert into schedule values ('20120416', 1, 1) 
-insert into schedule values ('20120418', 1, 1) 
-insert into schedule values ('20120423', 1, 1) 
-insert into schedule values ('20120425', 1, 1) 
-insert into schedule values ('20120430', 1, 1) 
-insert into schedule values ('20120502', 1, 1) 
-insert into schedule values ('20120507', 1, 1) 
-insert into schedule values ('20120509', 1, 1) 
-
-
-
-
-insert into [dbo].[group]
-values ('1', 1, 1, 'BAFI3184', '2011C', 'v92222')
-insert into group_day
-values ('10:00:00', '13:00:00', 'both', 1, 2, 3)
-
-
-
-
-insert into student_group
-values (NULL, NULL, NULL, 1, 2, 's9220658')
-
-
-insert into schedule
-values ('2011-10-17', 1, 2)
-insert into schedule
-values ('2011-10-24', 1, 2)
-insert into schedule
-values ('2011-10-31', 1, 2)
-insert into schedule
-values ('2011-11-07', 1, 2)
-insert into schedule
-values ('2011-11-14', 1, 2)
-insert into schedule
-values ('2011-11-21', 1, 2)
-insert into schedule
-values ('2011-11-28', 1, 2)
-insert into schedule
-values ('2011-12-05', 1, 2)
-insert into schedule
-values ('2011-12-12', 1, 2)
-insert into schedule
-values ('2011-12-19', 1, 2)
-insert into schedule
-values ('2011-12-26', 1, 2)
-insert into schedule
-values ('2012-01-02', 1, 2)
+values ('v00000', 'Phan', '', 'Trung', 'M', 'v00000@rmit.edu.vn', 1)
+------------------------------------------------------------------------------------
 
 insert into account
 VALUES ('v00001', '1234', 1, 2)
 insert into [dbo].[admin]
-values ('v00001', 'Truong', 'Vo', 'Ky', 'M', 's3246051@rmit.edu.vn', 1)
+values ('v00001', 'Nguyen', '', 'Tram', 'F', 'v00001@rmit.edu.vn', 1)
 insert into account
 VALUES ('v00002', '1234', 1, 2)
 insert into [dbo].[admin]
-values ('v00002', 'Trinh', 'Cong', 'Son', 'M', 's3246051@rmit.edu.vn', 1)
+values ('v00002', 'Vien', '', 'Uyen', 'F', 'v00002@rmit.edu.vn', 1)
+
+insert into account
+VALUES ('v91111', '1234', 1, 3)
+insert into lecturer
+values ('v91111', 'Narumon', '', 'Cherry', 'F', 'v91111@rmit.edu.vn', 1)
+insert into account
+VALUES ('v92222', '1234', 1, 4)
+insert into lecturer
+values ('v92222', 'Au', '', 'Bill', 'M', 'v92222@rmit.edu.vn', 1)
+insert into account
+VALUES ('v93333', '1234', 1, 4)
+insert into lecturer
+values ('v93333', 'Ulhaq', '', 'Irfan', 'M', 'v93333@rmit.edu.vn', 1)
+
+
+-----------------------------------------------------------------------------
+
+
+INSERT  INTO course (course_id, course_name, credit, level, active) 
+VALUES ('ISYS2132','BIS Capstone Project','12','Bachelor',1)
+INSERT  INTO course (course_id, course_name, credit, level, active) 
+VALUES ('ISYS2424','BIS Strategy and Governance','12','Bachelor',1)
+
+--sua cai end date lai
+INSERT  INTO semester (semester_name, start_date, end_date, active) 
+VALUES ('2011C','20111017','20120121','1')
+
+insert into account values ( 's9220646', '1234', 1, 5) 
+insert into student values ('s9220646', 'Le', 'Lam', 'Lu', 'F', 's9220646@rmit.edu.vn', 'BP138', '', 1)
+ insert into account values ( 's9220658', '1234', 1, 5) 
+ insert into student values ('s9220658', 'Nguyen', 'Ly', 'Nam', 'M', 's9220658@rmit.edu.vn', 'BP138', '', 1) 
+insert into [dbo].[group] values ('1', 2, 1, 'ISYS2132', '2011C', 'v92222') 
+
+insert into group_day values ('09:00:00', '12:00:00', 'Lecture', 1, 1, 1)  
+insert into group_day values ('10:00:00', '13:00:00', 'Tutorial', 1, 1, 3)  
+insert into student_group values (NULL, NULL, NULL, 1, 1, 's9220646')  
+insert into student_group values (NULL, NULL, NULL, 1, 1, 's9220658') 
+
+
+insert into schedule values ('20111017', 1, 1) 
+insert into schedule values ('20111019', 1, 1)
+insert into schedule values ('20111024', 1, 1) 
+insert into schedule values ('20111026', 1, 1) 
+insert into schedule values ('20111031', 1, 1) 
+insert into schedule values ('20111102', 1, 1) 
+insert into schedule values ('20111107', 1, 1) 
+insert into schedule values ('20111109', 1, 1) 
+insert into schedule values ('20111114', 1, 1) 
+insert into schedule values ('20111116', 1, 1) 
+insert into schedule values ('20111121', 1, 1) 
+insert into schedule values ('20111123', 1, 1) 
+insert into schedule values ('20111128', 1, 1)
+insert into schedule values ('20111130', 1, 1)
+insert into schedule values ('20111205', 1, 1) 
+insert into schedule values ('20111207', 1, 1) 
+insert into schedule values ('20111212', 1, 1) 
+insert into schedule values ('20111214', 1, 1) 
+insert into schedule values ('20111219', 1, 1) 
+insert into schedule values ('20111221', 1, 1) 
+insert into schedule values ('20111226', 1, 1)
+insert into schedule values ('20111228', 1, 1)
+insert into schedule values ('20120102', 1, 1) 
+insert into schedule values ('20120104', 1, 1) 
+
+insert into account values ( 's9220677', '1234', 1, 5) 
+ insert into student values ('s9220677', 'Ha', 'Hong', 'Truong', 'M', 's9220677@rmit.edu.vn', 'BP138', '', 1)
+ insert into account values ( 's9222055', '1234', 1, 5)  
+insert into student values ('s9222055', 'Tran', 'Thi Giao', 'Ha', 'F', 's9222055@rmit.edu.vn', 'BP138', '', 1) 
+insert into [dbo].[group] values ('2', 2, 1, 'ISYS2132', '2011C', 'v93333') 
+
+insert into group_day values ('11:00:00', '14:00:00', 'Both', 1, 2, 1)  
+insert into student_group values (NULL, NULL, NULL, 1, 2, 's9220677')  
+insert into student_group values (NULL, NULL, NULL, 1, 2, 's9222055') 
+
+insert into schedule values ('20111017', 1, 2) 
+insert into schedule values ('20111024', 1, 2) 
+insert into schedule values ('20111031', 1, 2) 
+insert into schedule values ('20111107', 1, 2) 
+insert into schedule values ('20111114', 1, 2) 
+insert into schedule values ('20111121', 1, 2) 
+insert into schedule values ('20111128', 1, 2) 
+insert into schedule values ('20111205', 1, 2) 
+insert into schedule values ('20111212', 1, 2) 
+insert into schedule values ('20111219', 1, 2) 
+insert into schedule values ('20111226', 1, 2) 
+insert into schedule values ('20120102', 1, 2) 
+
+
+--group 1 attendance
 
 
 
-insert into student_schedule
-values ('present', 1, 25, 's9220658')
-insert into student_schedule
-values ('present', 1, 26, 's9220658')
-insert into student_schedule
-values ('present', 1, 27, 's9220658')
-insert into student_schedule
-values ('present', 1, 28, 's9220658')
-insert into student_schedule
-values ('present', 1, 29, 's9220658')
-insert into student_schedule
-values ('present', 1, 30, 's9220658')
-insert into student_schedule
-values ('absent', 1, 31, 's9220658')
-insert into student_schedule
-values ('present', 1, 32, 's9220658')
-insert into student_schedule
-values ('present', 1, 33, 's9220658')
-insert into student_schedule
-values ('present', 1, 34, 's9220658')
-insert into student_schedule
-values ('present', 1, 35, 's9220658')
-insert into student_schedule
-values ('present', 1, 36, 's9220658')
+insert into student_schedule values ('absent', 1, 1, 's9220646') 
+insert into student_schedule values ('present', 1, 1, 's9220658')
+insert into student_schedule values ('present', 1, 2, 's9220646') 
+insert into student_schedule values ('present', 1, 2, 's9220658')
+insert into student_schedule values ('absent', 1, 3, 's9220658') 
+insert into student_schedule values ('present', 1, 3, 's9220646')
+insert into student_schedule values ('absent', 1, 4, 's9220658') 
+insert into student_schedule values ('present', 1, 4, 's9220646')
+insert into student_schedule values ('present', 1, 5, 's9220646') 
+insert into student_schedule values ('present', 1, 5, 's9220658')
+insert into student_schedule values ('present', 1, 6, 's9220646') 
+insert into student_schedule values ('present', 1, 6, 's9220658')
+insert into student_schedule values ('absent', 1, 7, 's9220658') 
+insert into student_schedule values ('present', 1, 7, 's9220646')
+insert into student_schedule values ('absent', 1, 8, 's9220646') 
+insert into student_schedule values ('present', 1, 8, 's9220658')
+insert into student_schedule values ('present', 1, 9, 's9220646') 
+insert into student_schedule values ('present', 1, 9, 's9220658')
+insert into student_schedule values ('present', 1, 10, 's9220646') 
+insert into student_schedule values ('present', 1, 10, 's9220658')
+insert into student_schedule values ('absent', 1, 11, 's9220658') 
+insert into student_schedule values ('present', 1, 11, 's9220646')
+insert into student_schedule values ('present', 1, 12, 's9220646') 
+insert into student_schedule values ('present', 1, 12, 's9220658')
+insert into student_schedule values ('present', 1, 13, 's9220646') 
+insert into student_schedule values ('present', 1, 13, 's9220658')
+insert into student_schedule values ('present', 1, 14, 's9220646') 
+insert into student_schedule values ('present', 1, 14, 's9220658') 
+insert into student_schedule values ('absent', 1, 15, 's9220658') 
+insert into student_schedule values ('present', 1, 15, 's9220646')
+insert into student_schedule values ('present', 1, 16, 's9220646') 
+insert into student_schedule values ('present', 1, 16, 's9220658')
+insert into student_schedule values ('present', 1, 17, 's9220646') 
+insert into student_schedule values ('present', 1, 17, 's9220658')
+insert into student_schedule values ('present', 1, 18, 's9220646') 
+insert into student_schedule values ('present', 1, 18, 's9220658')
+insert into student_schedule values ('absent', 1, 19, 's9220658') 
+insert into student_schedule values ('present', 1, 19, 's9220646')
+insert into student_schedule values ('present', 1, 20, 's9220646') 
+insert into student_schedule values ('present', 1, 20, 's9220658')
+insert into student_schedule values ('present', 1, 21, 's9220646') 
+insert into student_schedule values ('present', 1, 21, 's9220658')
+insert into student_schedule values ('absent', 1, 22, 's9220658') 
+insert into student_schedule values ('present', 1, 22, 's9220646')
+insert into student_schedule values ('present', 1, 23, 's9220646') 
+insert into student_schedule values ('present', 1, 23, 's9220658')
+insert into student_schedule values ('present', 1, 24, 's9220646') 
+insert into student_schedule values ('present', 1, 24, 's9220658')
 
 
-
-insert into student_schedule
-values ('present', 1, 1, 's9220658')
-insert into student_schedule
-values ('present', 1, 2, 's9220658')
-insert into student_schedule
-values ('present', 1, 3, 's9220658')
-insert into student_schedule
-values ('present', 1, 4, 's9220658')
-insert into student_schedule
-values ('present', 1, 5, 's9220658')
-insert into student_schedule
-values ('present', 1, 6, 's9220658')
+--group 2 2011c attendance
 
 
-insert into student_schedule
-values ('present', 1, 1, 's9220670')
-insert into student_schedule
-values ('present', 1, 2, 's9220670')
-insert into student_schedule
-values ('present', 1, 3, 's9220670')
-insert into student_schedule
-values ('present', 1, 4, 's9220670')
-insert into student_schedule
-values ('present', 1, 5, 's9220670')
-insert into student_schedule
-values ('present', 1, 6, 's9220670')
+insert into student_schedule values ('present', 1, 25, 's9220677') 
+insert into student_schedule values ('present', 1, 25, 's9222055')
+insert into student_schedule values ('absent', 1, 26, 's9220677') 
+insert into student_schedule values ('present', 1, 26, 's9222055')
+insert into student_schedule values ('absent', 1, 27, 's9220677') 
+insert into student_schedule values ('present', 1, 27, 's9222055')
+insert into student_schedule values ('absent', 1, 28, 's9220677') 
+insert into student_schedule values ('present', 1, 28, 's9222055')
+insert into student_schedule values ('present', 1, 29, 's9220677') 
+insert into student_schedule values ('present', 1, 29, 's9222055')
+insert into student_schedule values ('absent', 1, 30, 's9222055') 
+insert into student_schedule values ('present', 1, 30, 's9220677')
+insert into student_schedule values ('absent', 1, 31, 's9220677') 
+insert into student_schedule values ('present', 1, 31, 's9222055')
+insert into student_schedule values ('present', 1, 32, 's9220677') 
+insert into student_schedule values ('present', 1, 32, 's9222055')
+insert into student_schedule values ('present', 1, 33, 's9220677') 
+insert into student_schedule values ('present', 1, 33, 's9222055')
+insert into student_schedule values ('absent', 1, 34, 's9220677') 
+insert into student_schedule values ('present', 1, 34, 's9222055')
+insert into student_schedule values ('present', 1, 35, 's9220677') 
+insert into student_schedule values ('present', 1, 35, 's9222055')
+insert into student_schedule values ('present', 1, 36, 's9220677') 
+insert into student_schedule values ('present', 1, 36, 's9222055')
+
+--group for 2012A
 
 
-insert into student_schedule
-values ('present', 1, 1, 's9220677')
-insert into student_schedule
-values ('present', 1, 2, 's9220677')
-insert into student_schedule
-values ('present', 1, 3, 's9220677')
-insert into student_schedule
-values ('present', 1, 4, 's9220677')
-insert into student_schedule
-values ('present', 1, 5, 's9220677')
-insert into student_schedule
-values ('present', 1, 6, 's9220677')
+INSERT  INTO semester (semester_name, start_date, end_date, active) VALUES ('2012A','20120220','20120601','1')
+
+insert into account values ( 's9231753', '1234', 1, 5)  
+insert into student values ('s9231753', 'Pham', 'Sy Nhat', 'Nam', 'M', 's9231753@rmit.edu.vn', 'BP138', '', 1) 
+insert into account values ( 's9245674', '1234', 1, 5)  
+insert into student values ('s9245674', 'Pham', 'Phong', 'Phanh', 'F', 's9245674@rmit.edu.vn', 'BP138', '', 1) 
+insert into account values ( 's9246044', '1234', 1, 5)  
+insert into student values ('s9246044', 'Doan', 'Day', 'Da', 'F', 's9246044@rmit.edu.vn', 'BP138', '', 1) 
+insert into [dbo].[group] values ('1', 3, 1, 'ISYS2424', '2012A', 'v91111') 
+
+insert into group_day values ('16:00:00', '19:00:00', 'Both', 1, 3, 1)  
+insert into student_group values (NULL, NULL, NULL, 1, 3, 's9231753')  
+insert into student_group values (NULL, NULL, NULL, 1, 3, 's9245674')  
+insert into student_group values (NULL, NULL, NULL, 1, 3, 's9246044') 
+
+insert into schedule values ('20120220', 1, 3) 
+insert into schedule values ('20120227', 1, 3) 
+insert into schedule values ('20120305', 1, 3) 
+insert into schedule values ('20120312', 1, 3) 
+insert into schedule values ('20120319', 1, 3) 
+insert into schedule values ('20120326', 1, 3) 
+insert into schedule values ('20120402', 1, 3) 
+insert into schedule values ('20120409', 1, 3) 
+insert into schedule values ('20120416', 1, 3) 
+insert into schedule values ('20120423', 1, 3) 
+insert into schedule values ('20120430', 1, 3) 
+insert into schedule values ('20120507', 1, 3)
 
 
-insert into student_schedule
-values ('present', 1, 1, 's9231181')
-insert into student_schedule
-values ('present', 1, 2, 's9231181')
-insert into student_schedule
-values ('present', 1, 3, 's9231181')
-insert into student_schedule
-values ('present', 1, 4, 's9231181')
-insert into student_schedule
-values ('present', 1, 5, 's9231181')
-insert into student_schedule
-values ('present', 1, 6, 's9231181')
-
-
-
+insert into student_schedule values ('absent', 1, 37, 's9231753')
+insert into student_schedule values ('present', 1, 37, 's9245674')
+insert into student_schedule values ('present', 1, 37, 's9246044')
+insert into student_schedule values ('absent', 1, 38, 's9246044')
+insert into student_schedule values ('present', 1, 38, 's9231753')
+insert into student_schedule values ('present', 1, 38, 's9245674')
 
 
 
