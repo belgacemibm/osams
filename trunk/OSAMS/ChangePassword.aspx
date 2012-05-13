@@ -35,7 +35,7 @@
     <asp:Label ID="lblID" runat="server" Text="ID:"></asp:Label>
             </td>
             <td class="style22">
-                <asp:TextBox ID="tbxID" runat="server"></asp:TextBox>
+                <asp:TextBox ID="tbxID" runat="server" ReadOnly="True"></asp:TextBox>
                 &nbsp;
             </td>
         </tr>
@@ -79,6 +79,13 @@
                 <asp:CompareValidator ID="CmpvlrNewPassword" runat="server" 
                     ControlToCompare="tbxNewPassword" ControlToValidate="tbxNewPasswordConfirm" 
                     ErrorMessage="New Password does not match!"></asp:CompareValidator>
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color: #FFFFFF; color: #FFFFFF; font-weight: bold">
+                &nbsp;</td>
+            <td class="style22">
+                <asp:Label ID="lblMessage" runat="server" Font-Size="Medium"></asp:Label>
             </td>
         </tr>
         <tr>
