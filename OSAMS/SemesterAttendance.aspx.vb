@@ -54,6 +54,8 @@ Public Class SemesterAttendance
             End If
 
             dtSem = PB.getData(sqlSem)
+            If dtSem.Rows.Count > 0 Then
+           
             For Each dr As DataRow In dtSem.Rows
                 ddlSemester.Items.Add(New ListItem(dr.Item("semester_name"), dr.Item("semester_name")))
             Next
@@ -113,6 +115,19 @@ Public Class SemesterAttendance
             Else
                 buildtable(ddlGroup.SelectedValue.ToString)
             End If
+
+            Else
+                btnShow.Visible = False
+                Dim r As New TableRow
+                Dim c As New TableCell
+                c.Controls.Add(New LiteralControl("You are not assigned in any group, so you cannot view attendance.<br/> Please, contact the administrator for more information."))
+                r.Cells.Add(c)
+                tbattendace.Rows.Add(r)
+                tbattendace.Font.Size = 20
+                tbattendace.BorderStyle = BorderStyle.None
+            End If
+
+
         End If
         'If Page.IsPostBack Then
 
