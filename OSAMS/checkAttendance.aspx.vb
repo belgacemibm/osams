@@ -55,10 +55,10 @@ Public Class checkAttendance
                 'load the data into the dropdownlist
                 'sqlSem = "select semester_name from semester where active = 1 AND datediff(day, getdate(), [dbo].[semester].[end_date]) >= 0"
                 If user_type = "4" Or user_type = "3" Then
-                    sqlSem = "select distinct(g.semester_name) from [group] g, semester s where g.active = 1 AND g.lecturer_id ='" + id + "' AND datediff(day, getdate(), s.end_date) >= 0"
+                    sqlSem = "select distinct(g.semester_name) from [group] g, semester s where g.active = 1 AND g.lecturer_id ='" + id + "' AND g.semester_name = s.semester_name AND datediff(day, getdate(), s.end_date) >= 0"
                 Else
-                    sqlSem = "select semester_name from semester where active = 1 AND datediff(day, getdate(), [dbo].[semester].[end_date]) >= 0"
-
+                    'sqlSem = "select semester_name from semester where active = 1 AND datediff(day, getdate(), [dbo].[semester].[end_date]) >= 0"
+                    sqlSem = "select distinct(g.semester_name) from [group] g, semester s where g.active = 1 AND g.semester_name = s.semester_name AND datediff(day, getdate(), s.end_date) >= 0"
                 End If
                 dtSem = PB.getData(sqlSem)
                 For Each dr As DataRow In dtSem.Rows
