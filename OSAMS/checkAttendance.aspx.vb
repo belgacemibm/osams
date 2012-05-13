@@ -61,73 +61,88 @@ Public Class checkAttendance
                     sqlSem = "select distinct(g.semester_name) from [group] g, semester s where g.active = 1 AND g.semester_name = s.semester_name AND datediff(day, getdate(), s.end_date) >= 0"
                 End If
                 dtSem = PB.getData(sqlSem)
-                For Each dr As DataRow In dtSem.Rows
-                    ddlSemester.Items.Add(New ListItem(dr.Item("semester_name"), dr.Item("semester_name")))
-                Next
-
-                ddlSemester.SelectedIndex = 0
-                loadcourse()
+                If dtSem.Rows.Count > 0 Then
 
 
-                'display group
-                Dim group As String
-                group = Request.QueryString("field")
-                Dim value As String
-                value = Request.QueryString("value")
-                Dim edit As String
-                edit = Request.QueryString("edit")
-                If group <> "" Then
-                    Dim groupinfo As New ArrayList
-                    Dim data As Array
-
-                    data = Split(group, ",")
-                    For Each item In data
-                        groupinfo.Add(item)
+                    For Each dr As DataRow In dtSem.Rows
+                        ddlSemester.Items.Add(New ListItem(dr.Item("semester_name"), dr.Item("semester_name")))
                     Next
 
-                    ddlSemester.SelectedValue = groupinfo(1)
+                    ddlSemester.SelectedIndex = 0
                     loadcourse()
-                    ddlCourse.SelectedValue = groupinfo(2)
-                    loadgroup()
-                    ddlGroup.SelectedValue = groupinfo(0)
-
-                    If value = "" And edit = "" Then
-
-                        buildtable(groupinfo(0))
-
-                    End If
-                    'save the attendance data
-                    If value <> "" And edit = "" Then
-
-                        checkAttendance(groupinfo(0), value)
-
-                        Response.Redirect("~/checkAttendance.aspx?field=" + group)
-                        lblMes.ForeColor = Drawing.Color.Black
-                        lblMes.Text = "Attendance updated"
-                    End If
-                    'edit attendance
 
 
-                    Dim va As Array
-                    Dim list As New ArrayList
-                    If edit <> "" And value = "" Then
-                        va = Split(edit, ",")
+                    'display group
+                    Dim group As String
+                    group = Request.QueryString("field")
+                    Dim value As String
+                    value = Request.QueryString("value")
+                    Dim edit As String
+                    edit = Request.QueryString("edit")
+                    If group <> "" Then
+                        Dim groupinfo As New ArrayList
+                        Dim data As Array
 
-                        list = editTable(va(0).ToString, va(1).ToString)
+                        data = Split(group, ",")
+                        For Each item In data
+                            groupinfo.Add(item)
+                        Next
+
+                        ddlSemester.SelectedValue = groupinfo(1)
+                        loadcourse()
+                        ddlCourse.SelectedValue = groupinfo(2)
+                        loadgroup()
+                        ddlGroup.SelectedValue = groupinfo(0)
+
+                        If value = "" And edit = "" Then
+
+                            buildtable(groupinfo(0))
+
+                        End If
+                        'save the attendance data
+                        If value <> "" And edit = "" Then
+
+                            checkAttendance(groupinfo(0), value)
+
+                            Response.Redirect("~/checkAttendance.aspx?field=" + group)
+                            lblMes.ForeColor = Drawing.Color.Black
+                            lblMes.Text = "Attendance updated"
+                        End If
+                        'edit attendance
 
 
-                    End If
+                        Dim va As Array
+                        Dim list As New ArrayList
+                        If edit <> "" And value = "" Then
+                            va = Split(edit, ",")
 
-                    If edit <> "" And value <> "" Then
-                        va = Split(edit, ",")
-                        list = getabstu(va(1).ToString, va(0).ToString)
-                        editAttendance(va(1).ToString, va(0).ToString, value, list)
-                        Response.Redirect("~/checkAttendance.aspx?field=" + group)
-                        lblMes.ForeColor = Drawing.Color.Black
-                        lblMes.Text = "Attendance updated"
+                            list = editTable(va(0).ToString, va(1).ToString)
+
+
+                        End If
+
+                        If edit <> "" And value <> "" Then
+                            va = Split(edit, ",")
+                            list = getabstu(va(1).ToString, va(0).ToString)
+                            editAttendance(va(1).ToString, va(0).ToString, value, list)
+                            Response.Redirect("~/checkAttendance.aspx?field=" + group)
+                            lblMes.ForeColor = Drawing.Color.Black
+                            lblMes.Text = "Attendance updated"
+                        End If
+                    Else
+                        Response.Redirect("~/checkAttendance.aspx?field=" + ddlGroup.SelectedValue + "," + ddlSemester.SelectedValue + "," + ddlCourse.SelectedValue)
                     End If
                 Else
-                    Response.Redirect("~/checkAttendance.aspx?field=" + ddlGroup.SelectedValue + "," + ddlSemester.SelectedValue + "," + ddlCourse.SelectedValue)
+                    'Form.Visible = False
+                    btnShow.Visible = False
+                    Dim r As New TableRow
+                    Dim c As New TableCell
+                    c.Controls.Add(New LiteralControl("You are not assigned in any group, so you cannot mark attendance.<br/> Please, contact the administrator for more information."))
+                    r.Cells.Add(c)
+                    tbattendace.Rows.Add(r)
+                    tbattendace.Font.Size = 20
+                    tbattendace.BorderStyle = BorderStyle.None
+
                 End If
             End If
         End If
