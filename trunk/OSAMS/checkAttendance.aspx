@@ -118,7 +118,7 @@
 
 
     
-<table width="700" border="0" align="left" cellpadding="2" cellspacing="0">
+<table width="700" border="0" align="left" cellpadding="2" cellspacing="0" id="asd">
   <tr>
     <td align="left" valign="middle">Semester:&nbsp;
         <asp:DropDownList ID="ddlSemester" runat="server" AutoPostBack="True">
