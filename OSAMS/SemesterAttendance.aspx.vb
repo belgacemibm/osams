@@ -49,8 +49,8 @@ Public Class SemesterAttendance
                 sqlSem = "select distinct(g.semester_name) from [group] g, student_group sg where g.group_id = sg.group_id AND sg.student_id = '" + id + "'"
                 ddlGroup.Enabled = False
             Else
-                sqlSem = "select semester_name from semester where active = 1"
-
+                'sqlSem = "select semester_name from semester where active = 1"
+                sqlSem = "select distinct(g.semester_name) from [group] g, semester s where g.active = 1 AND g.semester_name = s.semester_name"
             End If
 
             dtSem = PB.getData(sqlSem)
