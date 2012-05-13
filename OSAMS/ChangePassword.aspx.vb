@@ -44,7 +44,8 @@ Public Class ChangePassword
             cnn.Open()
             cmd = New SqlCommand("Update " & Table_Name & " SET password = '" & tbxNewPassword.Text & "' where user_name = '" & ID & "'", cnn)
             cmd.ExecuteNonQuery()
-            Response.Redirect("Home.aspx")
+            lblMessage.ForeColor = System.Drawing.Color.Green
+            lblMessage.Text = "Your password is changed successfully"
         Catch ex As Exception
             Response.Write(ex)
             cnn.Close()

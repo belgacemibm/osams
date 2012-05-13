@@ -131,6 +131,15 @@ Partial Public Class ChangePassword
     Protected WithEvents CmpvlrNewPassword As Global.System.Web.UI.WebControls.CompareValidator
 
     '''<summary>
+    '''lblMessage control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblMessage As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''btnChangePassword control.
     '''</summary>
     '''<remarks>
