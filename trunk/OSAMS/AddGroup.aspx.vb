@@ -122,7 +122,7 @@ Public Class AddGroup
         dt1 = New DataTable()
         dt1 = PB.getData(" select course_id, course_name from [dbo].[course]")
         For Each dr1 As DataRow In dt1.Rows
-            cbxCourse.Items.Insert(0, New ListItem(dr1.Item("course_name"), dr1.Item("course_id")))
+            cbxCourse.Items.Insert(0, New ListItem(dr1.Item("course_id") + ": " + dr1.Item("course_name"), dr1.Item("course_id")))
         Next
         Dim dt2 As DataTable
         dt2 = New DataTable()
