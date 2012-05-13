@@ -1046,6 +1046,7 @@ Public Class checkAttendance
             For Each dr1 As DataRow In dtCourse.Rows
                 ddlCourse.Items.Add(New ListItem(dr1.Item("course_id") + ": " + dr1.Item("course_name"), dr1.Item("course_id")))
             Next
+
             If ddlCourse.SelectedItem.ToString <> "" Then
                 ddlGroup.Items.Clear()
                 Dim dtGroup As DataTable
