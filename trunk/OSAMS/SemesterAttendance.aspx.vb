@@ -129,10 +129,6 @@ Public Class SemesterAttendance
 
 
         End If
-        'If Page.IsPostBack Then
-
-
-        'End If
 
 
     End Sub
