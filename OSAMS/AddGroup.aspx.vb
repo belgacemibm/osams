@@ -269,7 +269,7 @@ Public Class AddGroup
                 Dim sqlGID As String
                 sqlGID = " select group_id from [group], [course] where [group].[course_id] = [course].[course_id] AND " & _
                     "[group].[group_name] = '" + txtGroupName.Text & _
-                    "' AND [course].[course_name] = '" + cbxCourse.SelectedItem.ToString + "' AND [group].[semester_name] = '" + cbxSemester.SelectedValue + "' AND [group].[lecturer_id] = '" + lecID + "'"
+                    "' AND [course].[course_id] = '" + cbxCourse.SelectedValue + "' AND [group].[semester_name] = '" + cbxSemester.SelectedValue + "' AND [group].[lecturer_id] = '" + lecID + "'"
                 Dim gdt As DataTable
                 gdt = New DataTable
 
