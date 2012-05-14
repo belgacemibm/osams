@@ -98,8 +98,13 @@
             window.location.href = pathname;
 
         }
-    
+
     }
+//    function cancel(value) {
+
+//        var pathname = window.location.protocol + "//" + window.location.host + window.location.pathname + "?field=" + value;
+//    
+//    }
 
 
 
