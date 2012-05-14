@@ -366,7 +366,7 @@ Public Class AddGroup
             sqlGroup = " Select [group].[group_name] from [course], [group], [semester] " & _
                 "where [group].[course_id] = [course].[course_id] AND [group].[semester_name] = [semester].[semester_name] " & _
                 "AND [semester].[semester_name] = '" + cbxSemester.SelectedValue + "' " & _
-                "AND [course].[course_name] = '" + cbxCourse.SelectedItem.ToString + "' " & _
+                "AND [course].[course_id] = '" + cbxCourse.SelectedValue + "' " & _
                 "AND [group].[group_name] = '" + txtGroupName.Text + "'"
 
             Dim groupdt As DataTable
