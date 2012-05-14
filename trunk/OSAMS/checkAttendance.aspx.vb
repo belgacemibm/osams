@@ -17,8 +17,6 @@
 '    '------------------------------------------------------------ 
 ' 17/04/2012   Pham Sy Nhat Nam     build the page
 '------------------------------------------------------------ 
-
-
 Public Class checkAttendance
     Inherits System.Web.UI.Page
     Private studentarray As ArrayList
@@ -1549,10 +1547,13 @@ Public Class checkAttendance
 
             r = New TableRow
 
-
+            'add the button
             c = New TableCell
 
-            c.Controls.Add(New LiteralControl("<input id='Button1' type='button' value='Update Attendance' onclick='javascript:run();'  align='right' />"))
+            c.Controls.Add(New LiteralControl("<input id='update' type='button' value='Update Attendance' onclick='javascript:run();'  align='right' />"))
+            r.Cells.Add(c)
+            c = New TableCell
+            c.Controls.Add(New LiteralControl("<input id='update' type='button' value='Cancel' onclick='javascript:history.go(-1);'  align='right' />"))
             r.Cells.Add(c)
             tbattendace.Rows.Add(r)
 
@@ -1562,7 +1563,6 @@ Public Class checkAttendance
 
 
     End Function
-
 
 
 End Class
