@@ -241,7 +241,7 @@ Public Class AddGroup
                     middle_name = dr.Item("Middle Name").ToString
                     given_name = dr.Item("Given Name").ToString
                     gender = dr.Item("Gender")
-
+                    'check the student existed or not
                     exist = PB.checkEsixtedData(" select student_id from student where student_id = 's" + StudentID + "'")
 
                     If exist = False Then
